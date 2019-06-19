@@ -26,7 +26,10 @@ router.get("/test", (req, res) => {
 router.post("/register", (req, res) => {
     // console.log(req.body)
     // 查询数据库
-    const { errors, isValid } = validateRegisterInput(req.body); // 解构
+    const {
+        errors,
+        isValid
+    } = validateRegisterInput(req.body); // 解构
     // 判断是否通过
     if (!isValid) {
         return res.status(400).json(errors);
@@ -51,7 +54,9 @@ router.post("/register", (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password,
+                identity: req.body.identity,
                 avatar //  es6一样只写一个
+
             });
             //  密码加密
             bcrypt.genSalt(10, (err, salt) => {
@@ -72,12 +77,14 @@ router.post("/register", (req, res) => {
 // @desc   jwt tocan
 // @access public 登录接口
 router.post("/login", (req, res) => {
-    const { errors, isValid } = validateLoginInput(req.body); // 解构
+    const {
+        errors,
+        isValid
+    } = validateLoginInput(req.body); // 解构
     // 判断isValid是否通过
     if (!isValid) {
         return res.status(400).json(errors);
     }
-
     // 获取到
     const email = req.body.email;
     const password = req.body.password;
@@ -95,21 +102,22 @@ router.post("/login", (req, res) => {
             if (isMatch) {
                 const rule = {
                     id: user.id,
-                    name: user.name
+                    name: user.name,
+                    avatar: user.avatar,
+                    identity: user.identity
                 };
                 //res.json({ msg: "sucess" })
                 // jwt.sign("规则","加密名字","tocken 过期时间","cb")
 
                 jwt.sign(
                     rule,
-                    keys.secretOrKey,
-                    {
+                    keys.secretOrKey, {
                         expiresIn: 3600
                     },
                     (err, token) => {
                         if (err) throw err;
                         res.json({
-                            sucess: true,
+                            success: true,
                             // token: "mrw" + token
                             token: "Bearer " + token //  固定格式
                         });
@@ -140,7 +148,10 @@ router.get(
             //  之前pssport.js 上返回
             id: req.user.id,
             name: req.user.name,
-            email: req.user.email
+            email: req.user.email,
+            identity: req.user.identity,
+            avatar: req.user.avatar
+
         });
     }
 );

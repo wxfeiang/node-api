@@ -21,7 +21,9 @@ mongoose
 // Connect to mongodb
 
 // bodyParser 中间件使用
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
 // 使用中间件实现允许跨域
