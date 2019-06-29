@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const app = express();
-//users/.js
+//users/.js  
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const blog = require("./routes/api/blog");
+const wx_jddata = require("./routes/api/wx_jddata");
 // 请求静态json
 const acjson = require("./routes/api/acjson");
 //DB
@@ -48,6 +49,7 @@ app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 app.use("/api/blog", blog);
 app.use("/api/acjson", acjson);
+app.use("/api/wx_jddata", wx_jddata);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
