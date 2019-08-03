@@ -39,7 +39,7 @@ router.get(
       .catch(err => res.status(404).json(err));
   }
 );
-// $route  GET api/profile/private
+// $route post api/profile/private
 // @desc   返回的请求的json数据  获取当前登录得用户个人信心
 // @access public
 router.post(

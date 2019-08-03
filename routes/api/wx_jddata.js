@@ -5,14 +5,14 @@ const passport = require('passport');
 
 const Wx_JDdata = require('../../models/Wx_JDdata');
 
-// @route  GET api/Wx_JDdata/test
+// @route  GET api/profiles/test
 // @desc   返回的请求的json数据
 // @access public
 router.get('/test', (req, res) => {
-  res.json({ msg: '微信____京东模拟数据启用' });
+  res.json({ msg: 'profile works' });
 });
 
-// @route  GET api/Wx_JDdata/homepage
+// @route  GET api/profiles/homepage
 // @desc   返回的首页请求的json数据
 // @access public
 router.get('/homepage', (req, res) => {
@@ -109,7 +109,7 @@ router.get('/homepage', (req, res) => {
   });
 });
 
-// @route  GET api/Wx_JDdata/productionDetail
+// @route  GET api/profiles/productionDetail
 // @desc   返回的商品详情的json数据
 // @access public
 router.get('/productionDetail', (req, res) => {
@@ -241,7 +241,7 @@ router.get('/productionDetail', (req, res) => {
   res.json(details);
 });
 
-// @route  GET api/Wx_JDdata/productions
+// @route  GET api/profiles/productions
 // @desc   返回的商品的json数据
 // @access public
 router.get('/productions', (req, res) => {
@@ -379,7 +379,7 @@ router.get('/productions', (req, res) => {
   });
 });
 
-// @route  GET api/Wx_JDdata/productionsList
+// @route  GET api/profiles/productionsList
 // @desc   返回的商品列表的json数据
 // @access public
 router.get('/productionsList', (req, res) => {
@@ -531,7 +531,7 @@ router.get('/productionsList', (req, res) => {
   res.json(newProlist);
 });
 
-// @route  GET api/Wx_JDdata/:page/:size
+// @route  GET api/profiles/:page/:size
 // @desc   上拉加载的接口
 // @access private
 // 10条 下拉刷新(请求)3条 上拉加载(请求)3条
