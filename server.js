@@ -51,7 +51,7 @@ app.use("/api/blog", blog);
 app.use("/api/acjson", acjson);
 app.use("/api/wx_jddata", wx_jddata);
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Server  running  on prot  ${port}`);
 });

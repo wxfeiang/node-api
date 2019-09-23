@@ -120,6 +120,7 @@ router.get("/handle/:handle", (req, res) => {
 // $route  GET api/profile/user/:user_id
 // @desc   通过user_id获取个人信息
 // @access public
+//   populate  在从关联的表中获取字段 和当钱的字段一起返回 
 router.get("/user/:user_id", (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.params.user_id })

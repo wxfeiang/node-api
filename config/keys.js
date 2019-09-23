@@ -1,7 +1,7 @@
 module.exports = {
   //暂时注释
   mongoURI:
-    //"mongodb://wxfeiang:wxfeiang123@ds143071.mlab.com:43071/resful-api-product",
+   // "mongodb://wxfeiang:wxfeiang123@ds143071.mlab.com:43071/resful-api-product",
     "mongodb://localhost/node-api",
   // 链接本地数据库
   secretOrKey: "secret"

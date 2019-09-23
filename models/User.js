@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     },
     identity: {
         type: String,
-        required: true
+       // required: true
 
     },
     date: {
