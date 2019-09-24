@@ -14,6 +14,10 @@ const passport = require('passport');
 var request = require('request');
 var querystring = require('querystring');
 
+//  引入邮箱找回密码
+const nodemailer = require('nodemailer');
+// require('dotenv').config();
+
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
@@ -155,12 +159,8 @@ router.get(
 );
 //   获取短信短信验证码接口
 router.post('/sms', (req, res) => {
-  // 对手机号码做验证 
-  if (req.body.phone) {
-    
-  }
-
-
+    // 对手机号码做验证
+    if (req.body.phone) {}
     var queryData = querystring.stringify({
         mobile: req.body.phone, // 接受短信的用户手机号码
         tpl_id: '143678', // 您申请的短信模板ID，根据实际情况修改
@@ -175,7 +175,7 @@ router.post('/sms', (req, res) => {
             return res.json(jsonObj);
         } else {
             return res.status(400).json({
-                password: '后台请求短信服务平台接口异常'
+                error: '后台请求短信服务平台接口异常'
             });
         }
     });
@@ -183,5 +183,57 @@ router.post('/sms', (req, res) => {
 // 提交短信验证码接口
 
 // 邮件找回密码接口
+router.post('/retrievePwd', (req, res) => {
+    const { errors, isValid } = validateLoginInput(req.body); // 解构
+    // 判断isValid是否通过
+    // if (!isValid) {
+    //     return res.status(400).json(errors);
+    // }
+    // 获取到
+    const email = req.body.email;
+    const name = req.body.name;
+    console.log(name);
+    User.findOne({ name }).then(user => {
+        if (!user) {
+            return res.status(400).json({
+                email: '邮箱不存在!!!'
+            });
+        } else {
+            // step 1
+            let transporter = nodemailer.createTransport({
+                service: 'qq',
+                secure: true,
+                auth: {
+                    user: 'wxfeiang@qq.com', // 309595700@qq.com
+                    pass: 'slaedkshldmrjdcc' //  邮箱的授权码
+                }
+            });
+
+            // step 2
+            let mailOptions = {
+                from: 'wxfeiang@qq.com',
+                to: req.body.email,
+                subject: '找回密码',
+                text: `您的用户名:${user.name},密码: ${user.password}`
+            };
+            //  密码是加密的需要解密  应该提示更具验证码 重新更密码  ok  功能实现了
+
+            // step 3
+            transporter.sendMail(mailOptions, (err, data) => {
+                if (err) {
+                    res.status(400).json({
+                        state: 'failed  发送失败',
+                        msg: err
+                    });
+                } else {
+                    res.status(200).json({
+                        state: 'suc',
+                        msg: `密码已发送至您的邮箱${req.body.email}`
+                    });
+                }
+            });
+        }
+    });
+});
 
 module.exports = router;
