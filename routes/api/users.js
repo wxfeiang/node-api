@@ -155,6 +155,12 @@ router.get(
 );
 //   获取短信短信验证码接口
 router.post('/sms', (req, res) => {
+  // 对手机号码做验证 
+  if (req.body.phone) {
+    
+  }
+
+
     var queryData = querystring.stringify({
         mobile: req.body.phone, // 接受短信的用户手机号码
         tpl_id: '143678', // 您申请的短信模板ID，根据实际情况修改
@@ -166,10 +172,8 @@ router.post('/sms', (req, res) => {
         if (!error && response.statusCode == 200) {
             console.log(body); // 打印接口返回内容
             var jsonObj = JSON.parse(body); // 解析接口返回的JSON内容
-            console.log(jsonObj);
             return res.json(jsonObj);
         } else {
-            console.log('请求异常+++++++++');
             return res.status(400).json({
                 password: '后台请求短信服务平台接口异常'
             });
