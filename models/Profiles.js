@@ -1,119 +1,116 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
-  // 根据json 格式写 模型
-  user: {
-    type: Schema.Types.ObjectId, // 数据库提供 ID查
-    ref: "users" //关联 表
-  },
-  handle: {
-    type: String,
-    required: true,
-    max: 40
-  },
-  company: {
-    type: String
-  },
-  website: {
-    type: String
-  },
-  location: {
-    type: String
-  },
-  status: {
-    type: String,
-    required: true
-  },
-  skills: {
-    type: [String],
-    required: true
-  },
-  bio: {
-    type: String
-  },
-  githubusername: {
-    type: String
-  },
-  experience: [
-    {
-      current: {
-        type: Boolean,
-        default: true
-      },
-      title: {
-        type: String,
-        required: true
-      },
-      company: {
-        type: String,
-        required: true
-      },
-      location: {
-        type: String
-      },
-      from: {
-        type: String,
-        require: true
-      },
-      to: {
-        type: String
-      },
-      description: {
-        type: String
-      }
-    }
-  ],
-  education: [
-    {
-      current: {
-        type: Boolean,
-        default: true
-      },
-      school: {
-        type: String,
-        required: true
-      },
-      degree: {
-        type: String,
-        required: true
-      },
-      fieldofstudy: {
-        type: String,
-        required: true
-      },
-      from: {
-        type: String,
-        require: true
-      },
-      to: {
-        type: String
-      },
-      description: {
-        type: String
-      }
-    }
-  ],
-  social: {
-    wechat: {
-      type: String
+    // 根据json 格式写 模型
+    user: {
+        type: Schema.Types.ObjectId, // 数据库提供 ID查
+        ref: 'users' //关联 表
     },
-    QQ: {
-      type: String
+    handle: {
+        type: String,
+        required: true,
+        max: 40
     },
-    tengxunkt: {
-      type: String
+    company: {
+        type: String
     },
-    wangyikt: {
-      type: String
-    }
-  },
+    website: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    status: {
+        type: String,
+        required: true
+    },
+    skills: {
+        type: [String],
+        required: true
+    },
+    bio: {
+        type: String
+    },
+    githubusername: {
+        type: String
+    },
+    experience: [{
+        current: {
+            type: Boolean,
+            default: true
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        company: {
+            type: String,
+            required: true
+        },
+        location: {
+            type: String
+        },
+        from: {
+            type: String,
+            require: true
+        },
+        to: {
+            type: String
+        },
+        description: {
+            type: String
+        }
+    }],
+    education: [{
+        current: {
+            type: Boolean,
+            default: true
+        },
+        school: {
+            type: String,
+            required: true
+        },
+        degree: {
+            type: String,
+            required: true
+        },
+        fieldofstudy: {
+            type: String,
+            required: true
+        },
+        from: {
+            type: String,
+            require: true
+        },
+        to: {
+            type: String
+        },
+        description: {
+            type: String
+        }
+    }],
+    social: {
+        wechat: {
+            type: String
+        },
+        QQ: {
+            type: String
+        },
+        tengxunkt: {
+            type: String
+        },
+        wangyikt: {
+            type: String
+        }
+    },
 
-  date: {
-    type: Date,
-    default: Date.now
-  }
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
-module.exports = Profile = mongoose.model("profile", ProfileSchema);
+module.exports = Profile = mongoose.model('profile', ProfileSchema);
+//  mongoose.model('profile', ProfileSchema, 'profile');     第三个参数 为去掉表  自动加  S  得问题

@@ -161,10 +161,11 @@ router.get(
 router.post('/sms', (req, res) => {
     // 对手机号码做验证
     if (req.body.phone) {}
+    var code = Math.floor(Math.random() * 1000000);
     var queryData = querystring.stringify({
         mobile: req.body.phone, // 接受短信的用户手机号码
         tpl_id: '143678', // 您申请的短信模板ID，根据实际情况修改
-        tpl_value: '#code#=1235231', // 您设置的模板变量，根据实际情况修改
+        tpl_value: '#code#=' + code, // 您设置的模板变量，根据实际情况修改
         key: 'fff5a7c7be45a5e72673785d61269047' // 应用APPKEY(应用详细页查询)
     });
     var queryUrl = 'http://v.juhe.cn/sms/send?' + queryData;
@@ -210,6 +211,7 @@ router.post('/retrievePwd', (req, res) => {
             });
 
             // step 2
+            //   希望写入html  文件
             let mailOptions = {
                 from: 'wxfeiang@qq.com',
                 to: req.body.email,
