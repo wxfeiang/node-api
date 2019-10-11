@@ -111,7 +111,6 @@ router.post('/login', (req, res) => {
                 };
                 //res.json({ msg: "sucess" })
                 // jwt.sign("规则","加密名字","tocken 过期时间","cb")
-
                 jwt.sign(
                     rule,
                     keys.secretOrKey, {
@@ -173,6 +172,7 @@ router.post('/sms', (req, res) => {
         if (!error && response.statusCode == 200) {
             console.log(body); // 打印接口返回内容
             var jsonObj = JSON.parse(body); // 解析接口返回的JSON内容
+            //  把验证码存到 session
             return res.json(jsonObj);
         } else {
             return res.status(400).json({
@@ -236,6 +236,37 @@ router.post('/retrievePwd', (req, res) => {
             });
         }
     });
+});
+// 测试 session
+router.get('/seeion', (req, res, next) => {
+    var code = Math.floor(Math.random() * 1000000);
+    var user = {
+        name: 'Chen-xy',
+        age: '22',
+        address: 'bj',
+        code
+    };
+    req.session.user = user;
+    console.log(req.session.user);
+    res.status(200).json({
+        title: 'code',
+        name: 'code' + code
+    });
+    //req.session.destroy();
+    //  req.session.destroy();
+    console.log('------------------------');
+    // console.log(req);
+});
+//验证是否 session
+router.get('/yazhen', (req, res, next) => {
+    console.log(req.session.user);
+    if (req.session.user) {
+        var user = req.session.user;
+        var code = user.code;
+        res.send('你好这是' + code + '，欢迎来到我的家园。');
+    } else {
+        res.send('session 过期了');
+    }
 });
 
 module.exports = router;

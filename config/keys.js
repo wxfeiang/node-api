@@ -1,11 +1,13 @@
 module.exports = {
-  //暂时注释
-  mongoURI:
-   // "mongodb://wxfeiang:wxfeiang123@ds143071.mlab.com:43071/resful-api-product",
-    "mongodb://localhost/node-api",
-  // 链接本地数据库
-  secretOrKey: "secret"
-  // 验证 Jwt ken
+    //暂时注释
+    //  mongoURI: 'mongodb://node-api:node258@ds233258.mlab.com:33258/node-api',
+    //  新地址
+    mongoURI: 'mongodb+srv://wxfeiang:wpazwx1314>@cluster0-r1nin.mongodb.net/test?retryWrites=true&w=majority',
+
+    //  'mongodb://localhost/node-api',
+    // 链接本地数据库
+    secretOrKey: 'secret'
+        // 验证 Jwt ken
 };
 
 /*
