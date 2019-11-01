@@ -2,9 +2,10 @@ module.exports = {
     //暂时注释
     //  mongoURI: 'mongodb://node-api:node258@ds233258.mlab.com:33258/node-api',
     //  新地址
-    mongoURI: 'mongodb+srv://wxfeiang:wpazwx1314>@cluster0-r1nin.mongodb.net/test?retryWrites=true&w=majority',
+    // mongoURI: 'mongodb+srv://wxfeiang:wpazwx1314>@cluster0-r1nin.mongodb.net/test?retryWrites=true&w=majority',
 
-    //  'mongodb://localhost/node-api',
+    mongoURI: 'mongodb://localhost/node-api',
+    mongoURIProt: 'mongodb://nodeproduct:nodeproduct123456@127.0.0.1/nodeproduct',
     // 链接本地数据库
     secretOrKey: 'secret'
         // 验证 Jwt ken
@@ -29,4 +30,11 @@ mongoose.connect(db.mongoURL,{useNewUrlParser:true})
  .catch(err => {
    console.log(err+"链接失败");
  });
+*/
+/*  db.createUser({
+  user: 'nodeproduct',
+  pwd: 'nodeproduct123456',
+  roles: [{ role: 'dbOwner', db: 'nodeproduct' }]
+})
+服务器生产环境
 */

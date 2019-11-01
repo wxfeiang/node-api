@@ -16,7 +16,8 @@ const wx_jddata = require('./routes/api/wx_jddata');
 // 请求静态json
 const acjson = require('./routes/api/acjson');
 //DB
-const db = require('./config/keys').mongoURI;
+//const db = require('./config/keys').mongoURI; ;
+const db = require('./config/keys').mongoURIProt;
 mongoose
     .connect(db, {
         useNewUrlParser: true
