@@ -14,20 +14,22 @@ const posts = require('./routes/api/posts');
 const blog = require('./routes/api/blog');
 const wx_jddata = require('./routes/api/wx_jddata');
 console.log('-----------------------------------');
-console.log(process.env.NODE_ENV);
 
-console.log('-----------------------------------');
 // 请求静态json
 const acjson = require('./routes/api/acjson');
 //DB
-const db = require('./config/keys').mongoURI;
-//const db = require('./config/keys').mongoURIProt;
-
+var db = require('./config/keys').mongoURI;
+//NODE_ENV = production;
+//  已经在服务器配置好了生产环境得变量   product
+if (process.env.NODE_ENV === 'product') {
+    console.log('线上生产环境 ');
+    db = require('./config/keys').mongoURIProt;
+}
 mongoose
     .connect(db, {
         useNewUrlParser: true
     })
-    .then(() => console.log('数据库链接成功'))
+    .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
     .catch(err => console.log(err));
 // Connect to mongodb
 
