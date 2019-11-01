@@ -13,11 +13,16 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const blog = require('./routes/api/blog');
 const wx_jddata = require('./routes/api/wx_jddata');
+console.log('-----------------------------------');
+console.log(process.env.NODE_ENV);
+
+console.log('-----------------------------------');
 // 请求静态json
 const acjson = require('./routes/api/acjson');
 //DB
-//const db = require('./config/keys').mongoURI; ;
-const db = require('./config/keys').mongoURIProt;
+const db = require('./config/keys').mongoURI;
+//const db = require('./config/keys').mongoURIProt;
+
 mongoose
     .connect(db, {
         useNewUrlParser: true
@@ -69,7 +74,7 @@ require('./config/passport')(passport); // 数据分离
 
 //  根路径
 app.get('/', (req, res) => {
-    res.send('这里是项目跟路径');
+    res.send('这里是项目跟路径'); //
 });
 
 app.use('/api/users', users); // 上面引入进来的
