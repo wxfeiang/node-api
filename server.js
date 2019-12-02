@@ -2,9 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const path = require('path'); //  文件路径系统
+const fs = require('fs'); //  文件系统
 //  引入cook  session
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+//  引入静态资源
 
 const app = express();
 //   各个接口  users/.js
@@ -13,11 +16,14 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const blog = require('./routes/api/blog');
 const wx_jddata = require('./routes/api/wx_jddata');
+const acjson = require('./routes/api/acjson'); // 请求静态json
 console.log('-----------------------------------');
+console.log('文件根' + __dirname + '---------- 文件名绝对------' + __filename);
 
-// 请求静态json
-const acjson = require('./routes/api/acjson');
-//DB
+app.use(express.static('../www/blogadmin/dist')); //  使用静态资源
+
+//console.log(app.use(express.static(path.join(__dirname, 'public'))));
+//  链接数据库
 var db = require('./config/keys').mongoURI;
 //  已经在服务器配置好了生产环境得变量   product
 if (process.env.NODE_ENV === 'production') {
@@ -47,20 +53,12 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
     next();
 });
-//  我感觉初始化   session
+//  初始化   session
 app.use(cookieParser('sessiontest'));
-// 使用
-// app.use(
-//     session({
-//         secret: 'sessiontest', //与cookieParser中的一致
-//         resave: true,
-//         saveUninitialized: true
-//     })
-// );
 // 使用 session 中间件
 app.use(
     session({
-        secret: 'sessiontest', // 对session id 相关的cookie 进行签名
+        secret: 'sessiontest', // 对session id 相关的cookie 进行签名 与cookieParser中的一致
         resave: true,
         saveUninitialized: false, // 是否保存未初始化的会话
         cookie: {
@@ -74,9 +72,16 @@ app.use(passport.initialize());
 require('./config/passport')(passport); // 数据分离
 
 //  根路径
+// app.get('/', (req, res) => {
+//     res.send('这里是项目跟路径'); //
+// });
+
 app.get('/', (req, res) => {
-    res.send('这里是项目跟路径'); //
+    res.sendFile(
+        path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
+    );
 });
+// 读取整个文件夹
 
 app.use('/api/users', users); // 上面引入进来的
 app.use('/api/profile', profile);
