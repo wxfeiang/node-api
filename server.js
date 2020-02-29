@@ -16,6 +16,10 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const blog = require('./routes/api/blog');
 const wx_jddata = require('./routes/api/wx_jddata');
+
+
+
+
 const acjson = require('./routes/api/acjson'); // 请求静态json
 console.log('-----------------------------------');
 console.log('文件根' + __dirname + '---------- 文件名绝对------' + __filename);
@@ -27,44 +31,44 @@ app.use(express.static('../www/blogadmin/dist')); //  使用静态资源
 var db = require('./config/keys').mongoURI;
 //  已经在服务器配置好了生产环境得变量   product
 if (process.env.NODE_ENV === 'production') {
-  console.log('线上生产环境 ');
-  db = require('./config/keys').mongoURIProt;
+    console.log('线上生产环境 ');
+    db = require('./config/keys').mongoURIProt;
 }
 mongoose
-  .connect(db, {
-    useNewUrlParser: true
-  })
-  .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
-  .catch(err => console.log(err));
+    .connect(db, {
+        useNewUrlParser: true
+    })
+    .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
+    .catch(err => console.log(err));
 // Connect to mongodb
 
 // bodyParser 中间件使用
 app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
+    bodyParser.urlencoded({
+        extended: false
+    })
 );
 app.use(bodyParser.json());
 
 // 使用中间件实现允许跨域
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
-  next();
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
+    next();
 });
 //  初始化   session
 app.use(cookieParser('sessiontest'));
 // 使用 session 中间件
 app.use(
-  session({
-    secret: 'sessiontest', // 对session id 相关的cookie 进行签名 与cookieParser中的一致
-    resave: true,
-    saveUninitialized: false, // 是否保存未初始化的会话
-    cookie: {
-      maxAge: 5000 // 设置 session 的有效时间，单位毫秒
-    }
-  })
+    session({
+        secret: 'sessiontest', // 对session id 相关的cookie 进行签名 与cookieParser中的一致
+        resave: true,
+        saveUninitialized: false, // 是否保存未初始化的会话
+        cookie: {
+            maxAge: 5000 // 设置 session 的有效时间，单位毫秒
+        }
+    })
 );
 
 // 初始化
@@ -77,9 +81,9 @@ require('./config/passport')(passport); // 数据分离
 // });
 
 app.get('/', (req, res) => {
-  res.sendFile(
-    path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
-  );
+    res.sendFile(
+        path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
+    );
 });
 // 读取整个文件夹
 
@@ -90,7 +94,9 @@ app.use('/api/blog', blog);
 app.use('/api/acjson', acjson);
 app.use('/api/wx_jddata', wx_jddata);
 
+
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log(`Server  running  on prot  ${port}`);
+    console.log(`Server  running  on prot  ${port}`);
 });
