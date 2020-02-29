@@ -75,16 +75,16 @@ app.use(
 app.use(passport.initialize());
 require('./config/passport')(passport); // 数据分离
 
-//  根路径
-// app.get('/', (req, res) => {
-//     res.send('这里是项目跟路径'); //
-// });
-
+//根路径
 app.get('/', (req, res) => {
-    res.sendFile(
-        path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
-    );
+    res.send('这里是项目跟路径'); //
 });
+
+// app.get('/', (req, res) => {
+//     res.sendFile(
+//         path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
+//     );
+// });
 // 读取整个文件夹
 
 app.use('/api/users', users); // 上面引入进来的
