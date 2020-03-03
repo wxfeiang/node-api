@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// function localDate(v) {
+//     const d = new Date(v || Date.now());
+//     d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+//     return d.toISOString();
+// }
 // Create Schema
 const BlogSchema = new Schema({
     author: {
