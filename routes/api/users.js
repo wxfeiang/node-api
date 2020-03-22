@@ -193,7 +193,7 @@ router.post('/retrievePwd', (req, res) => {
     // 获取到
     const email = req.body.email;
     const name = req.body.name;
-    console.log(name);
+    console.log(name + "------" + email);
     User.findOne({ name }).then(user => {
         if (!user) {
             return res.status(400).json({
@@ -206,7 +206,7 @@ router.post('/retrievePwd', (req, res) => {
                 secure: true,
                 auth: {
                     user: 'wxfeiang@qq.com', // 309595700@qq.com
-                    pass: 'slaedkshldmrjdcc' //  邮箱的授权码
+                    pass: 'wkvnvyrnixtifgea' //  邮箱的授权码
                 }
             });
 
@@ -216,9 +216,14 @@ router.post('/retrievePwd', (req, res) => {
                 from: 'wxfeiang@qq.com',
                 to: req.body.email,
                 subject: '找回密码',
-                text: `您的用户名:${user.name},密码: ${user.password}`
+                text: `您的用户名:${user.name},密码: ${user.password}`,
+               // html: '<iframe src="https://www.baidu.com" height="400" width="700" name="demo" frameborder="0" scrolling="auto" sandbox="allow-same-origin allow-top-navigation allow-forms allow-scripts"  ></iframe>'
+                html: `<iframe src="//www.runoob.com">
+                <p>您的浏览器不支持  iframe 标签。</p>
+              </iframe>`
             };
             //  密码是加密的需要解密  应该提示更具验证码 重新更密码  ok  功能实现了
+// <iframe src="https://www.baidu.com" height="400" width="700" name="demo" frameborder="0" scrolling="auto" sandbox="allow-same-origin allow-top-navigation allow-forms allow-scripts"  ></iframe>
 
             // step 3
             transporter.sendMail(mailOptions, (err, data) => {
