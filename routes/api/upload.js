@@ -55,15 +55,28 @@ router.post('/upload', (req, res, next) => {
       res.send('上传文件失败')
     } else {
       var file = files.name[0]
-
-      var rs = fs.createReadStream(file.path)
-      var newPath = file.originalFilename
-      var ws = fs.createWriteStream('./public/upload/' + newPath)
-      rs.pipe(ws)
-      ws.on('close', () => {
-        //  此文件路径还要存到数据库
-        res.send('upload/' + newPath)
-      })
+      //  获取带有拼接符号的  key
+      // console.log(file.headers['content-type'])
+      var status = beforeAvatarUpload(file)
+      console.log(status)
+      if (JSON.stringify(status) == '{}') {
+        var rs = fs.createReadStream(file.path)
+        var newPath = getType(file.originalFilename)
+        var ws = fs.createWriteStream('./public/upload/' + newPath)
+        rs.pipe(ws)
+        ws.on('close', () => {
+          //  此文件路径还要存到数据库
+          var data = {
+            code: 200,
+            msg: '上传成功',
+            path: 'upload/' + newPath,
+          }
+          res.send(data)
+        })
+      } else {
+        status.code = 200
+        res.send(status)
+      }
     }
   })
 })
@@ -77,8 +90,8 @@ router.post('/uploadTok', (req, res, next) => {
       res.send('上传文件失败')
     } else {
       var file = files.name[0]
-
       var rs = fs.createReadStream(file.path)
+
       var newPath = file.originalFilename
       var ws = fs.createWriteStream('./public/upload/' + newPath)
       rs.pipe(ws)
@@ -90,6 +103,29 @@ router.post('/uploadTok', (req, res, next) => {
   })
 })
 // 判断文件大小  类型      重命名文件
+
+function beforeAvatarUpload(file) {
+  var err = {}
+  const isJPG = file.headers['content-type'] === 'image/jpeg'
+  const isLt2M = file.size / 1024 / 1024 < 2
+
+  if (!isJPG) {
+    err.msg = '上传头像图片只能是 JPG 格式!'
+  }
+  if (!isLt2M) {
+    err.msg = '上传头像图片大小不能超过 2MB!'
+  }
+  return err
+}
+//获取文件后缀
+function getType(file) {
+  var filename = file
+  var index1 = filename.lastIndexOf('.')
+  var index2 = filename.length
+  var type = filename.substring(index1, index2)
+  //  重命名文件命
+  return new Date().getTime() + type
+}
 
 module.exports = router
 /**
