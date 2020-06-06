@@ -49,16 +49,19 @@ router.get('/email', (req, res) => {
 router.post('/upload', (req, res, next) => {
   var form = new multiparty.Form()
   form.parse(req, (err, fields, files) => {
-    console.log(files.name[0])
+    //  传入的文件列表
+    console.log(files.name)
+    res.send(files.name)
 
     if (err) {
       res.send('上传文件失败')
     } else {
+      //  默认取了第一个值
       var file = files.name[0]
       //  获取带有拼接符号的  key
       // console.log(file.headers['content-type'])
       var status = beforeAvatarUpload(file)
-      console.log(status)
+      // console.log(status)
       if (JSON.stringify(status) == '{}') {
         var rs = fs.createReadStream(file.path)
         var newPath = getType(file.originalFilename)
