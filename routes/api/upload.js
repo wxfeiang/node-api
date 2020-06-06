@@ -57,13 +57,13 @@ router.post('/uploads', (req, res, next) => {
   var form = new multiparty.Form()
   form.parse(req, (err, fields, files) => {
     //  console.log(files) // 上传的文件信息
-
+    if (err) throw err
     var file = files.name[0]
     console.log(file)
 
     var rs = fs.createReadStream(file.path)
-    var newPath = '/upload/' + file.originalname
-    var ws = fs.createWriteStream('./public' + newPath)
+    var newPath = file.originalname
+    var ws = fs.createWriteStream('./upload' + newPath)
     rs.pipe(ws)
     ws.on('close', (error) => {
       res.send(newPath)
