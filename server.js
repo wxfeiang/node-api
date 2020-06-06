@@ -21,7 +21,7 @@ const acjson = require('./routes/api/acjson') // 请求静态json
 console.log('-----------------------------------')
 console.log('文件根' + __dirname + '---------- 文件名绝对------' + __filename)
 
-app.use(express.static('upload')) //  使用静态资源
+app.use(express.static('public')) //  使用静态资源
 
 //console.log(app.use(express.static(path.join(__dirname, 'public'))));
 //  链接数据库
