@@ -46,14 +46,7 @@ router.get('/email', (req, res) => {
  */
 })
 //  上传文件
-
-router.post('/upload', (req, res) => {
-  //  fs.exists(path,callback)   检测文件夹是否存在
-  //  注意文件路径 console.log(__dirname)
-  // const upload = multer({ dest: './upload/' }) //  存放文件的地方
-})
-
-router.post('/uploads', (req, res, next) => {
+router.post('/upload', (req, res, next) => {
   var form = new multiparty.Form()
   form.parse(req, (err, fields, files) => {
     console.log(files.name[0])
@@ -62,16 +55,41 @@ router.post('/uploads', (req, res, next) => {
       res.send('上传文件失败')
     } else {
       var file = files.name[0]
+
       var rs = fs.createReadStream(file.path)
       var newPath = file.originalFilename
       var ws = fs.createWriteStream('./public/upload/' + newPath)
       rs.pipe(ws)
       ws.on('close', () => {
+        //  此文件路径还要存到数据库
         res.send('upload/' + newPath)
       })
     }
   })
 })
+//  带有token  的请求 图片上传
+router.post('/uploadTok', (req, res, next) => {
+  var form = new multiparty.Form()
+  form.parse(req, (err, fields, files) => {
+    console.log(files.name[0])
+
+    if (err) {
+      res.send('上传文件失败')
+    } else {
+      var file = files.name[0]
+
+      var rs = fs.createReadStream(file.path)
+      var newPath = file.originalFilename
+      var ws = fs.createWriteStream('./public/upload/' + newPath)
+      rs.pipe(ws)
+      ws.on('close', () => {
+        //  此文件路径还要存到数据库
+        res.send('upload/' + newPath)
+      })
+    }
+  })
+})
+// 判断文件大小  类型      重命名文件
 
 module.exports = router
 /**
