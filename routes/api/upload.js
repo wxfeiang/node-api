@@ -4,6 +4,15 @@ const router = express.Router()
 const path = require('path') //系统路径模块
 const fs = require('fs') //文件模块
 const multiparty = require('multiparty') //  文件上传插件
+var request = require('request')
+
+//  引入百度AI 在线语音合成
+const AipSpeechClient = require('baidu-aip-sdk').speech
+// 设置APPID/AK/SK
+const APP_ID = '20322593'
+const API_KEY = '12oatmwX5ZkPsQgcud2TrGzN'
+const SECRET_KEY = 'lKXMWg9YPgqSD4BhGHZ1f40saaVI6E4B'
+const client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY)
 
 // 请求 layui moke table data
 router.get('/layui', (req, res) => {
@@ -83,28 +92,7 @@ router.post('/upload', (req, res, next) => {
     }
   })
 })
-//  带有token  的请求 图片上传
-router.post('/uploadTok', (req, res, next) => {
-  var form = new multiparty.Form()
-  form.parse(req, (err, fields, files) => {
-    console.log(files.name[0])
 
-    if (err) {
-      res.send('上传文件失败')
-    } else {
-      var file = files.name[0]
-      var rs = fs.createReadStream(file.path)
-
-      var newPath = file.originalFilename
-      var ws = fs.createWriteStream('./public/upload/' + newPath)
-      rs.pipe(ws)
-      ws.on('close', () => {
-        //  此文件路径还要存到数据库
-        res.send('upload/' + newPath)
-      })
-    }
-  })
-})
 // 判断文件大小  类型      重命名文件
 
 function beforeAvatarUpload(file) {
@@ -129,6 +117,32 @@ function getType(file) {
   //  重命名文件命
   return new Date().getTime() + type
 }
+//  百度文字转语音
+router.post('/textAuto', (req, res, next) => {
+  var text = req.body.text
+  client.text2audio(text).then(
+    function (result) {
+      if (result.data) {
+        var newPath = new Date().getTime() + '.mp3'
+        fs.writeFileSync(`./public/audio/${newPath}`, result.data)
+        //  此文件路径还要存到数据库
+        var data = {
+          code: 200,
+          msg: '语音合成成功',
+          path: 'audio/' + newPath,
+        }
+        res.send(data)
+      } else {
+        // 服务发生错误
+        res.send(result)
+      }
+    },
+    function (e) {
+      // 发生网络错误
+      res.send(e)
+    }
+  )
+})
 
 module.exports = router
 /**
