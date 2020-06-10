@@ -121,7 +121,7 @@ function getType(file) {
 router.post('/textAuto', (req, res, next) => {
   var text = req.body.text
   client.text2audio(text).then(
-    function (result) {
+    (result) => {
       if (result.data) {
         var newPath = new Date().getTime() + '.mp3'
         fs.writeFileSync(`./public/audio/${newPath}`, result.data)
@@ -137,7 +137,7 @@ router.post('/textAuto', (req, res, next) => {
         res.send(result)
       }
     },
-    function (e) {
+    (e) => {
       // 发生网络错误
       res.send(e)
     }
