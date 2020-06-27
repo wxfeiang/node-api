@@ -59,9 +59,8 @@ router.post('/upload', (req, res, next) => {
   var form = new multiparty.Form()
   form.parse(req, (err, fields, files) => {
     //  传入的文件列表
+    console.log('文件列表')
     console.log(files.name)
-    res.send(files.name)
-
     if (err) {
       res.send('上传文件失败')
     } else {
