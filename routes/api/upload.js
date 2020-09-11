@@ -60,11 +60,14 @@ router.post('/upload', (req, res, next) => {
   form.parse(req, (err, fields, files) => {
     //  传入的文件列表
     console.log('文件列表')
+    console.log(files)
     console.log(files.name)
     if (err) {
       res.send('上传文件失败')
     } else {
-      //  默认取了第一个值
+      //  默认取了第一个值   //  追加小程序上传方式
+
+      // var file = files.name[0] || files.file[0]
       var file = files.name[0]
       //  获取带有拼接符号的  key
       // console.log(file.headers['content-type'])
