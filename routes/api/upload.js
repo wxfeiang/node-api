@@ -59,23 +59,24 @@ router.post('/upload', (req, res, next) => {
   var form = new multiparty.Form()
   form.parse(req, (err, fields, files) => {
     //  传入的文件列表
-    console.log('文件列表')
-    console.log(files)
-    console.log(files.name)
+    // console.log('文件列表')
+    // console.log(files)
     if (err) {
       res.send('上传文件失败')
     } else {
-      //  默认取了第一个值   //  追加小程序上传方式
-
-      // var file = files.name[0] || files.file[0]
-      var file = files.name[0]
-      //  获取带有拼接符号的  key
-      // console.log(file.headers['content-type'])
+      var file = files.file[0]
       var status = beforeAvatarUpload(file)
-      // console.log(status)
-      if (JSON.stringify(status) == '{}') {
+      console.log(status)
+      if (status.code != 400) {
         var rs = fs.createReadStream(file.path)
         var newPath = getType(file.originalFilename)
+        //  可能不会自动创建目录
+        // const path = './public/upload/'
+
+        // if (!fs.existsSync(path)) {
+        //   console.log('wemjiam,i;i')
+        //   fs.mkdirSync(path)
+        // }
         var ws = fs.createWriteStream('./public/upload/' + newPath)
         rs.pipe(ws)
         ws.on('close', () => {
@@ -88,6 +89,7 @@ router.post('/upload', (req, res, next) => {
           res.send(data)
         })
       } else {
+        console.log('esle 400-----------')
         status.code = 200
         res.send(status)
       }
@@ -103,10 +105,16 @@ function beforeAvatarUpload(file) {
   const isLt2M = file.size / 1024 / 1024 < 2
 
   if (!isJPG) {
-    err.msg = '上传头像图片只能是 JPG 格式!'
+    err = {
+      code: 400,
+      msg: '上传头像图片只能是 JPG 格式!',
+    }
   }
   if (!isLt2M) {
-    err.msg = '上传头像图片大小不能超过 2MB!'
+    err = {
+      code: 400,
+      msg: '上传头像图片大小不能超过 2MB!',
+    }
   }
   return err
 }

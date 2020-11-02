@@ -92,7 +92,7 @@ app.use('/api/acjson', acjson)
 app.use('/api/wx_jddata', wx_jddata)
 app.use('/api/upload', upload)
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 6000
 app.listen(port, () => {
   console.log(`Server  running  on prot  ${port}`)
 })
