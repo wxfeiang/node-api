@@ -13,6 +13,12 @@ const APP_ID = '20322593'
 const API_KEY = '12oatmwX5ZkPsQgcud2TrGzN'
 const SECRET_KEY = 'lKXMWg9YPgqSD4BhGHZ1f40saaVI6E4B'
 const client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY)
+//  小程序模板消息测试
+router.post('/demomsg', (req, res) => {
+  console.log('参数------------')
+  console.log(res)
+  console.log('参数------------')
+})
 
 // 请求 layui moke table data
 router.get('/layui', (req, res) => {
@@ -28,6 +34,16 @@ router.get('/layui', (req, res) => {
 //  整个文件
 router.get('/layuijson', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'json/index.html'))
+})
+router.post('/gyzq', (req, res) => {
+  var file = path.join(__dirname, 'json/cc.json')
+  fs.readFile(file, 'utf-8', function (err, data) {
+    if (err) {
+      res.send('文件读取失败')
+    } else {
+      res.send(data)
+    }
+  })
 })
 // 请求html    文件
 router.get('/email', (req, res) => {
