@@ -82,8 +82,8 @@ app.get('/', (req, res) => {
 //         path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
 //     );
 // });
-// 读取整个文件夹
-
+// 读取整个文件夹  
+// 阿里云服务器测试
 app.use('/api/users', users) // 上面引入进来的
 app.use('/api/profile', profile)
 app.use('/api/posts', posts)
