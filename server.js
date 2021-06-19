@@ -22,7 +22,6 @@ console.log('-----------------------------------')
 console.log('文件根' + __dirname + '---------- 文件名绝对------' + __filename)
 
 app.use(express.static('public')) //  使用静态资源
-
 //console.log(app.use(express.static(path.join(__dirname, 'public'))));
 //  链接数据库
 var db = require('./config/keys').mongoURI
@@ -74,6 +73,7 @@ require('./config/passport')(passport) // 数据分离
 
 //根路径
 app.get('/', (req, res) => {
+  console.log('根路径接口')
   res.send('这里是项目跟路径') //
 })
 
@@ -92,7 +92,7 @@ app.use('/api/acjson', acjson)
 app.use('/api/wx_jddata', wx_jddata)
 app.use('/api/upload', upload)
 
-const port = process.env.PORT || 6000
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Server  running  on prot  ${port}`)
 })
