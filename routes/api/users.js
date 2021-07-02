@@ -33,7 +33,7 @@ router.get('/test', (req, res) => {
 // @desc   返回的请求的json数据
 // @access public   注册接口
 router.post('/register', (req, res) => {
-  // console.log(req.body)
+   console.log(req.body,"---------------")
   // 查询数据库
   const { errors, isValid } = validateRegisterInput(req.body) // 解构
   // 判断是否通过

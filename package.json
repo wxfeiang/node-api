@@ -15,10 +15,12 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.3",
+    "connect-mongo": "^4.4.1",
     "cookie-parser": "^1.4.5",
     "express-session": "^1.16.2",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.4.0",
+    "mockjs": "^1.1.0",
     "mongoose": "^5.3.13",
     "multiparty": "^4.2.1",
     "nodemailer": "^6.3.0",
@@ -26,6 +28,8 @@
     "passport-jwt": "^4.0.0",
     "request": "^2.88.0",
     "superagent": "^5.2.2",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
     "validator": "^10.9.0"
   },
   "devDependencies": {
