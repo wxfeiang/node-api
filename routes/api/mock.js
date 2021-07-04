@@ -20,10 +20,10 @@ router.get('/test', (req, res) => {
  *   get:
  *     tags:
  *       - mock.js
- *     description: mock.js
+ *     description: 请求模拟数据
  *     responses:
  *       200:
- *         description: 请求mock.js 数据
+ *         description: 请求成功
  *
  */
 router.get('/data', (req, res, next) => {
@@ -53,5 +53,16 @@ router.get('/data', (req, res, next) => {
   })
   res.json(data)
 })
-
+/**
+ * @swagger
+ * /api/mock/test:
+ *   get:
+ *     tags:
+ *       - user
+ *     description: 请求模拟数据
+ *     responses:
+ *       200:
+ *         description: 请求成功
+ *
+ */
 module.exports = router

@@ -45,6 +45,11 @@ router.post('/gyzq', (req, res) => {
     }
   })
 })
+router.get('/test', (req, res) => {
+  res.json({
+    msg: 'loworking ',
+  })
+})
 // 请求html    文件
 router.get('/email', (req, res) => {
   exists = fs.existsSync(__dirname + 'email.html')
@@ -80,6 +85,7 @@ router.post('/upload', (req, res, next) => {
     if (err) {
       res.send('上传文件失败')
     } else {
+      console.log(files.file[0], '-- 此处取值一定要和前端input  上传域的 name 名字 相对应-------')
       var file = files.file[0]
       var status = beforeAvatarUpload(file)
       console.log(status)
