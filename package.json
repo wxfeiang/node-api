@@ -30,7 +30,7 @@
     "superagent": "^5.2.2",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
-    "validator": "^10.9.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "express": "^4.16.4"
