@@ -23,7 +23,7 @@ const options = {
   apis: [path.join(__dirname, './routes/api/*.js')], //这里指明接口路由存放的文件夹。楼主放在根路径的router下
 }
 const swaggerSpec = swaggerJSDoc(options)
-//  引入静态资源
+//  引入静态资源``
 
 const app = express()
 //   各个接口  users/.js
@@ -111,7 +111,7 @@ app.use('/api/wx_jddata', wx_jddata)
 app.use('/api/upload', upload)
 app.use('/api/mock', mock)
 
-// 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由
+// 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 const port = process.env.PORT || 3000
