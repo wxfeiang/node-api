@@ -17,10 +17,10 @@ const options = {
     // swagger 页面基本信息 自由发挥
     info: {
       title: '后台管理系统接口',
-      version: '创建时间：2021年07月02日',
-    },
+      version: '创建时间：2021年07月02日'
+    }
   },
-  apis: [path.join(__dirname, './routes/api/*.js')], //这里指明接口路由存放的文件夹。楼主放在根路径的router下
+  apis: [path.join(__dirname, './routes/api/*.js')] //这里指明接口路由存放的文件夹。楼主放在根路径的router下
 }
 const swaggerSpec = swaggerJSDoc(options)
 //  引入静态资源``
@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 mongoose
   .connect(db, {
-    useNewUrlParser: true,
+    useNewUrlParser: true
   })
   .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
   .catch((err) => console.log(err))
@@ -59,7 +59,7 @@ mongoose
 // bodyParser 中间件使用
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: false
   })
 )
 app.use(bodyParser.json())
@@ -80,8 +80,8 @@ app.use(
     resave: true,
     saveUninitialized: false, // 是否保存未初始化的会话
     cookie: {
-      maxAge: 50000, // 设置 session 的有效时间，单位毫秒
-    },
+      maxAge: 50000 // 设置 session 的有效时间，单位毫秒
+    }
   })
 )
 

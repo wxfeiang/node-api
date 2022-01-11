@@ -10,7 +10,7 @@ const Mock = require('mockjs')
 // @access public
 router.get('/test', (req, res) => {
   res.json({
-    msg: 'loworking ',
+    msg: 'loworking '
   })
 })
 
@@ -41,28 +41,66 @@ router.get('/data', (req, res, next) => {
         {
           'id|+1': 10000, //id从10000开始，每次+1
           orderName: '@ctitle', //orderName: 随机生成一个中文标题
-          orderTime: '@datetime', //orderTime: 随机生成一个 yyyy-MM-dd HH:mm:ss 格式的时间
-        },
+          orderTime: '@datetime' //orderTime: 随机生成一个 yyyy-MM-dd HH:mm:ss 格式的时间
+        }
       ],
       loginTime: function () {
         //loginTime: 函数的生成的特定返回值
         return new Date().getTime()
-      },
+      }
     },
-    resultMessage: '查询成功',
+    resultMessage: '查询成功'
   })
   res.json(data)
 })
-/**
+
+/**,
  * @swagger
- * /api/mock/test:
- *   get:
- *     tags:
- *       - user
- *     description: 请求模拟数据
- *     responses:
- *       200:
- *         description: 请求成功
- *
- */
+ * /api/mock/sys/login:
+ *    post:
+ *      tags:
+ *      - 登陆接口
+ *      summary: login
+ *      produces:
+ *      - application/json
+ *      parameters:
+ *      - name: username
+ *        in: query
+ *        description: 用户名
+ *        required: false
+ *        type: integer
+ *        maximum:
+ *        minimum: 1
+ *        format:
+ *      - name: password
+ *        in: query
+ *        description: md5加密密码
+ *        required: false
+ *        type: integer
+ *        maximum:
+ *        minimum: 1
+ *        format:
+ *      responses:
+ *        200:
+ *          description: successful operation
+ * */
+
+router.post('/sys/login', (req, res, next) => {
+  const { username, password } = req.body
+  let data = Mock.mock({
+    code: 200,
+    success: true,
+    message: '登陆成功',
+    data: {
+      'id|10000-20000': 10000, //id: 10000-20000之间的随机一个数字
+      name: username,
+      token: password,
+      loginTime: function () {
+        //loginTime: 函数的生成的特定返回值
+        return new Date().getTime()
+      }
+    }
+  })
+  res.json(data)
+})
 module.exports = router
