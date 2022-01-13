@@ -1,10 +1,11 @@
 module.exports = {
-    mongoURI: 'mongodb://localhost/node-api',
-    mongoURIProt: 'mongodb://nodeproduct:nodeproduct123456@127.0.0.1/nodeproduct',
-    // 链接本地数据库
-    secretOrKey: 'secret'
-        // 验证 Jwt ken
-};
+  mongoCode: 'mongodb+srv://wangpeng:<password>@cluster0.0wsu0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  mongoURI: 'mongodb://localhost/node-api',
+  mongoURIProt: 'mongodb://nodeproduct:nodeproduct123456@127.0.0.1/nodeproduct',
+  // 链接本地数据库
+  secretOrKey: 'secret'
+  // 验证 Jwt ken
+}
 
 /*
 if(process.env.NODE_ENV =="production"){
