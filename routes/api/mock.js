@@ -206,7 +206,7 @@ router.get('/sys/feature', (req, res) => {
     if (err) {
       res.send('文件读取失败')
     } else {
-      res.send(data.feature)
+      res.send(JSON.parse(data).feature)
     }
   })
 })
@@ -227,11 +227,12 @@ router.get('/sys/feature', (req, res) => {
 
 router.get('/sys/chapter', (req, res) => {
   var file = path.join(__dirname, 'json/laui.json')
+  console.log('oooo')
   fs.readFile(file, 'utf-8', function (err, data) {
     if (err) {
       res.send('文件读取失败')
     } else {
-      res.send(data.chapter)
+      res.send(JSON.parse(data).chapter)
     }
   })
 })
