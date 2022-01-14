@@ -112,7 +112,7 @@ app.use('/api/upload', upload)
 app.use('/api/mock', mock)
 
 // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
