@@ -151,7 +151,7 @@ router.get('/data', (req, res, next) => {
  * /api/mock/sys/profile:
  *    get:
  *      tags:
- *      - 登陆后获取个人资料信息
+ *      - 获取首页各种信息
  *      summary: profile
  *      produces:
  *      - application/json
