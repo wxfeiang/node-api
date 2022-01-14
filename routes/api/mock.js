@@ -4,6 +4,8 @@ const router = express.Router()
 
 const path = require('path')
 
+const fs = require('fs') //文件模块
+
 const Mock = require('mockjs')
 // $route  GET api/users/test
 // @desc   返回的请求的json数据
@@ -182,6 +184,56 @@ router.get('/sys/profile', (req, res, next) => {
     message: '获取资料成功'
   }
   res.json(data)
+})
+
+/**,
+ * @swagger
+ * /api/mock/sys/feature:
+ *    get:
+ *      tags:
+ *      - 获取首页各种信息
+ *      summary: feature
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: successful operation
+ * */
+
+router.get('/sys/feature', (req, res) => {
+  var file = path.join(__dirname, 'json/laui.json')
+  fs.readFile(file, 'utf-8', function (err, data) {
+    if (err) {
+      res.send('文件读取失败')
+    } else {
+      res.send(data.feature)
+    }
+  })
+})
+
+/**,
+ * @swagger
+ * /api/mock/sys/chapter:
+ *    get:
+ *      tags:
+ *      - 获取首页各种信息
+ *      summary: chapter
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: successful operation
+ * */
+
+router.get('/sys/chapter', (req, res) => {
+  var file = path.join(__dirname, 'json/laui.json')
+  fs.readFile(file, 'utf-8', function (err, data) {
+    if (err) {
+      res.send('文件读取失败')
+    } else {
+      res.send(data.chapter)
+    }
+  })
 })
 
 module.exports = router

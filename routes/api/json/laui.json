@@ -1,367 +1,574 @@
 {
+  "layuiData": {
     "code": 0,
     "msg": "",
     "count": 1000,
     "data": [
-        {
-            "id": 10000,
-            "username": "user-0",
-            "sex": "女",
-            "city": "城市-0",
-            "sign": "签名-0",
-            "experience": 255,
-            "logins": 24,
-            "wealth": 82830700,
-            "classify": "作家",
-            "score": 57
-        },
-        {
-            "id": 10001,
-            "username": "user-1",
-            "sex": "男",
-            "city": "城市-1",
-            "sign": "签名-1",
-            "experience": 884,
-            "logins": 58,
-            "wealth": 64928690,
-            "classify": "词人",
-            "score": 27
-        },
-        {
-            "id": 10002,
-            "username": "user-2",
-            "sex": "女",
-            "city": "城市-2",
-            "sign": "签名-2",
-            "experience": 650,
-            "logins": 77,
-            "wealth": 6298078,
-            "classify": "酱油",
-            "score": 31
-        },
-        {
-            "id": 10003,
-            "username": "user-3",
-            "sex": "女",
-            "city": "城市-3",
-            "sign": "签名-3",
-            "experience": 362,
-            "logins": 157,
-            "wealth": 37117017,
-            "classify": "诗人",
-            "score": 68
-        },
-        {
-            "id": 10004,
-            "username": "user-4",
-            "sex": "男",
-            "city": "城市-4",
-            "sign": "签名-4",
-            "experience": 807,
-            "logins": 51,
-            "wealth": 76263262,
-            "classify": "作家",
-            "score": 6
-        },
-        {
-            "id": 10005,
-            "username": "user-5",
-            "sex": "女",
-            "city": "城市-5",
-            "sign": "签名-5",
-            "experience": 173,
-            "logins": 68,
-            "wealth": 60344147,
-            "classify": "作家",
-            "score": 87
-        },
-        {
-            "id": 10006,
-            "username": "user-6",
-            "sex": "女",
-            "city": "城市-6",
-            "sign": "签名-6",
-            "experience": 982,
-            "logins": 37,
-            "wealth": 57768166,
-            "classify": "作家",
-            "score": 34
-        },
-        {
-            "id": 10007,
-            "username": "user-7",
-            "sex": "男",
-            "city": "城市-7",
-            "sign": "签名-7",
-            "experience": 727,
-            "logins": 150,
-            "wealth": 82030578,
-            "classify": "作家",
-            "score": 28
-        },
-        {
-            "id": 10008,
-            "username": "user-8",
-            "sex": "男",
-            "city": "城市-8",
-            "sign": "签名-8",
-            "experience": 951,
-            "logins": 133,
-            "wealth": 16503371,
-            "classify": "词人",
-            "score": 14
-        },
-        {
-            "id": 10009,
-            "username": "user-9",
-            "sex": "女",
-            "city": "城市-9",
-            "sign": "签名-9",
-            "experience": 484,
-            "logins": 25,
-            "wealth": 86801934,
-            "classify": "词人",
-            "score": 75
-        },
-        {
-            "id": 10010,
-            "username": "user-10",
-            "sex": "女",
-            "city": "城市-10",
-            "sign": "签名-10",
-            "experience": 1016,
-            "logins": 182,
-            "wealth": 71294671,
-            "classify": "诗人",
-            "score": 34
-        },
-        {
-            "id": 10011,
-            "username": "user-11",
-            "sex": "女",
-            "city": "城市-11",
-            "sign": "签名-11",
-            "experience": 492,
-            "logins": 107,
-            "wealth": 8062783,
-            "classify": "诗人",
-            "score": 6
-        },
-        {
-            "id": 10012,
-            "username": "user-12",
-            "sex": "女",
-            "city": "城市-12",
-            "sign": "签名-12",
-            "experience": 106,
-            "logins": 176,
-            "wealth": 42622704,
-            "classify": "词人",
-            "score": 54
-        },
-        {
-            "id": 10013,
-            "username": "user-13",
-            "sex": "男",
-            "city": "城市-13",
-            "sign": "签名-13",
-            "experience": 1047,
-            "logins": 94,
-            "wealth": 59508583,
-            "classify": "诗人",
-            "score": 63
-        },
-        {
-            "id": 10014,
-            "username": "user-14",
-            "sex": "男",
-            "city": "城市-14",
-            "sign": "签名-14",
-            "experience": 873,
-            "logins": 116,
-            "wealth": 72549912,
-            "classify": "词人",
-            "score": 8
-        },
-        {
-            "id": 10015,
-            "username": "user-15",
-            "sex": "女",
-            "city": "城市-15",
-            "sign": "签名-15",
-            "experience": 1068,
-            "logins": 27,
-            "wealth": 52737025,
-            "classify": "作家",
-            "score": 28
-        },
-        {
-            "id": 10016,
-            "username": "user-16",
-            "sex": "女",
-            "city": "城市-16",
-            "sign": "签名-16",
-            "experience": 862,
-            "logins": 168,
-            "wealth": 37069775,
-            "classify": "酱油",
-            "score": 86
-        },
-        {
-            "id": 10017,
-            "username": "user-17",
-            "sex": "女",
-            "city": "城市-17",
-            "sign": "签名-17",
-            "experience": 1060,
-            "logins": 187,
-            "wealth": 66099525,
-            "classify": "作家",
-            "score": 69
-        },
-        {
-            "id": 10018,
-            "username": "user-18",
-            "sex": "女",
-            "city": "城市-18",
-            "sign": "签名-18",
-            "experience": 866,
-            "logins": 88,
-            "wealth": 81722326,
-            "classify": "词人",
-            "score": 74
-        },
-        {
-            "id": 10019,
-            "username": "user-19",
-            "sex": "女",
-            "city": "城市-19",
-            "sign": "签名-19",
-            "experience": 682,
-            "logins": 106,
-            "wealth": 68647362,
-            "classify": "词人",
-            "score": 51
-        },
-        {
-            "id": 10020,
-            "username": "user-20",
-            "sex": "男",
-            "city": "城市-20",
-            "sign": "签名-20",
-            "experience": 770,
-            "logins": 24,
-            "wealth": 92420248,
-            "classify": "诗人",
-            "score": 87
-        },
-        {
-            "id": 10021,
-            "username": "user-21",
-            "sex": "男",
-            "city": "城市-21",
-            "sign": "签名-21",
-            "experience": 184,
-            "logins": 131,
-            "wealth": 71566045,
-            "classify": "词人",
-            "score": 99
-        },
-        {
-            "id": 10022,
-            "username": "user-22",
-            "sex": "男",
-            "city": "城市-22",
-            "sign": "签名-22",
-            "experience": 739,
-            "logins": 152,
-            "wealth": 60907929,
-            "classify": "作家",
-            "score": 18
-        },
-        {
-            "id": 10023,
-            "username": "user-23",
-            "sex": "女",
-            "city": "城市-23",
-            "sign": "签名-23",
-            "experience": 127,
-            "logins": 82,
-            "wealth": 14765943,
-            "classify": "作家",
-            "score": 30
-        },
-        {
-            "id": 10024,
-            "username": "user-24",
-            "sex": "女",
-            "city": "城市-24",
-            "sign": "签名-24",
-            "experience": 212,
-            "logins": 133,
-            "wealth": 59011052,
-            "classify": "词人",
-            "score": 76
-        },
-        {
-            "id": 10025,
-            "username": "user-25",
-            "sex": "女",
-            "city": "城市-25",
-            "sign": "签名-25",
-            "experience": 938,
-            "logins": 182,
-            "wealth": 91183097,
-            "classify": "作家",
-            "score": 69
-        },
-        {
-            "id": 10026,
-            "username": "user-26",
-            "sex": "男",
-            "city": "城市-26",
-            "sign": "签名-26",
-            "experience": 978,
-            "logins": 7,
-            "wealth": 48008413,
-            "classify": "作家",
-            "score": 65
-        },
-        {
-            "id": 10027,
-            "username": "user-27",
-            "sex": "女",
-            "city": "城市-27",
-            "sign": "签名-27",
-            "experience": 371,
-            "logins": 44,
-            "wealth": 64419691,
-            "classify": "诗人",
-            "score": 60
-        },
-        {
-            "id": 10028,
-            "username": "user-28",
-            "sex": "女",
-            "city": "城市-28",
-            "sign": "签名-28",
-            "experience": 977,
-            "logins": 21,
-            "wealth": 75935022,
-            "classify": "作家",
-            "score": 37
-        },
-        {
-            "id": 10029,
-            "username": "user-29",
-            "sex": "男",
-            "city": "城市-29",
-            "sign": "签名-29",
-            "experience": 647,
-            "logins": 107,
-            "wealth": 97450636,
-            "classify": "酱油",
-            "score": 27
-        }
+      {
+        "id": 10000,
+        "username": "user-0",
+        "sex": "女",
+        "city": "城市-0",
+        "sign": "签名-0",
+        "experience": 255,
+        "logins": 24,
+        "wealth": 82830700,
+        "classify": "作家",
+        "score": 57
+      },
+      {
+        "id": 10001,
+        "username": "user-1",
+        "sex": "男",
+        "city": "城市-1",
+        "sign": "签名-1",
+        "experience": 884,
+        "logins": 58,
+        "wealth": 64928690,
+        "classify": "词人",
+        "score": 27
+      },
+      {
+        "id": 10002,
+        "username": "user-2",
+        "sex": "女",
+        "city": "城市-2",
+        "sign": "签名-2",
+        "experience": 650,
+        "logins": 77,
+        "wealth": 6298078,
+        "classify": "酱油",
+        "score": 31
+      },
+      {
+        "id": 10003,
+        "username": "user-3",
+        "sex": "女",
+        "city": "城市-3",
+        "sign": "签名-3",
+        "experience": 362,
+        "logins": 157,
+        "wealth": 37117017,
+        "classify": "诗人",
+        "score": 68
+      },
+      {
+        "id": 10004,
+        "username": "user-4",
+        "sex": "男",
+        "city": "城市-4",
+        "sign": "签名-4",
+        "experience": 807,
+        "logins": 51,
+        "wealth": 76263262,
+        "classify": "作家",
+        "score": 6
+      },
+      {
+        "id": 10005,
+        "username": "user-5",
+        "sex": "女",
+        "city": "城市-5",
+        "sign": "签名-5",
+        "experience": 173,
+        "logins": 68,
+        "wealth": 60344147,
+        "classify": "作家",
+        "score": 87
+      },
+      {
+        "id": 10006,
+        "username": "user-6",
+        "sex": "女",
+        "city": "城市-6",
+        "sign": "签名-6",
+        "experience": 982,
+        "logins": 37,
+        "wealth": 57768166,
+        "classify": "作家",
+        "score": 34
+      },
+      {
+        "id": 10007,
+        "username": "user-7",
+        "sex": "男",
+        "city": "城市-7",
+        "sign": "签名-7",
+        "experience": 727,
+        "logins": 150,
+        "wealth": 82030578,
+        "classify": "作家",
+        "score": 28
+      },
+      {
+        "id": 10008,
+        "username": "user-8",
+        "sex": "男",
+        "city": "城市-8",
+        "sign": "签名-8",
+        "experience": 951,
+        "logins": 133,
+        "wealth": 16503371,
+        "classify": "词人",
+        "score": 14
+      },
+      {
+        "id": 10009,
+        "username": "user-9",
+        "sex": "女",
+        "city": "城市-9",
+        "sign": "签名-9",
+        "experience": 484,
+        "logins": 25,
+        "wealth": 86801934,
+        "classify": "词人",
+        "score": 75
+      },
+      {
+        "id": 10010,
+        "username": "user-10",
+        "sex": "女",
+        "city": "城市-10",
+        "sign": "签名-10",
+        "experience": 1016,
+        "logins": 182,
+        "wealth": 71294671,
+        "classify": "诗人",
+        "score": 34
+      },
+      {
+        "id": 10011,
+        "username": "user-11",
+        "sex": "女",
+        "city": "城市-11",
+        "sign": "签名-11",
+        "experience": 492,
+        "logins": 107,
+        "wealth": 8062783,
+        "classify": "诗人",
+        "score": 6
+      },
+      {
+        "id": 10012,
+        "username": "user-12",
+        "sex": "女",
+        "city": "城市-12",
+        "sign": "签名-12",
+        "experience": 106,
+        "logins": 176,
+        "wealth": 42622704,
+        "classify": "词人",
+        "score": 54
+      },
+      {
+        "id": 10013,
+        "username": "user-13",
+        "sex": "男",
+        "city": "城市-13",
+        "sign": "签名-13",
+        "experience": 1047,
+        "logins": 94,
+        "wealth": 59508583,
+        "classify": "诗人",
+        "score": 63
+      },
+      {
+        "id": 10014,
+        "username": "user-14",
+        "sex": "男",
+        "city": "城市-14",
+        "sign": "签名-14",
+        "experience": 873,
+        "logins": 116,
+        "wealth": 72549912,
+        "classify": "词人",
+        "score": 8
+      },
+      {
+        "id": 10015,
+        "username": "user-15",
+        "sex": "女",
+        "city": "城市-15",
+        "sign": "签名-15",
+        "experience": 1068,
+        "logins": 27,
+        "wealth": 52737025,
+        "classify": "作家",
+        "score": 28
+      },
+      {
+        "id": 10016,
+        "username": "user-16",
+        "sex": "女",
+        "city": "城市-16",
+        "sign": "签名-16",
+        "experience": 862,
+        "logins": 168,
+        "wealth": 37069775,
+        "classify": "酱油",
+        "score": 86
+      },
+      {
+        "id": 10017,
+        "username": "user-17",
+        "sex": "女",
+        "city": "城市-17",
+        "sign": "签名-17",
+        "experience": 1060,
+        "logins": 187,
+        "wealth": 66099525,
+        "classify": "作家",
+        "score": 69
+      },
+      {
+        "id": 10018,
+        "username": "user-18",
+        "sex": "女",
+        "city": "城市-18",
+        "sign": "签名-18",
+        "experience": 866,
+        "logins": 88,
+        "wealth": 81722326,
+        "classify": "词人",
+        "score": 74
+      },
+      {
+        "id": 10019,
+        "username": "user-19",
+        "sex": "女",
+        "city": "城市-19",
+        "sign": "签名-19",
+        "experience": 682,
+        "logins": 106,
+        "wealth": 68647362,
+        "classify": "词人",
+        "score": 51
+      },
+      {
+        "id": 10020,
+        "username": "user-20",
+        "sex": "男",
+        "city": "城市-20",
+        "sign": "签名-20",
+        "experience": 770,
+        "logins": 24,
+        "wealth": 92420248,
+        "classify": "诗人",
+        "score": 87
+      },
+      {
+        "id": 10021,
+        "username": "user-21",
+        "sex": "男",
+        "city": "城市-21",
+        "sign": "签名-21",
+        "experience": 184,
+        "logins": 131,
+        "wealth": 71566045,
+        "classify": "词人",
+        "score": 99
+      },
+      {
+        "id": 10022,
+        "username": "user-22",
+        "sex": "男",
+        "city": "城市-22",
+        "sign": "签名-22",
+        "experience": 739,
+        "logins": 152,
+        "wealth": 60907929,
+        "classify": "作家",
+        "score": 18
+      },
+      {
+        "id": 10023,
+        "username": "user-23",
+        "sex": "女",
+        "city": "城市-23",
+        "sign": "签名-23",
+        "experience": 127,
+        "logins": 82,
+        "wealth": 14765943,
+        "classify": "作家",
+        "score": 30
+      },
+      {
+        "id": 10024,
+        "username": "user-24",
+        "sex": "女",
+        "city": "城市-24",
+        "sign": "签名-24",
+        "experience": 212,
+        "logins": 133,
+        "wealth": 59011052,
+        "classify": "词人",
+        "score": 76
+      },
+      {
+        "id": 10025,
+        "username": "user-25",
+        "sex": "女",
+        "city": "城市-25",
+        "sign": "签名-25",
+        "experience": 938,
+        "logins": 182,
+        "wealth": 91183097,
+        "classify": "作家",
+        "score": 69
+      },
+      {
+        "id": 10026,
+        "username": "user-26",
+        "sex": "男",
+        "city": "城市-26",
+        "sign": "签名-26",
+        "experience": 978,
+        "logins": 7,
+        "wealth": 48008413,
+        "classify": "作家",
+        "score": 65
+      },
+      {
+        "id": 10027,
+        "username": "user-27",
+        "sex": "女",
+        "city": "城市-27",
+        "sign": "签名-27",
+        "experience": 371,
+        "logins": 44,
+        "wealth": 64419691,
+        "classify": "诗人",
+        "score": 60
+      },
+      {
+        "id": 10028,
+        "username": "user-28",
+        "sex": "女",
+        "city": "城市-28",
+        "sign": "签名-28",
+        "experience": 977,
+        "logins": 21,
+        "wealth": 75935022,
+        "classify": "作家",
+        "score": 37
+      },
+      {
+        "id": 10029,
+        "username": "user-29",
+        "sex": "男",
+        "city": "城市-29",
+        "sign": "签名-29",
+        "experience": 647,
+        "logins": 107,
+        "wealth": 97450636,
+        "classify": "酱油",
+        "score": 27
+      }
     ]
+  },
+  "feature": {
+    "success": true,
+    "code": 200,
+    "data": [
+      {
+        "title": "Vue3 + 全家桶",
+        "percentage": 100,
+        "content": "项目基于最新的<a target=\"_blank\" href=\"https://v3.cn.vuejs.org/guide/introduction.html\">vue3</a>全家桶进行开发，全面使用最新的的<a target=\"_blank\" href=\"https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md\">RFC script setup</a>语法标准，为你带来不一样的 vue3 开发体验",
+        "id": 1
+      },
+      {
+        "title": "Element-Plus",
+        "percentage": 100,
+        "content": "<a target=\"_blank\" href=\"https://element-plus.org/#/zh-CN\">Element Plus</a>，一套为开发者、设计师和产品经理准备的基于 Vue 3.0 的桌面端组件库。是 Element UI 的官方 vue 3 兼容版本",
+        "id": 2
+      },
+      {
+        "title": "vue-element-admin",
+        "percentage": 100,
+        "content": "<a target=\"_blank\" href=\"https://panjiachen.github.io/vue-element-admin-site/zh/guide/\">vue-element-admin</a> 是一个后台前端解决方案，它基于 vue 和 element-ui实现，并有用 70K 的 <a target=\"_blank\" href=\"https://github.com/PanJiaChen/vue-element-admin\">star</a>。<br />本项目使用最新 vue 技术对其进行了重构，并在其现有功能上进行了扩展，致力于为大家带来更加符合 <b>现代后台开发的前端技术解决方案</b>",
+        "id": 3
+      },
+      {
+        "title": "ESLint + Git Hooks",
+        "percentage": 100,
+        "content": "ESLint 对应编码规范，Git Hooks 对应 Git 规范。<br /> 想要开发出大厂标准的企业级项目，需要先从规范做起！",
+        "id": 4
+      },
+      {
+        "title": "架构设计",
+        "percentage": 100,
+        "content": "阿里前端 P7 岗被称为 《技术专家》，也有人喜欢叫他们为 “前端架构师”，既然被称为 “架构师” ，那么架构设计当然是不可缺少的一环咯",
+        "id": 5
+      },
+      {
+        "title": "权限验证（页面权限、功能权限、动态权限、权限配置）",
+        "percentage": 100,
+        "content": "全面的后台权限验证系统，实现了 <b>页面权限、功能权限、动态权限、权限配置</b> 等全方位的权限功能",
+        "id": 6
+      },
+      {
+        "title": "功能引导",
+        "percentage": 100,
+        "content": "对用户的功能引导",
+        "id": 7
+      },
+      {
+        "title": "可配置 + 收缩侧边栏",
+        "percentage": 100,
+        "content": "根据路由动态生成的 Menu 菜单，实现真正的 <b>配置 Menu</b>",
+        "id": 8
+      },
+      {
+        "title": "动态面包屑",
+        "percentage": 100,
+        "content": "动态生成的面包屑数据",
+        "id": 9
+      },
+      {
+        "title": "Tags View",
+        "percentage": 100,
+        "content": "便签快捷导航功能",
+        "id": 10
+      },
+      {
+        "title": "svg sprite 图标",
+        "percentage": 100,
+        "content": "自定义的 svg Icon 配合 el Icon 自动分配导入",
+        "id": 11
+      },
+      {
+        "title": "国际化",
+        "percentage": 100,
+        "content": "多语言的国际化功能实现",
+        "id": 12
+      },
+      {
+        "title": "动态换肤",
+        "percentage": 100,
+        "content": "主题更换功能，提供缓存实现",
+        "id": 13
+      },
+      {
+        "title": "页面搜索",
+        "percentage": 100,
+        "content": "根据路由配置自动化生成的页面搜索数据，无需手动配置",
+        "id": 14
+      },
+      {
+        "title": "excel 导出、导入",
+        "percentage": 100,
+        "content": "excel 表格的导入、导出实现",
+        "id": 15
+      },
+      {
+        "title": "zip 导入",
+        "percentage": 100,
+        "content": "页面数据导出为 zip ",
+        "id": 16
+      },
+      {
+        "title": "富文本 + MarkDown 编辑器",
+        "percentage": 100,
+        "content": "常用的编辑器功能，包含 富文本编辑器 && MarkDown 编辑器",
+        "id": 17
+      },
+      {
+        "title": "动态表格 + 拖拽表格 + 内联编辑表格",
+        "percentage": 100,
+        "content": "表格列表的常见操作，多用于包含表格项的展示功能中。包括：动态表格 && 拖拽表格 && 内联编辑表格 ",
+        "id": 18
+      },
+      {
+        "title": "统一错误处理",
+        "percentage": 100,
+        "content": "页面级的错误处理由 vue-router 统一处理。包含 401 和 404 的错误处理",
+        "id": 19
+      },
+      {
+        "title": "发布",
+        "percentage": 100,
+        "content": "构建与发布",
+        "id": 20
+      },
+      {
+        "title": "其他",
+        "percentage": 100,
+        "content": "除了以上功能之外，我们还实现了很多其他的功能，比如：CDN、动态的环境变量配置、懒加载、跨域等等",
+        "id": 21
+      }
+    ],
+    "message": "获取资料成功"
+  },
+  "chapter": {
+    "success": true,
+    "code": 200,
+    "data": [
+      {
+        "content": "课程导读",
+        "timestamp": "第一章",
+        "id": 1
+      },
+      {
+        "content": " 标准化大厂编程规范解决方案之ESLint + Git Hooks ",
+        "timestamp": "第二章",
+        "id": 2
+      },
+      {
+        "content": "项目架构解决方案之搭建登录基础架构",
+        "timestamp": "第三章",
+        "id": 3
+      },
+      {
+        "content": "项目架构解决方案之搭建Layout基础架构",
+        "timestamp": "第四章",
+        "id": 4
+      },
+      {
+        "content": "后台项目前端综合解决方案之 通用功能开发",
+        "timestamp": "第五章",
+        "id": 5
+      },
+      {
+        "content": "vue3 + element plus 综合实现解决方案之个人中心页面",
+        "timestamp": "第六章",
+        "id": 6
+      },
+      {
+        "content": "excel 、zip 与前端结合解决方案之用户管理页面实现",
+        "timestamp": "第七章",
+        "id": 7
+      },
+      {
+        "content": "权限控制解决方案之角色、权限页面渲染实现项目的权限控制功能",
+        "timestamp": "第八章",
+        "id": 8
+      },
+      {
+        "content": "列表排序解决方案之实现热门文章排名",
+        "timestamp": "第九章",
+        "id": 9
+      },
+      {
+        "content": "文章编辑解决方案之实现创建文章功能",
+        "timestamp": "第十章",
+        "id": 10
+      },
+      {
+        "content": "错误综合处理方案之错误页面的统一处理",
+        "timestamp": "第十一章",
+        "id": 11
+      },
+      {
+        "content": "项目发布解决方案之构建与发布",
+        "timestamp": "第十二章",
+        "id": 12
+      },
+      {
+        "content": "课程总结",
+        "timestamp": "第十三章",
+        "id": 13
+      }
+    ],
+    "message": "获取资料成功"
+  }
 }
