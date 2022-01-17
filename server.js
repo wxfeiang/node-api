@@ -39,21 +39,21 @@ const mock = require('./routes/api/mock') // 请求静态json
 console.log('-----------------------------------')
 console.log('文件根' + __dirname + '---------- 文件名绝对------' + __filename)
 
-app.use(express.static('public')) //  使用静态资源
+app.use('/api/public', express.static('public')) // 为了给静态资源文件创建一个虚拟的文件前缀(实际上文件系统中并不存在) ，可以使用 express.static 函数指定一个虚拟的静态目录
 //console.log(app.use(express.static(path.join(__dirname, 'public'))));
 //  链接数据库
 var db = require('./config/keys').mongoURI
 //  已经在服务器配置好了生产环境得变量   product
-// if (process.env.NODE_ENV === 'production') {
-//   console.log('线上生产环境 ')
-//   db = require('./config/keys').mongoURIProt
-// }
-// mongoose
-//   .connect(db, {
-//     useNewUrlParser: true
-//   })
-//   .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
-//   .catch((err) => console.log(err))
+if (process.env.NODE_ENV === 'production') {
+  console.log('线上生产环境 ')
+  db = require('./config/keys').mongoURIProt
+}
+mongoose
+  .connect(db, {
+    useNewUrlParser: true
+  })
+  .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
+  .catch((err) => console.log(err))
 // Connect to mongodb
 
 // bodyParser 中间件使用

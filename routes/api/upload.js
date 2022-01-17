@@ -47,7 +47,7 @@ router.post('/gyzq', (req, res) => {
 })
 router.get('/test', (req, res) => {
   res.json({
-    msg: 'loworking ',
+    msg: 'loworking '
   })
 })
 // 请求html    文件
@@ -113,11 +113,11 @@ router.post('/upload', (req, res, next) => {
             code: 200,
             msg: '上传成功',
             path: 'upload/' + newPath,
+            desc: 'localhost:3000: 当前IP加地址'
           }
           res.send(data)
         })
       } else {
-        console.log('esle 400-----------')
         status.code = 200
         res.send(status)
       }
@@ -135,13 +135,13 @@ function beforeAvatarUpload(file) {
   if (!isJPG) {
     err = {
       code: 400,
-      msg: '上传头像图片只能是 JPG 格式!',
+      msg: '上传头像图片只能是 JPG 格式!'
     }
   }
   if (!isLt2M) {
     err = {
       code: 400,
-      msg: '上传头像图片大小不能超过 2MB!',
+      msg: '上传头像图片大小不能超过 2MB!'
     }
   }
   return err
@@ -167,7 +167,7 @@ router.post('/textAuto', (req, res, next) => {
         var data = {
           code: 200,
           msg: '语音合成成功',
-          path: 'audio/' + newPath,
+          path: 'audio/' + newPath
         }
         res.send(data)
       } else {
