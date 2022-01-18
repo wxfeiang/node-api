@@ -113,7 +113,7 @@ router.post('/upload', (req, res, next) => {
             code: 200,
             msg: '上传成功',
             path: 'upload/' + newPath,
-            desc: 'localhost:3000: 当前IP加地址'
+            desc: '完整路径====当前IP加地址/api/public'
           }
           res.send(data)
         })

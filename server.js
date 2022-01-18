@@ -44,16 +44,16 @@ app.use('/api/public', express.static('public')) // 为了给静态资源文件�
 //  链接数据库
 var db = require('./config/keys').mongoURI
 //  已经在服务器配置好了生产环境得变量   product
-if (process.env.NODE_ENV === 'production') {
-  console.log('线上生产环境 ')
-  db = require('./config/keys').mongoURIProt
-}
-mongoose
-  .connect(db, {
-    useNewUrlParser: true
-  })
-  .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
-  .catch((err) => console.log(err))
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('线上生产环境 ')
+//   db = require('./config/keys').mongoURIProt
+// }
+// mongoose
+//   .connect(db, {
+//     useNewUrlParser: true
+//   })
+//   .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
+//   .catch((err) => console.log(err))
 // Connect to mongodb
 
 // bodyParser 中间件使用
