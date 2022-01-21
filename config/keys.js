@@ -1,10 +1,23 @@
 module.exports = {
   mongoURI: 'mongodb://localhost/node-api',
-  mongoURIProt: 'mongodb://nodeproduct:nodeproduct123456@127.0.0.1/nodeproduct',
+  mongoURIProt: 'mongodb://node:123@127.0.0.1/nodeproduct',
   // 链接本地数据库
   secretOrKey: 'secret'
   // 验证 Jwt ken
 }
+
+// db.createUser(
+//   {
+//     user:'node',
+//     pwd:'123',
+//     roles: [
+
+//       {
+//         role:'readWrite',
+//         db:'Article'
+//       }]})}
+
+//   )
 
 /*
 if(process.env.NODE_ENV =="production"){
