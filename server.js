@@ -45,7 +45,7 @@ app.use('/api/public', express.static('public')) // 为了给静态资源文件�
 var db = require('./config/keys').mongoURI
 //  已经在服务器配置好了生产环境得变量   product
 if (process.env.NODE_ENV === 'production') {
-  console.log('线上生产环境 ', process.env.NODE_ENV)
+  console.log('线上生产环境 ', process.env.NODE_ENV, db)
   db = require('./config/keys').mongoURIProt
 }
 mongoose
@@ -81,7 +81,8 @@ app.use(
     saveUninitialized: false, // 是否保存未初始化的会话
     cookie: {
       maxAge: 50000 // 设置 session 的有效时间，单位毫秒
-    }
+    },
+    secure: true
   })
 )
 
