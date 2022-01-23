@@ -135,7 +135,7 @@ router.get('/sys/profile', (req, res, next) => {
       id: '612710a9ec87aa543c9c3420',
       username: 'super-admin',
       title: '超级管理员',
-      avatar: 'http://47.99.93.97/api/public/upload/1642383937435.jpg',
+      avatar: 'http://47.99.93.97/api/public/upload/11642384063103.jpg',
       permission: {
         menus: ['userManage', 'roleList', 'permissionList', 'articleRanking', 'articleCreate'],
         points: ['distributeRole', 'importUser', 'removeUser', 'distributePermission']
