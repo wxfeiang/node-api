@@ -7,6 +7,10 @@ const path = require('path')
 const fs = require('fs') //文件模块
 
 const Mock = require('mockjs')
+
+const mysql = require('mysql')
+var db = require('../../config/db')
+
 // $route  GET api/users/test
 // @desc   返回的请求的json数据
 // @access public
@@ -194,6 +198,27 @@ router.get('/sys/chapter', (req, res) => {
     } else {
       res.send(JSON.parse(data).chapter)
     }
+  })
+})
+/**,
+ * @swagger
+ * /api/mock/userList:
+ *    get:
+ *      tags:
+ *      - 获取mysql student 学生表
+ *      summary: userList
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: successful operation
+ * */
+router.get('/userList', (req, res, next) => {
+  const sql = 'SELECT * FROM student'
+  db.query(sql, [], function (results, fields) {
+    // 以json的形式返回
+    console.log(results)
+    res.json({ results })
   })
 })
 

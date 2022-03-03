@@ -6,7 +6,7 @@ const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar')
 const jwt = require('jsonwebtoken')
-const keys = require('../../config/keys')
+const keys = require('../../config/mongondbkey')
 const passport = require('passport')
 
 //  引入短信验证码接口
@@ -26,14 +26,14 @@ const validateLoginInput = require('../../validation/login')
 // @access public
 router.get('/test', (req, res) => {
   res.json({
-    msg: 'loworking ',
+    msg: 'loworking '
   })
 })
 // $route  post api/users/test
 // @desc   返回的请求的json数据
 // @access public   注册接口
 router.post('/register', (req, res) => {
-   console.log(req.body,"---------------")
+  console.log(req.body, '---------------')
   // 查询数据库
   const { errors, isValid } = validateRegisterInput(req.body) // 解构
   // 判断是否通过
@@ -42,18 +42,18 @@ router.post('/register', (req, res) => {
   }
 
   User.findOne({
-    email: req.body.email,
+    email: req.body.email
   }).then((user) => {
     if (user) {
       return res.status(400).json({
-        email: '邮箱已经被注册!!!',
+        email: '邮箱已经被注册!!!'
       })
     } else {
       // 头像地址
       const avatar = gravatar.url(req.body.email, {
         s: '200',
         r: 'pg',
-        d: 'mm',
+        d: 'mm'
       })
       //存
       const newUser = new User({
@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password,
         identity: req.body.identity,
-        avatar, //  es6一样只写一个
+        avatar //  es6一样只写一个
       })
       //  密码加密
       bcrypt.genSalt(10, (err, salt) => {
@@ -93,11 +93,11 @@ router.post('/login', (req, res) => {
   const password = req.body.password
   // 查询是否存在
   User.findOne({
-    email,
+    email
   }).then((user) => {
     if (!user) {
       return res.status(400).json({
-        email: '邮箱不存在!!!',
+        email: '邮箱不存在!!!'
       })
     }
     // 密码匹配
@@ -107,7 +107,7 @@ router.post('/login', (req, res) => {
           id: user.id,
           name: user.name,
           avatar: user.avatar,
-          identity: user.identity,
+          identity: user.identity
         }
         //res.json({ msg: "sucess" })
         // jwt.sign("规则","加密名字","tocken 过期时间","cb")
@@ -115,20 +115,20 @@ router.post('/login', (req, res) => {
           rule,
           keys.secretOrKey,
           {
-            expiresIn: 3600,
+            expiresIn: 3600
           },
           (err, token) => {
             if (err) throw err
             res.json({
               success: true,
               // token: "mrw" + token
-              token: 'Bearer ' + token, //  固定格式
+              token: 'Bearer ' + token //  固定格式
             })
           }
         )
       } else {
         return res.status(400).json({
-          password: '密码错误!!!',
+          password: '密码错误!!!'
         })
       }
     })
@@ -142,7 +142,7 @@ router.post('/login', (req, res) => {
 router.get(
   '/current',
   passport.authenticate('jwt', {
-    session: false,
+    session: false
   }),
   (req, res) => {
     // res.json(req.user)
@@ -153,7 +153,7 @@ router.get(
       name: req.user.name,
       email: req.user.email,
       identity: req.user.identity,
-      avatar: req.user.avatar,
+      avatar: req.user.avatar
     })
   }
 )
@@ -167,7 +167,7 @@ router.post('/sms', (req, res) => {
     mobile: req.body.phone, // 接受短信的用户手机号码
     tpl_id: '143678', // 您申请的短信模板ID，根据实际情况修改
     tpl_value: '#code#=' + code, // 您设置的模板变量，根据实际情况修改
-    key: 'fff5a7c7be45a5e72673785d61269047', // 应用APPKEY(应用详细页查询)
+    key: 'fff5a7c7be45a5e72673785d61269047' // 应用APPKEY(应用详细页查询)
   })
   var queryUrl = 'http://v.juhe.cn/sms/send?' + queryData
   request(queryUrl, function (error, response, body) {
@@ -178,7 +178,7 @@ router.post('/sms', (req, res) => {
       return res.json(jsonObj)
     } else {
       return res.status(400).json({
-        error: '后台请求短信服务平台接口异常',
+        error: '后台请求短信服务平台接口异常'
       })
     }
   })
@@ -199,7 +199,7 @@ router.post('/retrievePwd', (req, res) => {
   User.findOne({ name }).then((user) => {
     if (!user) {
       return res.status(400).json({
-        email: '邮箱不存在!!!',
+        email: '邮箱不存在!!!'
       })
     } else {
       // step 1
@@ -208,8 +208,8 @@ router.post('/retrievePwd', (req, res) => {
         secure: true,
         auth: {
           user: 'wxfeiang@qq.com', // 309595700@qq.com
-          pass: 'wkvnvyrnixtifgea', //  邮箱的授权码
-        },
+          pass: 'wkvnvyrnixtifgea' //  邮箱的授权码
+        }
       })
 
       // step 2
@@ -222,7 +222,7 @@ router.post('/retrievePwd', (req, res) => {
         // html: '<iframe src="https://www.baidu.com" height="400" width="700" name="demo" frameborder="0" scrolling="auto" sandbox="allow-same-origin allow-top-navigation allow-forms allow-scripts"  ></iframe>'
         html: `<iframe src="//www.runoob.com">
                 <p>您的浏览器不支持  iframe 标签。</p>
-              </iframe>`,
+              </iframe>`
       }
       //  密码是加密的需要解密  应该提示更具验证码 重新更密码  ok  功能实现了
       // <iframe src="https://www.baidu.com" height="400" width="700" name="demo" frameborder="0" scrolling="auto" sandbox="allow-same-origin allow-top-navigation allow-forms allow-scripts"  ></iframe>
@@ -232,12 +232,12 @@ router.post('/retrievePwd', (req, res) => {
         if (err) {
           res.status(400).json({
             state: 'failed  发送失败',
-            msg: err,
+            msg: err
           })
         } else {
           res.status(200).json({
             state: 'suc',
-            msg: `密码已发送至您的邮箱${req.body.email}`,
+            msg: `密码已发送至您的邮箱${req.body.email}`
           })
         }
       })
@@ -251,13 +251,13 @@ router.get('/seeion', (req, res, next) => {
     name: 'Chen-xy',
     age: '22',
     address: 'bj',
-    code,
+    code
   }
   req.session.user = user
   console.log(req.session.user)
   res.status(200).json({
     title: 'code',
-    name: 'code' + code,
+    name: 'code' + code
   })
   //req.session.destroy();
   //  req.session.destroy();

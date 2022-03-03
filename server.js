@@ -8,6 +8,8 @@ const fs = require('fs') //  文件系统
 var cookieParser = require('cookie-parser')
 var session = require('express-session')
 
+// const mysql = require('mysql')
+
 const swaggerUi = require('swagger-ui-express')
 const swaggerJSDoc = require('swagger-jsdoc')
 const options = {
@@ -42,11 +44,11 @@ console.log('文件根' + __dirname + '---------- 文件名绝对------' + __fil
 app.use('/api/public', express.static('public')) // 为了给静态资源文件创建一个虚拟的文件前缀(实际上文件系统中并不存在) ，可以使用 express.static 函数指定一个虚拟的静态目录
 //console.log(app.use(express.static(path.join(__dirname, 'public'))));
 //  链接数据库
-var db = require('./config/keys').mongoURI
+var db = require('./config/mongondbkey').mongoURI
 //  已经在服务器配置好了生产环境得变量   product
 if (process.env.NODE_ENV === 'production') {
   console.log('线上生产环境 ', process.env.NODE_ENV, db)
-  db = require('./config/keys').mongoURIProt
+  db = require('./config/mongondbkey').mongoURIProt
 }
 mongoose
   .connect(db, {
@@ -55,6 +57,23 @@ mongoose
   .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
   .catch((err) => console.log(err))
 // Connect to mongodb
+
+// const connection = mysql.createConnection({
+//   protocol: 'mysql',
+//   host: '47.99.93.97',
+//   user: 'root',
+//   password: '123456',
+//   port: 3306,
+//   database: 'student'
+// })
+
+// connection.connect(function (err) {
+//   if (err) {
+//     console.log('连接错误', err)
+//     return
+//   }
+//   console.log('成功连接MySQL')
+// })
 
 // bodyParser 中间件使用
 app.use(
