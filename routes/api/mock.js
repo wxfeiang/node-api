@@ -217,7 +217,7 @@ router.get('/userList', (req, res, next) => {
   const sql = 'SELECT * FROM student'
   db.query(sql, [], function (results, fields) {
     // 以json的形式返回
-    console.log(results)
+
     res.json({ results })
   })
 })
