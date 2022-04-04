@@ -67,7 +67,10 @@ router.get('/data', (req, res, next) => {
  *      summary: login
  *      produces:
  *      - application/json
+ *      paramType:
+ *      -form
  *      parameters:
+ *      - in: body
  *      - name: username
  *        in: query
  *        description: 用户名
@@ -91,6 +94,7 @@ router.get('/data', (req, res, next) => {
 
 router.post('/sys/login', (req, res, next) => {
   const { username, password } = req.body
+  console.log(req.body)
   let data = Mock.mock({
     code: 200,
     success: true,
@@ -221,7 +225,7 @@ router.get('/userList', (req, res, next) => {
 })
 /**,
  * @swagger
- * /api/mock/userstudent/?id='':
+ * /api/mock/userstudent:
  *    get:
  *      tags:
  *      - 根据学生ID查到学生
@@ -242,24 +246,50 @@ router.get('/userstudent/:id', (req, res, next) => {
 })
 /**,
  * @swagger
- * /api/mock/addStudent':
- *    get:
+ * /api/mock/addStudent:
+ *    post:
  *      tags:
  *      - 添加学生
- *      summary: /addStudent'
+ *      summary: addStudent
  *      produces:
  *      - application/json
+ *      parameters:
+ *      - in: body
+ *      - name: Sname
+ *
+ *        description: 姓名
+ *        required: false
+ *        type: string
+ *        maximum:
+ *        minimum: 1
+ *        format:
+ *      - name: Sage
+ *
+ *        description: 出生年月
+ *        required: false
+ *        type: string
+ *        maximum:
+ *        minimum: 1
+ *        format:
+ *      - name: Ssex
+ *
+ *        description: 性别
+ *        required: false
+ *        type: string
+ *        maximum:
+ *        minimum: 1
+ *        format:
  *      responses:
  *        200:
  *          description: successful operation
  * */
 router.post('/addStudent', (req, res, next) => {
+  //TODO  验证传入的参数  注释写法问题
   const { Sname, Sage, Ssex } = req.body
   const prms = [Sname, Sage, Ssex]
-  const sql = `INSERT INTO student (Sname, Sage, Ssex)   VALUES(?,?,?);`
+  const sql = `INSERT INTO student(Sname, Sage, Ssex)   VALUES(?,?,?);`
   db.query(sql, prms, function (results, fields) {
     // 以json的形式返()
-
     const flog = results.affectedRows > 0
     var data = {
       success: flog ? true : false,
