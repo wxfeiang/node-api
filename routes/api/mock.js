@@ -10,10 +10,8 @@ const Mock = require('mockjs')
 
 const mysql = require('mysql')
 var db = require('../../config/db')
+const request = require('request')
 
-// $route  GET api/users/test
-// @desc   返回的请求的json数据
-// @access public
 router.get('/test', (req, res) => {
   res.json({
     msg: 'loworking '
@@ -221,5 +219,53 @@ router.get('/userList', (req, res, next) => {
     res.json({ results })
   })
 })
+/**,
+ * @swagger
+ * /api/mock/userstudent/?id='':
+ *    get:
+ *      tags:
+ *      - 根据学生ID查到学生
+ *      summary: userstudent/?id=''
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: successful operation
+ * */
+router.get('/userstudent/:id', (req, res, next) => {
+  const sql = `SELECT * FROM student WHERE Sid=${req.params.id}`
+  db.query(sql, [], function (results, fields) {
+    // 以json的形式返回
 
+    res.json({ results })
+  })
+})
+/**,
+ * @swagger
+ * /api/mock/addStudent':
+ *    get:
+ *      tags:
+ *      - 添加学生
+ *      summary: /addStudent'
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: successful operation
+ * */
+router.post('/addStudent', (req, res, next) => {
+  const { Sname, Sage, Ssex } = req.body
+  const prms = [Sname, Sage, Ssex]
+  const sql = `INSERT INTO student (Sname, Sage, Ssex)   VALUES(?,?,?);`
+  db.query(sql, prms, function (results, fields) {
+    // 以json的形式返()
+
+    const flog = results.affectedRows > 0
+    var data = {
+      success: flog ? true : false,
+      message: flog ? '成功' : '失败'
+    }
+    res.json(data)
+  })
+})
 module.exports = router
