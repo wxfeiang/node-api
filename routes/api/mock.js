@@ -57,7 +57,6 @@ router.get('/data', (req, res, next) => {
   })
   res.json(data)
 })
-
 /**,
  * @swagger
  * /api/mock/sys/login:
@@ -67,8 +66,6 @@ router.get('/data', (req, res, next) => {
  *      summary: login
  *      produces:
  *      - application/json
- *      paramType:
- *      -form
  *      parameters:
  *      - in: body
  *      - name: username
@@ -225,19 +222,28 @@ router.get('/userList', (req, res, next) => {
 })
 /**,
  * @swagger
- * /api/mock/userstudent:
+ * /api/mock/userstudent/:
  *    get:
  *      tags:
- *      - 根据学生ID查到学生
- *      summary: userstudent/?id=''
+ *      - 担任信息查询
+ *      summary: ?id= ''
  *      produces:
  *      - application/json
+ *      parameters:
+ *      - name: id
+ *        in: query
+ *        description: 用户名
+ *        required: false
+ *        type: integer
+ *        maximum:
+ *        minimum: 1
+ *        format:
  *      responses:
  *        200:
  *          description: successful operation
  * */
-router.get('/userstudent/:id', (req, res, next) => {
-  const sql = `SELECT * FROM student WHERE Sid=${req.params.id}`
+router.get('/userstudent/', (req, res, next) => {
+  const sql = `SELECT * FROM student WHERE Sid=${req.query.id}`
   db.query(sql, [], function (results, fields) {
     // 以json的形式返回
 
@@ -246,46 +252,62 @@ router.get('/userstudent/:id', (req, res, next) => {
 })
 /**,
  * @swagger
- * /api/mock/addStudent:
+ * /api/mock/addStudent:   #路由地址
  *    post:
  *      tags:
- *      - 添加学生
- *      summary: addStudent
- *      produces:
- *      - application/json
- *      parameters:
- *      - in: body
- *      - name: Sname
- *
- *        description: 姓名
- *        required: false
- *        type: string
- *        maximum:
- *        minimum: 1
- *        format:
- *      - name: Sage
- *
- *        description: 出生年月
- *        required: false
- *        type: string
- *        maximum:
- *        minimum: 1
- *        format:
- *      - name: Ssex
- *
- *        description: 性别
- *        required: false
- *        type: string
- *        maximum:
- *        minimum: 1
- *        format:
- *      responses:
- *        200:
- *          description: successful operation
+ *      - 用户管理    #接口分类
+ *      summary: 添加用户   #接口备注
+ *      description: 添加用户   #接口描述
+ *      consumes:
+ *      - "application/json"    #接口接收参数方式
+ *      requestBody:    #编写参数接收体
+ *          required: true  #是否必传
+ *          content:
+ *              application/json:
+ *                  schema:     #参数备注
+ *                      type: object    #参数类型
+ *                      properties:
+ *                          Sname:
+ *                                  type: string    #参数类型
+ *                                  description: 用户名     #参数描述
+ *                          Ssex:
+ *                                  type: string    #参数类型
+ *                                  description: 性别     #参数描述
+ *                          Sage:
+ *                                  type: string    #参数类型
+ *                                  description: 出生年月     #参数描述
+ *                  example:        #请求参数样例。
+ *                      Sname: "string"
+ *                      Ssex: "string"
+ *                      Sage: "string"
+ *      responses:  #编写返回体
+ *        200:     #返回code码
+ *          description: 注册成功     #返回code码描述
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          code:   #返回的code码
+ *                              type: string
+ *                              description: 返回code码
+ *                          msg:    #返回体信息。***注意写的位置一定要和res_code对齐。
+ *                               type: string   #返回体信息类型
+ *                               description: 返回信息
+ *                          data:
+ *                                type: object
+ *                                description: 返回数据
+ *        -1:
+ *          description: 注册失败
  * */
 router.post('/addStudent', (req, res, next) => {
+  console.log(req.body)
   //TODO  验证传入的参数  注释写法问题
   const { Sname, Sage, Ssex } = req.body
+  if (!Sname) {
+    res.json('error')
+    return false
+  }
   const prms = [Sname, Sage, Ssex]
   const sql = `INSERT INTO student(Sname, Sage, Ssex)   VALUES(?,?,?);`
   db.query(sql, prms, function (results, fields) {
@@ -298,4 +320,5 @@ router.post('/addStudent', (req, res, next) => {
     res.json(data)
   })
 })
+
 module.exports = router
