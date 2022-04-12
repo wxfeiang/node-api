@@ -225,7 +225,6 @@ router.get('/userList', (req, res, next) => {
  * /api/mock/userstudent/:
  *    get:
  *      tags:
- *      - 担任信息查询
  *      summary: ?id= ''
  *      produces:
  *      - application/json
@@ -243,8 +242,9 @@ router.get('/userList', (req, res, next) => {
  *          description: successful operation
  * */
 router.get('/userstudent/', (req, res, next) => {
-  const sql = `SELECT * FROM student WHERE Sid=${req.query.id}`
-  db.query(sql, [], function (results, fields) {
+  const sql = `SELECT * FROM student WHERE Sid= ?`
+  const parm = [req.query.id]
+  db.query(sql, parm, function (results, fields) {
     // 以json的形式返回
 
     res.json({ results })
@@ -255,7 +255,6 @@ router.get('/userstudent/', (req, res, next) => {
  * /api/mock/addStudent:   #路由地址
  *    post:
  *      tags:
- *      - 用户管理    #接口分类
  *      summary: 添加用户   #接口备注
  *      description: 添加用户   #接口描述
  *      consumes:
@@ -304,12 +303,12 @@ router.post('/addStudent', (req, res, next) => {
   console.log(req.body)
   //TODO  验证传入的参数  注释写法问题
   const { Sname, Sage, Ssex } = req.body
-  if (!Sname) {
-    res.json('error')
+  if (!Sname || !Sage || !Ssex) {
+    res.json('参数不能为空')
     return false
   }
   const prms = [Sname, Sage, Ssex]
-  const sql = `INSERT INTO student(Sname, Sage, Ssex)   VALUES(?,?,?);`
+  const sql = `INSERT INTO student(Sname, Sage, Ssex) VALUES(?,?,?);`
   db.query(sql, prms, function (results, fields) {
     // 以json的形式返()
     const flog = results.affectedRows > 0
