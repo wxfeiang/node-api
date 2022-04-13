@@ -2,12 +2,11 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/User')
-//const bcrypt = require("bcrypt");
 const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar')
 const jwt = require('jsonwebtoken')
 const keys = require('../../config/mongondbkey')
-const passport = require('passport')
+const passport = require('passport') // 验证TOken
 
 //  引入短信验证码接口
 //node request模块安装命令：npm install request
@@ -162,8 +161,8 @@ router.post('/sms', (req, res) => {
   // 对手机号码做验证
   if (req.body.phone) {
   }
-  var code = Math.floor(Math.random() * 1000000)
-  var queryData = querystring.stringify({
+  let code = Math.floor(Math.random() * 1000000)
+  let queryData = querystring.stringify({
     mobile: req.body.phone, // 接受短信的用户手机号码
     tpl_id: '143678', // 您申请的短信模板ID，根据实际情况修改
     tpl_value: '#code#=' + code, // 您设置的模板变量，根据实际情况修改

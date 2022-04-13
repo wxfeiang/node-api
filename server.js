@@ -72,24 +72,13 @@ app.use(
     secure: true
   })
 )
-
 // 初始化
 app.use(passport.initialize())
 require('./config/passport')(passport) // 数据分离
-
 //根路径
 app.get('/', (req, res) => {
-  console.log('根路径接口')
-  res.send('这里是项目跟路径') //
+  res.send('这里是项目跟路径') // 测试使用
 })
-
-// app.get('/', (req, res) => {
-//     res.sendFile(
-//         path.resolve(__dirname, '../www', 'blogadmin/dist', 'index.html')
-//     );
-// });
-// 读取整个文件夹
-// 阿里云服务器测试
 app.use('/api/users', users) // 上面引入进来的
 app.use('/api/profile', profile)
 app.use('/api/posts', posts)
@@ -98,9 +87,7 @@ app.use('/api/acjson', acjson)
 app.use('/api/wx_jddata', wx_jddata)
 app.use('/api/upload', upload)
 app.use('/api/mock', mock)
-
-// 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
-app.use('/api/docs', swaggerConfig.swaggerSave, swaggerConfig.swaggerUi)
+app.use('/api/docs', swaggerConfig.swaggerSave, swaggerConfig.swaggerUi) // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

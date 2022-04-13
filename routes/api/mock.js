@@ -225,6 +225,7 @@ router.get('/userList', (req, res, next) => {
  * /api/mock/userstudent/:
  *    get:
  *      tags:
+ *      - 获取mysql student 学生表
  *      summary: ?id= ''
  *      produces:
  *      - application/json
@@ -255,6 +256,7 @@ router.get('/userstudent/', (req, res, next) => {
  * /api/mock/addStudent:   #路由地址
  *    post:
  *      tags:
+ *      - 获取mysql student 学生表
  *      summary: 添加用户   #接口备注
  *      description: 添加用户   #接口描述
  *      consumes:
@@ -298,6 +300,11 @@ router.get('/userstudent/', (req, res, next) => {
  *                                description: 返回数据
  *        -1:
  *          description: 注册失败
+ *      security:
+ *      - petstore_auth:
+ *        - "write:pets"
+ *        - "read:pets"
+ *
  * */
 router.post('/addStudent', (req, res, next) => {
   console.log(req.body)
