@@ -1,6 +1,6 @@
 // db.js
 var mysql = require('mysql')
-var dbConfig = require('./mysqlkey')
+var dbConfig = require('../config/mysqlkey')
 
 module.exports = {
   query: function (sql, params, callback) {
@@ -9,6 +9,7 @@ module.exports = {
     connection.connect(function (err) {
       if (err) {
         console.log('数据库连接失败--------')
+
         throw err
       }
       //开始数据操作

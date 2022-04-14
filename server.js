@@ -2,8 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const path = require('path') //  文件路径系统
-const fs = require('fs') //  文件系统
+// const path = require('path') //  文件路径系统
+// const fs = require('fs') //  文件系统
 //  引入cook  session
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
@@ -34,14 +34,14 @@ var db = require('./config/mongondbkey').mongoURI
 if (process.env.NODE_ENV === 'production') {
   console.log('线上生产环境 ', process.env.NODE_ENV, db)
   db = require('./config/mongondbkey').mongoURIProt
+  // 链接 mongoose
+  mongoose
+    .connect(db, {
+      useNewUrlParser: true
+    })
+    .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
+    .catch((err) => console.log(err))
 }
-// 链接 mongoose
-mongoose
-  .connect(db, {
-    useNewUrlParser: true
-  })
-  .then(() => console.log(process.env.NODE_ENV + '数据库链接成功'))
-  .catch((err) => console.log(err))
 
 // bodyParser 中间件使用
 app.use(
@@ -72,14 +72,15 @@ app.use(
     secure: true
   })
 )
+// 封装全局的 返回统一信息处理
+const res = require('./utils/rescc')
+app.use(res.resData)
+
 // 初始化
 app.use(passport.initialize())
 require('./config/passport')(passport) // 数据分离
-//根路径
-app.get('/', (req, res) => {
-  res.send('这里是项目跟路径') // 测试使用
-})
-//app.use('/api/users', users) // 上面引入进来的
+
+app.use('/api/users', users) // 上面引入进来的
 app.use('/api/profile', profile)
 app.use('/api/posts', posts)
 app.use('/api/blog', blog)

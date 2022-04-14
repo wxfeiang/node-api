@@ -3,8 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const mockApi = require('../routes_handler/mock')
-// test
-router.get('/test', mockApi.test)
+
 // data
 router.get('/data', mockApi.mockData)
 //login

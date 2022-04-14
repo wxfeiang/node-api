@@ -1,13 +1,7 @@
 const path = require('path') // 文件路径
 const fs = require('fs') //文件模块
 const Mock = require('mockjs') //
-const db = require('../../config/db') // 数据库
-
-exports.test = (req, res) => {
-  res.json({
-    msg: 'loworking  modes'
-  })
-}
+const db = require('../../utils/db') // 数据库
 
 /**
  * @swagger
@@ -207,8 +201,7 @@ exports.userList = (req, res, next) => {
   const sql = 'SELECT * FROM student'
   db.query(sql, [], function (results, fields) {
     // 以json的形式返回
-
-    res.json({ results })
+    res.cc('成功', results)
   })
 }
 /**,
