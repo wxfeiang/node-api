@@ -18,7 +18,7 @@ const users = require('./routes/api/users')
 const profile = require('./routes/api/profile')
 const posts = require('./routes/api/posts')
 const blog = require('./routes/api/blog')
-const wx_jddata = require('./routes/api/wx_jddata')
+
 const upload = require('./routes/api/upload') //  文件上传接口
 const acjson = require('./routes/api/acjson') // 请求静态json
 const mock = require('./routes/api/mock') // 请求静态json
@@ -79,12 +79,11 @@ require('./config/passport')(passport) // 数据分离
 app.get('/', (req, res) => {
   res.send('这里是项目跟路径') // 测试使用
 })
-app.use('/api/users', users) // 上面引入进来的
+//app.use('/api/users', users) // 上面引入进来的
 app.use('/api/profile', profile)
 app.use('/api/posts', posts)
 app.use('/api/blog', blog)
 app.use('/api/acjson', acjson)
-app.use('/api/wx_jddata', wx_jddata)
 app.use('/api/upload', upload)
 app.use('/api/mock', mock)
 app.use('/api/docs', swaggerConfig.swaggerSave, swaggerConfig.swaggerUi) // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi

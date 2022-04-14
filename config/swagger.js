@@ -12,7 +12,7 @@ const options = {
       version: '创建时间：2021年04月12日'
     }
   },
-  apis: [path.join(__dirname, '../routes/api/*.js')] //这里指明接口路由存放的文件夹。楼主放在根路径的router下
+  apis: [path.join(__dirname, '../routes/routes_handler/*.js')] //这里指明接口路由存放的文件夹 放在根路径的router下
 }
 
 const swaggerSpec = swaggerJSDoc(options)
