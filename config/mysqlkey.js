@@ -1,4 +1,3 @@
-// db.config.js
 // 创建mysql连接
 module.exports = {
   protocol: 'mysql',
