@@ -1,7 +1,29 @@
 // 配置各种 key
-
-module.exports = {
-  // 验证 Jwt ken
+const jwtConfig = {
   secretOrKey: 'wxfeiang', // 密钥
   expiresIn: 3600 //  过期时间
+}
+
+// 配置mongodb
+const mongodbConfig = {
+  username: 'nodeproduct',
+  password: 'nodeproduct123456',
+  database: 'node-api',
+  host: '47.99.93.97',
+  port: '27017'
+}
+// 配置mysql
+const mysqlConfig = {
+  protocol: 'mysql',
+  host: '47.99.93.97',
+  user: 'root',
+  password: '123456',
+  port: 3306,
+  database: 'student'
+}
+
+module.exports = {
+  jwtConfig,
+  mongodbConfig,
+  mysqlConfig
 }

@@ -1,11 +1,11 @@
 // db.js
-var mysql = require('mysql')
-var dbConfig = require('../config/mysqlkey')
+const mysql = require('mysql')
+const { mysqlConfig } = require('../config/config')
 
 module.exports = {
   query: function (sql, params, callback) {
     //每次使用的时候需要创建链接，数据操作完成之后要关闭连接
-    var connection = mysql.createConnection(dbConfig)
+    var connection = mysql.createConnection(mysqlConfig)
     connection.connect(function (err) {
       if (err) {
         console.log('数据库连接失败--------')

@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const mongoose = require('mongoose')
-const passport = require('passport')
+
 // 表
 const Profile = require('../../models/Profiles')
 const User = require('../../models/User')

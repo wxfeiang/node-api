@@ -1,10 +1,10 @@
 // token 认证解析
 
 const expressJwt = require('express-jwt')
-const keys = require('../config/config')
+const { jwtConfig } = require('../config/config')
 
 const authJwt = expressJwt({
-  secret: keys.secretOrKey, //加密密钥，可换
+  secret: jwtConfig.secretOrKey, //加密密钥，可换
   algorithms: ['HS256'], //
   credentialsRequired: true // 校验
 }).unless({

@@ -1,7 +1,7 @@
 const path = require('path') // 文件路径
 const fs = require('fs') //文件模块
 const Mock = require('mockjs') //
-const db = require('../../utils/db') // 数据库
+const mysqldb = require('../../utils/mysqldb') // 数据库
 
 /**
  * @swagger
@@ -199,7 +199,7 @@ exports.chapter = (req, res) => {
  * */
 exports.userList = (req, res, next) => {
   const sql = 'SELECT * FROM student'
-  db.query(sql, [], function (results, fields) {
+  mysqldb.query(sql, [], function (results, fields) {
     // 以json的形式返回
     res.cc('成功', results)
   })
@@ -229,7 +229,7 @@ exports.userList = (req, res, next) => {
 exports.userstudent = (req, res, next) => {
   const sql = `SELECT * FROM student WHERE Sid= ?`
   const parm = [req.query.id]
-  db.query(sql, parm, function (results, fields) {
+  mysqldb.query(sql, parm, function (results, fields) {
     // 以json的形式返回
 
     res.json({ results })
@@ -300,7 +300,7 @@ exports.addStudent = (req, res, next) => {
   }
   const prms = [Sname, Sage, Ssex]
   const sql = `INSERT INTO student(Sname, Sage, Ssex) VALUES(?,?,?);`
-  db.query(sql, prms, function (results, fields) {
+  mysqldb.query(sql, prms, function (results, fields) {
     // 以json的形式返()
     const flog = results.affectedRows > 0
     var data = {

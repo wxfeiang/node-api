@@ -23,3 +23,14 @@
 ## npm install      cheerio  --save    服务器对爬取的 dom  操作 
 
 ##  npm install @escook/express-joi   验证提交数据
+
+## TODO  
+`
+文件上传  优化
+log   日志功能
+安全问题
+
+pm2  自动部署
+
+
+`

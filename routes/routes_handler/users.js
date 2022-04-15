@@ -3,7 +3,7 @@ const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar')
 const jwt = require('jsonwebtoken') // 生成 token
-const keys = require('../../config/config')
+const { jwtConfig } = require('../../config/config')
 
 //  引入短信验证码接口
 //node request模块安装命令：npm install request
@@ -198,7 +198,7 @@ exports.login = (req, res) => {
         // jwt.sign("规则","加密名字","tocken 过期时间","cb")
         jwt.sign(
           rule,
-          keys.secretOrKey,
+          jwtConfig.secretOrKey,
           {
             expiresIn: 3600
           },
@@ -510,9 +510,9 @@ exports.testtoken = (req, res, next) => {
   // jwt.sign("规则","加密名字","tocken 过期时间","cb")
   jwt.sign(
     userinfo,
-    keys.secretOrKey,
+    jwtConfig.secretOrKey,
     {
-      expiresIn: keys.expiresIn
+      expiresIn: jwtConfig.expiresIn
     },
     (err, token) => {
       if (err) throw err
