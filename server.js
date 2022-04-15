@@ -1,12 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const passport = require('passport')
+//const passport = require('passport')
 // const path = require('path') //  文件路径系统
 // const fs = require('fs') //  文件系统
 //  引入cook  session
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+
+const esscook = require('./utils/validata') // 验证错误级别的中间件
 
 const swaggerConfig = require('./config/swagger') // 引入抽离的 swagger配置文件
 
@@ -15,8 +17,8 @@ const swaggerConfig = require('./config/swagger') // 引入抽离的 swagger配�
 const app = express()
 //  各个接口  users/.js
 const users = require('./routes/api/users')
-const profile = require('./routes/api/profile')
-const posts = require('./routes/api/posts')
+//const profile = require('./routes/api/profile')
+//const posts = require('./routes/api/posts')
 const blog = require('./routes/api/blog')
 
 const upload = require('./routes/api/upload') //  文件上传接口
@@ -77,17 +79,20 @@ const res = require('./utils/rescc')
 app.use(res.resData)
 
 // 初始化
-app.use(passport.initialize())
-require('./config/passport')(passport) // 数据分离
+// app.use(passport.initialize())
+// require('./config/passport')(passport) // 数据分离
 
 app.use('/api/users', users) // 上面引入进来的
-app.use('/api/profile', profile)
-app.use('/api/posts', posts)
+//app.use('/api/profile', profile)
+//app.use('/api/posts', posts)
 app.use('/api/blog', blog)
 app.use('/api/acjson', acjson)
 app.use('/api/upload', upload)
 app.use('/api/mock', mock)
+
 app.use('/api/docs', swaggerConfig.swaggerSave, swaggerConfig.swaggerUi) // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
+
+app.use(esscook.validata) // 全局验证提交的数据  放在最后
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

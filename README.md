@@ -21,3 +21,5 @@
 ## validator验证用户信息  npm i validator
 ##  npm install superagent --save    服务器请求包
 ## npm install      cheerio  --save    服务器对爬取的 dom  操作 
+
+##  npm install @escook/express-joi   验证提交数据

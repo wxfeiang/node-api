@@ -15,7 +15,7 @@ const validateEducationInput = require('../../validation/education')
 // @access public
 router.get('/test', (req, res) => {
   res.json({
-    msg: 'profiles  loworking ',
+    msg: 'profiles  loworking '
   })
 })
 // $route  GET api/profile
@@ -159,7 +159,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
       from: req.body.from,
       to: req.body.to,
       current: req.body.current,
-      description: req.body.description,
+      description: req.body.description
     }
 
     profile.experience.unshift(newExp) //  添加到经历对象
@@ -186,7 +186,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
       from: req.body.from,
       to: req.body.to,
       current: req.body.current,
-      description: req.body.description,
+      description: req.body.description
     }
 
     profile.education.unshift(newEdu)

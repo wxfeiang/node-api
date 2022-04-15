@@ -2,9 +2,8 @@
 const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar')
-const jwt = require('jsonwebtoken')
+//const jwt = require('jsonwebtoken')
 const keys = require('../../config/mongondbkey')
-const passport = require('passport') // 验证TOken
 
 //  引入短信验证码接口
 //node request模块安装命令：npm install request
@@ -70,7 +69,7 @@ const validateLoginInput = require('../../validation/login')
  *
  * */
 exports.register = (req, res) => {
-  console.log(req.body, '---------------')
+  console.log(req.body, '------ddd---------')
   // 查询数据库
   const { errors, isValid } = validateRegisterInput(req.body) // 解构
   // 判断是否通过
@@ -236,23 +235,19 @@ exports.login = (req, res) => {
  *        - "write:pets"
  *        - "read:pets"
  */
-// TODO  有验证 Token的接口  处理
-exports.current =
-  (passport.authenticate('jwt', {
-    session: false
-  }),
-  (req, res) => {
-    // res.json(req.user)
-    // res.json({ msg: "sucess" })
-    res.json({
-      //  之前pssport.js 上返回
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email,
-      identity: req.user.identity,
-      avatar: req.user.avatar
-    })
+
+exports.current = (req, res) => {
+  // res.json(req.user)
+  // res.json({ msg: "sucess" })
+  res.json({
+    //  之前pssport.js 上返回
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email,
+    identity: req.user.identity,
+    avatar: req.user.avatar
   })
+}
 
 /**,
  * @swagger
