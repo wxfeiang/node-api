@@ -2,8 +2,8 @@
 const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
 const gravatar = require('gravatar')
-//const jwt = require('jsonwebtoken')
-const keys = require('../../config/mongondbkey')
+const jwt = require('jsonwebtoken') // 生成 token
+const keys = require('../../config/config')
 
 //  引入短信验证码接口
 //node request模块安装命令：npm install request
@@ -496,4 +496,28 @@ exports.yazhen = (req, res, next) => {
   } else {
     res.send('session 过期了')
   }
+}
+
+exports.testtoken = (req, res, next) => {
+  //  假设登录成功了  需要返回 token   置空 用户关键信息
+  const userinfo = {
+    name: '',
+    password: '',
+    id: 'wxfeiang====',
+    email: 'wxfeiagn@qq.com'
+  }
+
+  // jwt.sign("规则","加密名字","tocken 过期时间","cb")
+  jwt.sign(
+    userinfo,
+    keys.secretOrKey,
+    {
+      expiresIn: keys.expiresIn
+    },
+    (err, token) => {
+      if (err) throw err
+      const data = { token: 'Bearer ' + token } //  固定格式
+      res.cc('查询成功', data)
+    }
+  )
 }

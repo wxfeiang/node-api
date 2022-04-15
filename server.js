@@ -1,12 +1,10 @@
 const express = require('express')
+
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-//const passport = require('passport')
+
 // const path = require('path') //  文件路径系统
 // const fs = require('fs') //  文件系统
-//  引入cook  session
-const cookieParser = require('cookie-parser')
-const session = require('express-session')
 
 const esscook = require('./utils/validata') // 验证错误级别的中间件
 
@@ -60,23 +58,17 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
   next()
 })
-//  初始化   session
-app.use(cookieParser('sessiontest'))
-// 使用 session 中间件
-app.use(
-  session({
-    secret: 'sessiontest', // 对session id 相关的cookie 进行签名 与cookieParser中的一致
-    resave: true,
-    saveUninitialized: false, // 是否保存未初始化的会话
-    cookie: {
-      maxAge: 50000 // 设置 session 的有效时间，单位毫秒
-    },
-    secure: true
-  })
-)
+
+const { initSession, useSession } = require('./utils/session')
+app.use(useSession)
+
+app.use(initSession)
 // 封装全局的 返回统一信息处理
 const res = require('./utils/rescc')
 app.use(res.resData)
+
+const authJwt = require('./utils/jwtAuth')
+app.use(authJwt) // 路由之前初始化 token 认证
 
 // 初始化
 // app.use(passport.initialize())

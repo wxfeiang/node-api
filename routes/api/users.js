@@ -23,7 +23,6 @@ router.get(
 )
 //   获取短信短信验证码接口
 router.post('/sms', users.sms)
-// 提交短信验证码接口
 
 // 邮件找回密码接口
 router.post('/retrievePwd', users.retrievePwd)
@@ -31,5 +30,7 @@ router.post('/retrievePwd', users.retrievePwd)
 router.get('/seeion', users.seeion)
 //验证是否 session
 router.get('/yazhen', users.yazhen)
+// 测试生成 token
+router.post('/testtoken', users.testtoken)
 
 module.exports = router
