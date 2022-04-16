@@ -69,7 +69,6 @@ const validateLoginInput = require('../../validation/login')
  *
  * */
 exports.register = (req, res) => {
-  console.log(req.body, '------ddd---------')
   // 查询数据库
   const { errors, isValid } = validateRegisterInput(req.body) // 解构
   // 判断是否通过
@@ -517,6 +516,7 @@ exports.testtoken = (req, res, next) => {
     (err, token) => {
       if (err) throw err
       const data = { token: 'Bearer ' + token } //  固定格式
+
       res.cc('查询成功', data)
     }
   )

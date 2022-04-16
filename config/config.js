@@ -6,8 +6,8 @@ const jwtConfig = {
 
 // 配置mongodb
 const mongodbConfig = {
-  username: 'nodeproduct',
-  password: 'nodeproduct123456',
+  username: 'root',
+  password: 'admin123456',
   database: 'node-api',
   host: '47.99.93.97',
   port: '27017'

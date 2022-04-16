@@ -1,11 +1,18 @@
+const log4js = require('../config/logConfig')
+const errlogger = log4js.getLogger('err')
 exports.resData = (req, res, next) => {
   // status  1  失败   err  描述
   res.cc = function (err, data = null, code) {
-    res.send({
+    let sendData = {
       code: arguments[1] ? 200 : 500,
       message: err instanceof Error ? err.message : err,
       data
-    })
+    }
+    let quer = req.body || req.query || req.params
+    if (sendData.code !== 200) {
+      errlogger.in('查询参数：==>', quer, '<===||====>', '错误返回信息==>', sendData) //
+    }
+    res.send(sendData)
   }
   next()
 }
