@@ -6,6 +6,7 @@ dotenv.config('./env')
 
 const log4js = require('./config/logConfig')
 const logger = log4js.getLogger() //根据需要获取logger
+const logoth = log4js.getLogger('oth')
 
 const { initSession, useSession } = require('./utils/session') // 使用session
 const esscook = require('./utils/validata') // 验证错误级别的中间件
@@ -13,15 +14,13 @@ const res = require('./utils/rescc') //  全局返回统一数据格式的方法
 
 const swaggerConfig = require('./config/swagger') // 引入抽离的 swagger配置文件
 const authJwt = require('./utils/jwtAuth') // 引入验证
-
 const routes = require('./utils/api') //  各个接口  users/.js
-console.log('-----------------------------------')
-console.log('文件根' + __dirname + '---------- 文件名绝对------' + __filename)
+logoth.info('文件根' + __dirname + '---------- 文件名绝对------' + __filename)
 log4js.useLogger(app, logger) //这样会自动记录每次请求信息，放在其他use上面
 
 //  引入静态资源``
 app.use('/api/public', express.static('public')) // 为了给静态资源文件创建一个虚拟的文件前缀(实际上文件系统中并不存在) ，可以使用 express.static 函数指定一个虚拟的静态目录
-//console.log(app.use(express.static(path.join(__dirname, 'public'))));
+//logoth.info(app.use(express.static(path.join(__dirname, 'public'))));
 // 链接mongodb数据库
 // const dbConnect = require('./config/mongondbkey')()
 
@@ -53,5 +52,5 @@ app.use(esscook.validata) // 全局验证提交的数据  放在最后
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-  console.log(`Server  running  on prot  ${port}`)
+  logoth.info(`Server  running  on prot  ${port}`)
 })

@@ -24,7 +24,7 @@ log4js.configure({
     req: {
       //请求日志
       type: 'dateFile',
-      filename: 'logs/reqlog/',
+      filename: 'logs/reqlog/reqlog',
       maxLogSize: 1024 * 500, //一个文件的大小，超出后会自动新生成一个文件
       backups: 2, // 备份的文件数量
       pattern: 'req-yyyy-MM-dd.log',
@@ -34,7 +34,7 @@ log4js.configure({
     err: {
       //错误日志
       type: 'dateFile',
-      filename: 'logs/errlog/',
+      filename: 'logs/errlog/errlog',
       maxLogSize: 1024 * 500, //一个文件的大小，超出后会自动新生成一个文件
       backups: 2, // 备份的文件数量
       pattern: 'err-yyyy-MM-dd.log',
@@ -44,7 +44,7 @@ log4js.configure({
     oth: {
       //其他日志
       type: 'dateFile',
-      filename: 'logs/othlog/',
+      filename: 'logs/othlog/othlog',
       maxLogSize: 1024 * 500, //一个文件的大小，超出后会自动新生成一个文件
       backups: 2, // 备份的文件数量
       pattern: 'oth-yyyy-MM-dd.log',
