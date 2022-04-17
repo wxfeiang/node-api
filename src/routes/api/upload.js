@@ -78,23 +78,24 @@ router.get('/email', (req, res) => {
 //  上传文件
 router.post('/upload', (req, res, next) => {
   var form = new multiparty.Form()
+
   form.parse(req, (err, fields, files) => {
     //  传入的文件列表
-    // console.log('文件列表')
-    // console.log(files)
+    console.log('文件列表----', form)
+    console.log(files)
+    console.log('文件列表----')
     if (err) {
       res.send('上传文件失败')
     } else {
       // console.log('files.file[0]', '-- 此处取值一定要和前端input  上传域的 name 名字 相对应-------')
       for (var key in files) {
-        console.log(key)
+        console.log(key, '-----beforeAvatarUpload')
         var file = files[key][0]
         //  处理和前端input  上传域的 name 名字  不一致的问题
         break
       }
       // var file = files.file[0]
       var status = beforeAvatarUpload(file)
-      console.log(status)
       if (status.code != 400) {
         var rs = fs.createReadStream(file.path)
         var newPath = getType(file.originalFilename)
@@ -129,6 +130,7 @@ router.post('/upload', (req, res, next) => {
 
 function beforeAvatarUpload(file) {
   var err = {}
+
   const isJPG = file.headers['content-type'] === 'image/jpeg'
   const isLt2M = file.size / 1024 / 1024 < 2
 

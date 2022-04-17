@@ -1,5 +1,5 @@
 const log4js = require('log4js')
-
+//const path = require('path') //可能后期要修改 logs  文件位置
 log4js.configure({
   replaceConsole: true, // 替换console.log
   appenders: {

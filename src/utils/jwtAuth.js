@@ -8,8 +8,8 @@ const authJwt = expressJwt({
   algorithms: ['HS256'], //
   credentialsRequired: true // 校验
 }).unless({
-  path: [/^\/api/] //添加不需要token验证的路由  api开头的不需要验证
-  // path: ['/api/login', '/api/addUser', '/api/test'] //添加不需要token验证的路由
+  // path: [/^\/api/] //添加不需要token验证的路由  api开头的不需要验证
+  path: ['/api/users/login', '/api/users/yazhen22'] //添加不需要token验证的路由
 })
 module.exports = authJwt
 

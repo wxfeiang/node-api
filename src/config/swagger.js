@@ -20,3 +20,11 @@ module.exports = {
   swaggerSave: swaggerUi.serve,
   swaggerUi: swaggerUi.setup(swaggerSpec)
 }
+
+/**
+ * 
+ * const swaggerConfig = require('./config/swagger') // 引入抽离的 swagger配置文件
+
+ * app.use('/api/docs', swaggerConfig.swaggerSave, swaggerConfig.swaggerUi) // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
+
+ */

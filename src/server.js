@@ -12,11 +12,14 @@ const { initSession, useSession } = require('./utils/session') // 使用session
 const esscook = require('./utils/validata') // 验证错误级别的中间件
 const res = require('./utils/rescc') //  全局返回统一数据格式的方法
 
-const swaggerConfig = require('./config/swagger') // 引入抽离的 swagger配置文件
 const authJwt = require('./utils/jwtAuth') // 引入验证
 const routes = require('./utils/api') //  各个接口  users/.js
 logoth.info('文件根' + __dirname + '---------- 文件名绝对------' + __filename)
 log4js.useLogger(app, logger) //这样会自动记录每次请求信息，放在其他use上面
+
+const expressSwagger = require('express-swagger-generator')(app)
+const options = require('./config/swaggers')
+expressSwagger(options)
 
 //  引入静态资源``
 app.use('/api/public', express.static('public')) // 为了给静态资源文件创建一个虚拟的文件前缀(实际上文件系统中并不存在) ，可以使用 express.static 函数指定一个虚拟的静态目录
@@ -47,7 +50,6 @@ app.use(authJwt) // 路由之前初始化 token 认证
 for (item in routes) {
   app.use('/api/' + item, routes[item])
 }
-app.use('/api/docs', swaggerConfig.swaggerSave, swaggerConfig.swaggerUi) // 使用 swaggerSpec 生成 swagger 文档页面，并开放在指定路由  ceshi
 app.use(esscook.validata) // 全局验证提交的数据  放在最后
 
 const port = process.env.PORT || 3000

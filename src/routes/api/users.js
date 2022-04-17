@@ -11,16 +11,8 @@ const { reg_login } = require('../../validation/user') // 验证规则
 router.post('/register', expressJoi(reg_login), users.register)
 
 // 登录接口
-router.post('/login', users.login)
+router.post('/login', expressJoi(reg_login), users.login)
 
-//  验证token  // TODO  有验证 Token的接口  处理
-router.get(
-  '/current',
-  //   passport.authenticate('jwt', {
-  //     session: false
-  //   }),
-  users.current
-)
 //   获取短信短信验证码接口
 router.post('/sms', users.sms)
 
@@ -31,6 +23,6 @@ router.get('/seeion', users.seeion)
 //验证是否 session
 router.get('/yazhen', users.yazhen)
 // 测试生成 token
-router.post('/testtoken', users.testtoken)
+router.get('/testtoken', users.testtoken)
 
 module.exports = router
