@@ -81,20 +81,20 @@ router.post('/upload', (req, res, next) => {
 
   form.parse(req, (err, fields, files) => {
     //  传入的文件列表
-    console.log('文件列表----', form)
+    // console.log('文件列表----', form)
     console.log(files)
-    console.log('文件列表----')
+    // console.log('文件列表----')
     if (err) {
-      res.send('上传文件失败')
+      res.cc('上传文件失败')
     } else {
       // console.log('files.file[0]', '-- 此处取值一定要和前端input  上传域的 name 名字 相对应-------')
       for (var key in files) {
-        console.log(key, '-----beforeAvatarUpload')
+        console.log(files.file, '-----beforeAvatarUpload')
         var file = files[key][0]
         //  处理和前端input  上传域的 name 名字  不一致的问题
         break
       }
-      // var file = files.file[0]
+      //var file = files.file[0]
       var status = beforeAvatarUpload(file)
       if (status.code != 400) {
         var rs = fs.createReadStream(file.path)
