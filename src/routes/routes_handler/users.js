@@ -344,3 +344,25 @@ exports.yazhen = (req, res, next) => {
 exports.testtoken = (req, res, next) => {
   res.cc('成功', 'token 认证通过---')
 }
+
+/**
+ * @route POST /api/users/multer
+ * @summary 配置文件上传接口
+ * @param {file}  aaa.query.required - 请输入用户名
+ * @group 登录- 测试
+ * @returns {object} 200
+ * @security JWT
+ */
+
+/**
+ * 用户信息注册  描述信息
+ * @route POST /api/users/explane
+ * @group user - Operations about user
+ * @param {string} username.query.required - 请输入用户名
+ * @param {number} password.query.required - 请输入密码
+ * @param {string} email.query.required - 请输入合法邮箱
+ * @returns {object} 200 - An array of user info
+ * @returns {Error}  default - Unexpected error
+ */
+
+exports.multer = (req, res, next) => {}

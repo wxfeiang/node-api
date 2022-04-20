@@ -6,6 +6,8 @@ const users = require('../routes_handler/users')
 // 1. 导入 @escook/express-joi
 const expressJoi = require('@escook/express-joi')
 const { reg_login } = require('../../validation/user') // 验证规则
+
+const mut = require('../../config/multer')
 //const passport = require('passport') // 验证TOken
 //  注册接口
 router.post('/register', expressJoi(reg_login), users.register)
@@ -24,5 +26,16 @@ router.get('/seeion', users.seeion)
 router.get('/yazhen', users.yazhen)
 // 测试生成 token
 router.get('/testtoken', users.testtoken)
+// TODO  方法抽离
+router.post('/multer', mut.muUpload.single('aaa'), (req, res, next) => {
+  if (req.file === undefined) {
+    res.cc('失败', '错误请选择上传文件！')
+  } else {
+    res.cc('index', {
+      msg: '文件已上传成功！',
+      file: `uploads/${req.file.filename}`
+    })
+  }
+})
 
 module.exports = router

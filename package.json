@@ -28,6 +28,7 @@
     "log4js": "^6.4.5",
     "mockjs": "^1.1.0",
     "mongoose": "^6.3.0",
+    "multer": "^1.4.4",
     "multiparty": "^4.2.1",
     "mysql": "^2.18.1",
     "nodemailer": "^6.3.0",
@@ -36,6 +37,6 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
-    "express": "^4.16.4"
+    "express": "^4.17.3"
   }
 }

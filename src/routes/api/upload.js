@@ -6,6 +6,10 @@ const fs = require('fs') //文件模块
 const multiparty = require('multiparty') //  文件上传插件
 var request = require('request')
 
+const log4js = require('../../config/logConfig')
+
+const logoth = log4js.getLogger('oth')
+
 //  引入百度AI 在线语音合成
 const AipSpeechClient = require('baidu-aip-sdk').speech
 // 设置APPID/AK/SK
@@ -81,8 +85,9 @@ router.post('/upload', (req, res, next) => {
 
   form.parse(req, (err, fields, files) => {
     //  传入的文件列表
-    // console.log('文件列表----', form)
+    console.log('文件列表----', form)
     console.log(files)
+    logoth.info(form)
     // console.log('文件列表----')
     if (err) {
       res.cc('上传文件失败')
@@ -186,8 +191,7 @@ router.post('/textAuto', (req, res, next) => {
 
 module.exports = router
 /**
- *   get 接收参数的方式------
- *  测试    添加测试文件
+ *  get 接收参数的方式------
  * query   ? id ="sss"
  *  -----
  * params   '/text/:id/:ff'
