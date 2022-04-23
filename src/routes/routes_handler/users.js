@@ -120,10 +120,6 @@ exports.register = (req, res) => {
 // * @param {string} email.query.required - 请输入合法邮箱
 
 /**
- * @typedef Response
- * @property {[integer]} code
- */
-/**
  * @typedef Login
  * @property {string} username.required - 用户名 - eg: admin
  * @property {string} password.required - 密码 - eg: 123456
@@ -131,14 +127,13 @@ exports.register = (req, res) => {
  */
 
 /**
+ * @group 用户登录、注册相关
+ * @summary 登录
  * @route POST /api/users/login
  * @param {Login.model} point.body.required - the new point
  * @produces application/json application/xml
  * @consumes application/json application/xml
- * @summary 登录
- * @group 用户登录、注册相关
  * @returns {Response.model} 200
- * @returns {Array.<Login>} Login
  * @headers {integer} 200.X-Rate-Limit
  * @headers {string} 200.X-Expires-After
  */
@@ -337,8 +332,8 @@ exports.yazhen = (req, res, next) => {
 /**
  * @route GET /api/users/testtoken
  * @summary 测试token
- * @group 登录- 测试
- * @returns {object} 200
+ * @group 用户登录、注册相关
+ * @returns {Response.model} 200
  * @security JWT
  */
 exports.testtoken = (req, res, next) => {
@@ -346,23 +341,13 @@ exports.testtoken = (req, res, next) => {
 }
 
 /**
+ * 测试 配置文件上传接口
+ * @group 用户登录、注册相关
  * @route POST /api/users/multer
  * @summary 配置文件上传接口
  * @param {file}  aaa.query.required - 请输入用户名
- * @group 登录- 测试
  * @returns {object} 200
  * @security JWT
- */
-
-/**
- * 用户信息注册  描述信息
- * @route POST /api/users/explane
- * @group user - Operations about user
- * @param {string} username.query.required - 请输入用户名
- * @param {number} password.query.required - 请输入密码
- * @param {string} email.query.required - 请输入合法邮箱
- * @returns {object} 200 - An array of user info
- * @returns {Error}  default - Unexpected error
  */
 
 exports.multer = (req, res, next) => {}

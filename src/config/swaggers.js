@@ -23,7 +23,7 @@ let options = {
   },
   route: {
     url: '/api/docs', //route 访问的地址
-    docs: '/swagger.json' //swagger文件 api
+    docs: '/api/swagger.json' //swagger文件 api
   },
   basedir: __dirname, //app absolute path
   files: ['../routes/routes_handler/*.js'] //files 访问api接口地址
