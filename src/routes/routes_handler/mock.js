@@ -15,7 +15,7 @@ const mysqldb = require('../../utils/mysqldb') // 数据库
  *         description: 请求成功
  *
  */
-exports.mockData = (req, res, next) => {
+exports.mockData = (req, res) => {
   let data = Mock.mock({
     Code: 200,
     data: {
@@ -74,7 +74,7 @@ exports.mockData = (req, res, next) => {
  *          description: successful operation
  * */
 
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
   const { username, password } = req.body
   console.log(req.body)
   let data = Mock.mock({
@@ -107,7 +107,7 @@ exports.login = (req, res, next) => {
  *        200:
  *          description: successful operation
  * */
-exports.profile = (req, res, next) => {
+exports.profile = (req, res) => {
   const { username, password } = req.body
   let data = {
     success: true,
@@ -197,7 +197,7 @@ exports.chapter = (req, res) => {
  *        200:
  *          description: successful operation
  * */
-exports.userList = (req, res, next) => {
+exports.userList = (req, res) => {
   const sql = 'SELECT * FROM student'
   mysqldb.query(sql, [], function (results, fields) {
     // 以json的形式返回
@@ -226,7 +226,7 @@ exports.userList = (req, res, next) => {
  *        200:
  *          description: successful operation
  * */
-exports.userstudent = (req, res, next) => {
+exports.userstudent = (req, res) => {
   const sql = `SELECT * FROM student WHERE Sid= ?`
   const parm = [req.query.id]
   mysqldb.query(sql, parm, function (results, fields) {
@@ -290,7 +290,7 @@ exports.userstudent = (req, res, next) => {
  *        - "read:pets"
  *
  * */
-exports.addStudent = (req, res, next) => {
+exports.addStudent = (req, res) => {
   console.log(req.body)
   //TODO  验证传入的参数  注释写法问题
   const { Sname, Sage, Ssex } = req.body

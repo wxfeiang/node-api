@@ -1,6 +1,7 @@
 //  各个接口  users/.js
 
 routes = {
+  jkgs: require('../routes/api/jkgs'),
   users: require('../routes/api/users'),
   //   profile: require('../routes/api/profile'),
   //   posts: require('../routes/api/posts'),

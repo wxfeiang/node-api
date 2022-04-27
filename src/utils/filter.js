@@ -14,3 +14,13 @@ exports.checkFileType = function (file, cb) {
     cb('上传的格式有误，请检查！')
   }
 }
+
+/**
+ * 判断是否为空
+ */
+
+exports.isNull = (data) => {
+  if (!data) return true
+  if (JSON.stringify(data) === '{}') return true
+  if (JSON.stringify(data) === '[]') return true
+}

@@ -19,7 +19,7 @@ const mysqlConfig = {
   user: 'root',
   password: '123456',
   port: 3306,
-  database: 'student'
+  database: 'gsmsg'
 }
 
 module.exports = {
