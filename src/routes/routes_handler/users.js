@@ -345,9 +345,12 @@ exports.testtoken = (req, res, next) => {
  * @group 用户登录、注册相关
  * @route POST /api/users/multer
  * @summary 配置文件上传接口
- * @param {file}  aaa.query.required - 请输入用户名
- * @returns {object} 200
- * @security JWT
+ * @param {file}  file.formData.required - 请输入用户名
+ * @produces application/json application/xml
+ * @consumes multipart/form-data
+ * @returns {Response.model} 200 - 返回参数
+ * @headers {integer} 200.X-Rate-Limit  - 好像没用
+ * @headers {string} 200.X-Expires-After   - 好像没用
  */
 
 exports.multer = (req, res, next) => {}

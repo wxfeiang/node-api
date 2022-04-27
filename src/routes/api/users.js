@@ -27,7 +27,7 @@ router.get('/yazhen', users.yazhen)
 // 测试生成 token
 router.get('/testtoken', users.testtoken)
 // TODO  方法抽离
-router.post('/multer', mut.muUpload.single('aaa'), (req, res, next) => {
+router.post('/multer', mut.muUpload.single('file'), (req, res, next) => {
   if (req.file === undefined) {
     res.cc('失败', '错误请选择上传文件！')
   } else {

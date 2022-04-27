@@ -1,7 +1,7 @@
 const path = require('path')
 // 验证文件类型
 exports.checkFileType = function (file, cb) {
-  if (file) return cb('请选择上传文件！！！！')
+  // if (!file) return cb('请选择上传文件!')
   // 允许的文件扩展名格式
   const filetypes = /jpeg|jpg|png|gif/
   // 验证扩展名
