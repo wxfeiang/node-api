@@ -71,6 +71,7 @@
  * @returns {Response.model} 200 - 返回参数
  * @security JWT
  */
+// 不支持同时上传多个文件。。。。 可以在apifox postman 测试
 
 /**
  * @typedef Response  - 返回模型
