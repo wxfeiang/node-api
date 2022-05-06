@@ -36,7 +36,7 @@ module.exports = {
       // 'post-setup': 'ls -la',
       // 每次 update 都会执行
       'pre-deploy-local': "echo '生产环境部署中'",
-      'post-deploy': 'npm install &&  9pm2 startOrRestart ecosystem.config.js --env production'
+      'post-deploy': 'npm install &&  pm2 startOrRestart ecosystem.config.js --env production'
     }
   }
 }
