@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: ' ./src/server.js',
+      script: './current/src/server.js',
 
       env: {
         COMMON_VARIABLE: 'true'
@@ -14,7 +14,7 @@ module.exports = {
 
   deploy: {
     production: {
-      user: 'root',
+      user: 'wxfeiang',
       host: ['47.99.93.97'],
       port: '22',
       ref: 'origin/node2',
