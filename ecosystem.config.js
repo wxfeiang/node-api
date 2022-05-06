@@ -14,9 +14,8 @@ module.exports = {
 
   deploy: {
     production: {
-      user: 'wxfeiang',
+      user: 'root',
       host: ['47.99.93.97'],
-      port: '22',
       ref: 'origin/node2',
       repo: 'https://github.com/wxfeiang/node-api.git',
       path: '/home/node2',
