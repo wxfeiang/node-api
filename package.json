@@ -1,13 +1,14 @@
 {
   "name": "app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "api",
   "main": "server.js",
+  "homepage": "47.99.93.97",
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon  ./src/server.js"
   },
-  "author": "王鹏",
+  "author": "wxfeiang",
   "license": "ISC",
   "dependencies": {
     "@escook/express-joi": "^1.1.1",
@@ -38,5 +39,9 @@
   },
   "devDependencies": {
     "express": "^4.17.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "本项目git 地址"
   }
 }

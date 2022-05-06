@@ -51,7 +51,6 @@ for (item in routes) {
   app.use('/api/' + item, routes[item])
 }
 app.use(esscook.validata) // 全局验证提交的数据  放在最后
-
 const port = process.env.PORT || 3088
 app.listen(port, () => {
   logoth.info(`Server  running  on prot  ${port}`)
