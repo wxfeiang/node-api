@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: './current/src/server.js',
+      script: './src/server.js',
       autorestart: true,
       watch: true,
       ignore_watch: [
