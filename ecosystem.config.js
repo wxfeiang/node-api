@@ -1,6 +1,7 @@
 module.exports = {
   apps: [
     {
+      name: 'node2-server',
       script: './src/server.js',
       autorestart: true,
       watch: true,
