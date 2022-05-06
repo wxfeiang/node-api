@@ -28,9 +28,9 @@ module.exports = {
       port: '22',
       ssh_options: 'StrictHostKeyChecking=no',
       ref: 'origin/node2',
-      repo: 'https://github.com/wxfeiang/node-api.git',
+      repo: 'git@github.com:wxfeiang/node-api.git',
       path: '/home/node2', // path 指定项目目录
-      //'pre-deploy': 'git fetch --all',
+      'pre-deploy': 'git fetch --all',
       // Pre-setup 在 setup 之前执行，如安装 git
       // 'pre-setup': 'apt-get install git ; ls -la',
       // Post-setup 在 setup 之后执行
