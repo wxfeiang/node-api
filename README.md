@@ -30,12 +30,14 @@
 log   日志功能
 安全问题
 
-pm2  自动部署    pm2 ecosystem
+pm2  自动部署   配置文件优化 
 
-配置文件 
-最后一步--- npm 
+接口的 IP地址配置  -- TODO
+自动更新 package.json    TODO
 
-脚本文件 自动部署
+
+脚本文件 自动部署 TODO  更改服务器的node 变量
+
 
 soket io  及时通信
 

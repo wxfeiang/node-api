@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'node2-server',
-      script: './src/server.js',
+      script: './src/server.js', // 写本来启动的入口路径就好
       autorestart: true,
       watch: true,
       ignore_watch: [
@@ -22,7 +22,7 @@ module.exports = {
 
   deploy: {
     production: {
-      key: '~/.ssh/wxfeiang',
+      key: '~/.ssh/wxfeiang', // 配置后key
       user: 'root',
       host: ['47.99.93.97'],
       port: '22',
