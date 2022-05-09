@@ -5,7 +5,9 @@ const tool = require('../utils/tool')
 const IP = tool.getIpAddress()
 
 const currentIP = process.env.HOST || 'localhost'
-const host = process.env.HOST ? currentIP + ':' + swagerRort : currentIP
+const host = process.env.HOST ? '' : currentIP + ':' + process.env.PORT
+
+console.log(host, 'host')
 
 let options = {
   swaggerDefinition: {
