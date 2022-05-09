@@ -12,10 +12,11 @@ module.exports = {
       ],
 
       env: {
-        COMMON_VARIABLE: 'true'
+        NODE_ENV: 'development'
       },
       env_production: {
-        NODE_ENV: 'production'
+        NODE_ENV: 'production',
+        HOST: '47.99.93.97'
       }
     }
   ],
@@ -39,5 +40,6 @@ module.exports = {
       'pre-deploy-local': "echo '生产环境部署中'",
       'post-deploy': 'npm install &&  pm2 startOrRestart ecosystem.config.js --env production'
     }
+    // 可配置不同env 环境
   }
 }

@@ -4,7 +4,9 @@ dotenv.config('../env')
 const tool = require('../utils/tool')
 const IP = tool.getIpAddress()
 
-const currentIP = process.env.HOST || '或者localhost'
+const currentIP = process.env.HOST || 'localhost'
+
+console.log(currentIP, '---')
 
 let options = {
   swaggerDefinition: {
