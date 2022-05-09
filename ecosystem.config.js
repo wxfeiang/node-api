@@ -16,7 +16,8 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
-        HOST: '47.99.93.97'
+        HOST: '47.99.93.97',
+        NEPPORE: '8080'
       }
     }
   ],
