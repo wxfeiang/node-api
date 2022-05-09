@@ -16,8 +16,7 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
-        HOST: '47.99.93.97',
-        PORT: '8080'
+        HOST: '47.99.93.97'
       }
     }
   ],
