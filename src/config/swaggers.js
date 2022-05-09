@@ -5,7 +5,7 @@ const tool = require('../utils/tool')
 const IP = tool.getIpAddress()
 
 const currentIP = process.env.HOST || 'localhost'
-const swagerRort = process.env.NEPPORE || process.env.PORT
+const host = process.env.HOST ? currentIP + ':' + swagerRort : currentIP
 
 let options = {
   swaggerDefinition: {
@@ -14,7 +14,7 @@ let options = {
       title: 'node-api',
       version: '2.0.0'
     },
-    host: currentIP + ':' + swagerRort, //端口号，要和自己启动的node服务保持一致 // 或者localhost  '127.0.0.1:' +
+    host, //端口号，要和自己启动的node服务保持一致 // 或者localhost  '127.0.0.1:' +
     basePath: '/',
     produces: ['application/json', 'application/xml'],
     schemes: ['http', 'https'],
