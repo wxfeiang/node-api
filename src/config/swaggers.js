@@ -16,7 +16,7 @@ let options = {
       title: 'node-api',
       version: '1.0.0'
     },
-    host: currentIP + ':' + swagerRort, //端口号，要和自己启动的node服务保持一致 // 或者localhost  '127.0.0.1:' +
+    host: currentIP + ':' + process.env.PORT, //端口号，要和自己启动的node服务保持一致 // 或者localhost  '127.0.0.1:' +
     basePath: '/',
     produces: ['application/json', 'application/xml'],
     schemes: ['http', 'https'],
