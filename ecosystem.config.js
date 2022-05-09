@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'node2-server',
+      name: 'node2',
       script: './src/server.js', // 写本来启动的入口路径就好
       autorestart: true,
       watch: true,
