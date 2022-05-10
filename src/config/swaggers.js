@@ -1,9 +1,7 @@
 const dotenv = require('dotenv')
 dotenv.config('../env')
 
-const tool = require('../utils/tool')
-const IP = tool.getIpAddress()
-
+// swagger 需要根据本地服务和线上区分IP端口
 const currentIP = process.env.HOST || 'localhost'
 const host = process.env.HOST ? '' : currentIP + ':' + process.env.PORT
 

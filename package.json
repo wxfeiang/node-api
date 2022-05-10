@@ -9,7 +9,7 @@
     "dev": "nodemon  ./src/server.js",
     "sp": "pm2 deploy ecosystem.config.js production setup",
     "dp": "pm2 deploy ecosystem.config.js production",
-    "ud": "pm2 deploy production update",
+    "up": "pm2 deploy production update",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "wxfeiang",
