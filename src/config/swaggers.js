@@ -5,8 +5,6 @@ dotenv.config('../env')
 const currentIP = process.env.HOST || 'localhost'
 const host = process.env.HOST ? '' : currentIP + ':' + process.env.PORT
 
-console.log(host, 'host')
-
 let options = {
   swaggerDefinition: {
     info: {

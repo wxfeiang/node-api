@@ -36,10 +36,18 @@ app.use(
 app.use(bodyParser.json())
 // 使用中间件实现允许跨域
 app.use((req, res, next) => {
+  //设置允许跨域的域名，*代表允许任意域名跨域
   res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  //允许的header类型
+  res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Accept,Content-type')
+  res.header('Access-Control-Allow-Credentials', true)
+  //跨域允许的请求方式
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  next()
+  res.header('Content-Type', 'application/json;charset=utf-8')
+  if (req.method.toLowerCase() == 'options') res.sendStatus(200) //让options尝试请求快速结束
+  else {
+    next()
+  }
 })
 app.use(useSession) // 初始化 session
 app.use(initSession)
@@ -47,16 +55,10 @@ app.use(initSession)
 app.use(res.resData)
 app.use(authJwt) // 路由之前初始化 token 认证
 
-//  使用soket
-const socketio = require('socket.io')
-const http = require('http')
-const server = http.createServer(app)
-const io = socketio(server)
-
-app.use(function (req, res, next) {
-  req.io = io
-  next()
-})
+// app.use(function (req, res, next) {
+//   req.io = io
+//   next()
+// })
 
 // 引入自定义接口的所有路由
 for (item in routes) {
