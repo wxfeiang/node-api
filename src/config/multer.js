@@ -6,12 +6,15 @@ const filter = require('../utils/filter')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     //  可能不会自动创建目录
-    const path = '../../public/upload'
+    const loadpath = '../../public/upload'
 
-    if (!fs.existsSync(path)) {
-      fs.mkdirSync(path)
+    console.log(fs.existsSync(loadpath), '---fs.existsSync(loadpath)')
+
+    if (fs.existsSync(loadpath)) {
+      console.log('0-00')
+      fs.mkdirSync(loadpath)
     }
-    cb(null, path.join(__dirname, path)) //  注意引用路径
+    cb(null, path.join(__dirname, loadpath)) //  注意引用路径
   },
   filename: function (req, file, cb) {
     // 文件重命名
