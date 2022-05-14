@@ -1,10 +1,17 @@
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs') //文件模块
 const filter = require('../utils/filter')
 // 设置磁盘存储引擎
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../../public/upload')) //  注意引用路径
+    //  可能不会自动创建目录
+    const path = '../../public/upload'
+
+    if (!fs.existsSync(path)) {
+      fs.mkdirSync(path)
+    }
+    cb(null, path.join(__dirname, path)) //  注意引用路径
   },
   filename: function (req, file, cb) {
     // 文件重命名

@@ -55,11 +55,6 @@ app.use(initSession)
 app.use(res.resData)
 app.use(authJwt) // 路由之前初始化 token 认证
 
-// app.use(function (req, res, next) {
-//   req.io = io
-//   next()
-// })
-
 // 引入自定义接口的所有路由
 for (item in routes) {
   app.use('/api/' + item, routes[item])
