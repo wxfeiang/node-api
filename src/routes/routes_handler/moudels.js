@@ -104,3 +104,15 @@
  * @property {integer} page.required - 第几页 - eg: 1
  * @property {integer} size.required - 数据量（条）- eg: 5
  */
+/**
+ * @typedef serchdata
+ * @property {string} serchdata.required - 关键字 - eg: 黑丝
+ */
+
+/**
+ *  get 接收参数的方式------
+ *  测试    添加测试文件
+ * query   ? id ="sss"
+ *  -----
+ * params   '/text/:id/:ff'
+ */

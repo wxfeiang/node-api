@@ -18,9 +18,34 @@ const authJwt = expressJwt({
     return null
   }
 }).unless({
-  // path: [/^\/api/] //添加不需要token验证的路由  api开头的不需要验证
-  path: ['/api/users/login', '/api/users/multer', '/api/jkgs/jkgsAdduser', '/api/soket/sokettest'] //添加不需要token验证的路由
+  path: [
+    '/api/users/login',
+    '/api/users/multer',
+    '/api/jkgs/jkgsAdduser',
+    '/api/soket/sokettest',
+    '/api/acjson/outheData',
+    '/api/acjson/outheDetl',
+    { url: /^\/api\/acjson\/.*/ }
+  ] //添加不需要token验证的路由
 })
 module.exports = authJwt
 
 // 认证失败的信息放放到统一失败消息处理
+
+//  各种过滤规则
+// path: [
+//   '/userSession',
+//   '/salesmanSession',
+//   '/adminSession',
+//   '/superAdminSession',
+//   '/swiper',
+//   '/freeSalesman',
+//   '/headImg',
+//   { url: '/admin', methods: ['GET', 'POST'] },
+//   { url: /^\/salesman\/.*/, methods: ['GET'] },
+//   { url: '/productsCate', methods: ['GET'] },
+//   { url: '/products', methods: ['GET'] },
+//   { url: /^\/products\/.*/, methods: ['GET'] },
+//   { url: '/user', methods: ['POST'] },
+//   { url: /^\/user\/.*/, methods: ['GET'] }
+// ]

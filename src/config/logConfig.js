@@ -53,9 +53,12 @@ log4js.configure({
     }
   },
   categories: {
-    default: { appenders: ['stdout', 'req'], level: 'debug' }, //appenders:采用的appender,取appenders项,level:设置级别
-    err: { appenders: ['stdout', 'err'], level: 'error' },
-    oth: { appenders: ['stdout', 'oth'], level: 'info' }
+    // default: { appenders: ['stdout', 'req'], level: 'debug' }, //appenders:采用的appender,取appenders项,level:设置级别
+    // err: { appenders: ['stdout', 'err'], level: 'error' },
+    // oth: { appenders: ['stdout', 'oth'], level: 'info' }
+    default: { appenders: ['req'], level: 'debug' }, //appenders:采用的appender,取appenders项,level:设置级别
+    err: { appenders: ['err'], level: 'error' }, //  去掉了控制台输出
+    oth: { appenders: ['oth'], level: 'info' }
   },
   pm2: true, // 使用 pm2 来管理项目时，打开
   pm2InstanceVar: 'INSTANCE_ID' // 会根据 pm2 分配的 id 进行区分，以免各进程在写日志时造成冲突

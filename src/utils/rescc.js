@@ -2,9 +2,9 @@ const log4js = require('../config/logConfig')
 const errlogger = log4js.getLogger('err')
 exports.resData = (req, res, next) => {
   // status  1  失败   err  描述
-  res.cc = function (err, data = null, code) {
+  res.cc = function (err, data = null) {
     let sendData = {
-      code: arguments[1] ? 200 : 500,
+      code: err === '成功' ? 200 : 500,
       message: err instanceof Error ? err.message : err,
       data
     }

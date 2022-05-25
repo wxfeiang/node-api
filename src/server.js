@@ -4,6 +4,9 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 dotenv.config('./env')
 
+const server = require('http').createServer(app)
+require('./routes/api/soket')(server)
+
 const log4js = require('./config/logConfig')
 const logger = log4js.getLogger() //根据需要获取logger
 const logoth = log4js.getLogger('oth')
@@ -54,11 +57,6 @@ app.use(initSession)
 // 封装全局的 返回统一信息处理
 app.use(res.resData)
 app.use(authJwt) // 路由之前初始化 token 认证
-
-// app.use(function (req, res, next) {
-//   req.io = io
-//   next()
-// })
 
 // 引入自定义接口的所有路由
 for (item in routes) {

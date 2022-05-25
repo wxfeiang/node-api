@@ -151,10 +151,3 @@ router.post('/textAuto', (req, res, next) => {
 })
 
 module.exports = router
-/**
- *   get 接收参数的方式------
- *  测试    添加测试文件
- * query   ? id ="sss"
- *  -----
- * params   '/text/:id/:ff'
- */
