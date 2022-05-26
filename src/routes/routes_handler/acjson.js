@@ -1,4 +1,7 @@
-const superagent = require('superagent')
+// const superagent = require('superagent')
+// require('superagent-charset')(superagent)
+const superagent = require('superagent-charset')(require('superagent'))
+
 const cheerio = require('cheerio')
 
 const url = `https://ncov.dxy.cn/ncovh5/view/pneumonia`
@@ -295,13 +298,13 @@ exports.outheDetl = (req, res) => {
 }
 
 /**
- * @route GET /api/acjson/weibo
- * @summary 爬取weibo 图片详情
+ * @route GET /api/acjson/firdesHref
+ * @summary 爬取友情链接
  * @group 获取数据资料
  * @returns {Response.model} 200
  */
-exports.weibo = (req, res) => {
-  let url = 'https://www.hhlusp.cc/'
+exports.firdesHref = (req, res) => {
+  let url = ''
   superagent
     .get(url)
     .then((response) => {
@@ -311,5 +314,100 @@ exports.weibo = (req, res) => {
     })
     .catch((err) => {
       res.cc(err, '当前ID没有对应的数据', err)
+    })
+}
+
+const juqingUrl = 'CaoKu365.Com'
+/**
+ * @route GET /api/acjson/juqing
+ * @summary 爬取今日数据
+ * @group 获取数据资料
+ * @returns {Response.model} 200
+ */
+exports.juqing = (req, res) => {
+  let url = juqingUrl
+  superagent
+    .get(url)
+    .charset('gbk')
+    .then((response) => {
+      const $ = cheerio.load(response.text)
+      res.cc('成功', response.text)
+    })
+    .catch((err) => {
+      res.cc(err, '当前ID没有对应的数据')
+    })
+}
+
+/**
+ * @route GET /api/acjson/picData
+ * @summary 爬取picData
+ * @group 获取数据资料
+ * @param {string} pictype.query.required - 当前分页类型链接
+ * @param {string} size.query - 当前分页  路径拼接方式
+ * @returns {Response.model} 200
+ */
+exports.picData = (req, res) => {
+  const { pictype, size } = req.query
+  let page = size ? size + '.html' : ''
+  let url = 'https://caoku.live:8443/' + pictype + '/' + page
+  superagent
+    .get(url)
+    .charset('gbk')
+    .then((response) => {
+      const $ = cheerio.load(response.text)
+      let resAlt = {
+        title: $('#top2 h4').text(),
+        list: []
+      }
+
+      $('#tuwen tr').each((idx, ele) => {
+        let data = {
+          title: $(ele).find('td').eq(1).find('a').text(), //
+          id: $(ele).find('td').eq(1).find('a').attr('href'),
+          time: $(ele).find('td').eq(0).text().replace(/\[|]/g, '')
+        }
+        resAlt.list.push(data) // 存入最终结果数组.
+      })
+
+      res.cc('成功', resAlt)
+    })
+    .catch((err) => {
+      res.cc(err, '当前ID没有对应的数据')
+    })
+}
+
+/**
+ * @route GET /api/acjson/picDataDetl
+ * @summary 爬取picDataDetl
+ * @group 获取数据资料
+ * @param {string} id.query.required - 当前id
+ * @returns {Response.model} 200
+ */
+exports.picDataDetl = (req, res) => {
+  const { id } = req.query
+
+  let url = 'https://caoku.live:8443' + id
+
+  superagent
+    .get(url)
+    .charset('gbk')
+    .then((response) => {
+      const $ = cheerio.load(response.text)
+      logoth.info(response.text)
+      let resAlt = {
+        title: $('#tuwen h4').text(),
+        list: []
+      }
+      $('#tuwen tr td img').each((idx, ele) => {
+        let data = {
+          src: $(ele).attr('src')
+        }
+        resAlt.list.push(data) // 存入最终结果数组.
+      })
+
+      res.cc('成功', resAlt)
+    })
+    .catch((err) => {
+      res.cc(err, '当前ID没有对应的数据')
     })
 }

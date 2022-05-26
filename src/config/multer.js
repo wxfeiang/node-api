@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
     const newPath = '../../public/upload'
     fs.mkdirSync(newPath)
     console.log(fs.existsSync(newPath), '----newPath')
+    // TODO  解决文件创建的问题
     //  可能不会自动创建目录
     // const path = './public/upload/'
 

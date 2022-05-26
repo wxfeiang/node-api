@@ -6,6 +6,7 @@ const serchdata = Joi.string().min(1).max(8).required()
 const size = Joi.number()
 const id = Joi.string().required()
 const typeId = Joi.string().required()
+const pictype = Joi.string().required()
 
 //  定义输出的 规则对象
 
@@ -25,5 +26,12 @@ exports.outheData = {
 exports.outheDetl = {
   query: {
     id
+  }
+}
+
+exports.picData = {
+  query: {
+    pictype,
+    size
   }
 }
