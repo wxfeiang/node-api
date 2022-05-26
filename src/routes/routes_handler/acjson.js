@@ -234,7 +234,6 @@ exports.outheData = (req, res) => {
   let cursize = size ? size : 1
 
   var url = baseUrl + typeId + cursize
-  console.log(url)
   superagent
     .get(url)
     .then((response) => {
@@ -387,7 +386,42 @@ exports.picDataDetl = (req, res) => {
   const { id } = req.query
 
   let url = 'https://caoku.live:8443' + id
+  superagent
+    .get(url)
+    .charset('gbk')
+    .then((response) => {
+      const $ = cheerio.load(response.text)
+      let resAlt = {
+        title: $('#tuwen h4').text(),
+        list: []
+      }
+      $('#tuwen tr td img').each((idx, ele) => {
+        let data = {
+          src: $(ele).attr('src')
+        }
+        resAlt.list.push(data) // 存入最终结果数组.
+      })
 
+      res.cc('成功', resAlt)
+    })
+    .catch((err) => {
+      res.cc(err, '当前ID没有对应的数据')
+    })
+}
+// s=s&guanjian=%B6%CC%CD%E0
+/**
+ * @route GET /api/acjson/picDataSerch
+ * @summary 爬取picDataSerch
+ * @group 获取数据资料
+ * @param {string} serchdata.query.required - 检索关键字
+ * @param {string} size.query - 检索关键字
+ * @returns {Response.model} 200
+ */
+exports.picDataSerch = (req, res) => {
+  const { serchdata, size } = req.query
+  let page = size ? ' &page=' + size : ''
+  let url = 'https://caoku.live:8443/s/?s=s&guanjian=' + encodeURI(serchdata) + page
+  console.log(url)
   superagent
     .get(url)
     .charset('gbk')

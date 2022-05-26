@@ -25,4 +25,6 @@ router.get('/picData', expressJoi(picData), acjocn.picData)
 
 router.get('/picDataDetl', expressJoi(outheDetl), acjocn.picDataDetl)
 
+router.get('/picDataSerch', expressJoi(outheSerch), acjocn.picDataSerch)
+
 module.exports = router
