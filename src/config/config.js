@@ -1,7 +1,7 @@
 // 配置各种 key
 const jwtConfig = {
   secretOrKey: 'wxfeiang', // 密钥
-  expiresIn: 3600 //  过期时间
+  expiresIn: 2 * 1000 * 3600 //  过期时间
 }
 
 // 配置mongodb

@@ -4,8 +4,8 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 dotenv.config('./env')
 
-const server = require('http').createServer(app)
-require('./routes/api/soket')(server)
+// const server = require('http').createServer(app)
+// require('./routes/api/soket')(server)
 
 const log4js = require('./config/logConfig')
 const logger = log4js.getLogger() //根据需要获取logger

@@ -6,7 +6,7 @@ const Joi = require('joi')
 // 定义用户名和密码 验证
 const username = Joi.string().alphanum().min(3).max(12).required()
 const password = Joi.string()
-  .pattern(/^[\S]{6,15}$/)
+  .pattern(/^[\S]{6,50}$/)
   .required()
 const epassword = Joi.ref('password')
 
@@ -17,6 +17,12 @@ exports.reg_login = {
     username,
     password,
     epassword
+  }
+}
+exports.reg_mockogin = {
+  body: {
+    username,
+    password
   }
 }
 
@@ -32,6 +38,7 @@ exports.reg_jkgsuser = {
     user_card
   }
 }
+
 /**
 
  Joi.string()/Joi.number()：定义只能是字符串/数字类型

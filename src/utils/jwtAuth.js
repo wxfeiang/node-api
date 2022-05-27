@@ -20,6 +20,7 @@ const authJwt = expressJwt({
 }).unless({
   path: [
     '/api/users/login',
+    '/api/mock/sys/login',
     '/api/users/multer',
     '/api/jkgs/jkgsAdduser',
     '/api/soket/sokettest',

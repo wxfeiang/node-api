@@ -3,6 +3,9 @@ const fs = require('fs') //文件模块
 const Mock = require('mockjs') //
 const mysqldb = require('../../utils/mysqldb') // 数据库
 
+const jwt = require('jsonwebtoken') // 生成 token
+const { jwtConfig } = require('../../config/config')
+
 /**
  * @swagger
  * /api/mock/data:
@@ -42,56 +45,44 @@ exports.mockData = (req, res) => {
   })
   res.json(data)
 }
-/**,
- * @swagger
- * /api/mock/sys/login:
- *    post:
- *      tags:
- *      - 登陆接口
- *      summary: login
- *      produces:
- *      - application/json
- *      parameters:
- *      - in: body
- *      - name: username
- *        in: query
- *        description: 用户名
- *        required: false
- *        type: integer
- *        maximum:
- *        minimum: 1
- *        format:
- *      - name: password
- *        in: query
- *        description: md5加密密码
- *        required: false
- *        type: integer
- *        maximum:
- *        minimum: 1
- *        format:
- *      responses:
- *        200:
- *          description: successful operation
- * */
-
+/**
+ * @group 用户登录、注册相关
+ * @summary 登录
+ * @route POST /api/mock/sys/login
+ * @param {LoginMokc.model} point.body.required - the new point
+ * @produces application/json application/xml
+ * @consumes application/json application/xml
+ * @returns {Response.model} 200
+ * @headers {integer} 200.X-Rate-Limit
+ * @headers {string} 200.X-Expires-After
+ */
+/**
+ * @typedef LoginMokc
+ * @property {string} username.required - 用户名 - eg: supadmin
+ * @property {string} password.required - 密码 - eg: 12345677e
+ */
 exports.login = (req, res) => {
-  const { username, password } = req.body
-  console.log(req.body)
-  let data = Mock.mock({
-    code: 200,
-    success: true,
-    message: '登陆成功',
-    data: {
-      'id|10000-20000': 10000, //id: 10000-20000之间的随机一个数字
-      name: username,
-      token: password,
-      loginTime: function () {
-        //loginTime: 函数的生成的特定返回值
-        return new Date().getTime()
-      }
+  jwt.sign(
+    req.body,
+    jwtConfig.secretOrKey,
+    {
+      expiresIn: jwtConfig.expiresIn
+    },
+    (err, token) => {
+      if (err) throw err
+      let resAlt = Mock.mock({
+        'id|10000-20000': 10000, //id: 10000-20000之间的随机一个数字
+        name: req.body.username,
+        token: 'Bearer ' + token,
+        loginTime: function () {
+          return new Date().getTime()
+        }
+      })
+
+      //  固定格式
+      res.cc('成功', resAlt)
     }
-  })
-  res.json(data)
+  )
 }
 
 /**,
