@@ -116,7 +116,8 @@ exports.outheMenu = (req, res) => {
       $('.row-item ').each((idx, ele) => {
         if (idx > 1) {
           let data = {
-            titele: $(ele).find('.row-item-title  a').text(),
+            baseUrl,
+            title: $(ele).find('.row-item-title  a').text(),
             list: []
           }
           $(ele)
@@ -144,10 +145,12 @@ exports.outheMenu = (req, res) => {
  * @group 获取数据资料
  * @param {string} serchdata.query.required - 检索关键字
  * @param {number} size.query - 页码
+ * @param {number} limt.query - 页码
  * @returns {Response.model} 200
  */
 exports.outheSerch = (req, res) => {
-  const { serchdata, size } = req.query
+  const { serchdata, size, limt } = req.query
+
   let urlOut = size ? '/vedio/' + size : ''
 
   let url = baseUrl + '/search/' + encodeURI(serchdata) + urlOut
@@ -178,10 +181,14 @@ exports.outheSerch = (req, res) => {
           fenshu: $(ele).find('dd').eq(-2).find('h3').text(),
           time: $(ele).find('dd').last().find('h3').text().trim()
         }
+
         resAlt.list.push(data) // 存入最终结果数组.
       })
+      resAlt.list.splice(0, limt ? limt : 10)
+      //  limt
       res.cc('成功', resAlt)
     })
+
     .catch((err) => {
       res.cc(err, '没有检索到对应的数据', err)
     })
@@ -408,7 +415,7 @@ exports.picDataDetl = (req, res) => {
       res.cc(err, '当前ID没有对应的数据')
     })
 }
-// s=s&guanjian=%B6%CC%CD%E0
+
 /**
  * @route GET /api/acjson/picDataSerch
  * @summary 爬取picDataSerch
