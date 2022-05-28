@@ -144,8 +144,8 @@ exports.outheMenu = (req, res) => {
  * @summary outheSerch 视频搜索
  * @group 获取数据资料
  * @param {string} serchdata.query.required - 检索关键字
- * @param {number} size.query - 页码
- * @param {number} limt.query - 页码
+ * @param {number} size.query - page
+ * @param {number} limt.query - limt
  * @returns {Response.model} 200
  */
 exports.outheSerch = (req, res) => {
