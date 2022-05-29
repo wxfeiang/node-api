@@ -348,9 +348,10 @@ exports.juqing = (req, res) => {
  * @param {string} pictype.query.required - 当前分页类型链接
  * @param {number} size.query.required - page  页码
  * @param {number} limt.query.required - limt  数目
- * @returns {Response.model} 200
  * @security JWT
+ * @returns {Response.model} 200
  */
+
 exports.picData = (req, res) => {
   const { pictype, size, limt } = req.query
   let page = size ? size + '.html' : ''

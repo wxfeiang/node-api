@@ -21,6 +21,7 @@ router.get('/outheMenu', acjocn.outheMenu)
 router.get('/firdesHref', acjocn.firdesHref)
 
 router.get('/juqing', acjocn.juqing)
+
 router.get('/picData', expressJoi(picData), acjocn.picData)
 
 router.get('/picDataDetl', expressJoi(outheDetl), acjocn.picDataDetl)
