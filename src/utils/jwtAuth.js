@@ -3,6 +3,7 @@
 const expressJwt = require('express-jwt')
 const { jwtConfig } = require('../config/config')
 
+//TODO  配置本地测试不需要 JWT
 const authJwt = expressJwt({
   secret: jwtConfig.secretOrKey, //加密密钥，可换
   algorithms: ['HS256'], //
@@ -25,8 +26,7 @@ const authJwt = expressJwt({
     '/api/jkgs/jkgsAdduser',
     '/api/soket/sokettest',
     '/api/acjson/outheData',
-    '/api/acjson/outheDetl',
-    { url: /^\/api\/acjson\/.*/ }
+    '/api/acjson/outheDetl'
   ] //添加不需要token验证的路由
 })
 module.exports = authJwt
@@ -48,5 +48,6 @@ module.exports = authJwt
 //   { url: '/products', methods: ['GET'] },
 //   { url: /^\/products\/.*/, methods: ['GET'] },
 //   { url: '/user', methods: ['POST'] },
-//   { url: /^\/user\/.*/, methods: ['GET'] }
+//   { url: /^\/user\/.*/, methods: ['GET'] },
+//    { url: /^\/api\/acjson\/.*/ }  // 有用
 // ]

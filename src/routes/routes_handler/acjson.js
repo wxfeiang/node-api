@@ -144,18 +144,18 @@ exports.outheMenu = (req, res) => {
  * @summary outheSerch 视频搜索
  * @group 获取数据资料
  * @param {string} serchdata.query.required - 检索关键字
- * @param {number} size.query - page
- * @param {number} limt.query - limt
+ * @param {number} size.query.required - 页数
+ * @param {number} limt.query.required - 条数
  * @returns {Response.model} 200
  */
 exports.outheSerch = (req, res) => {
   const { serchdata, size, limt } = req.query
 
+  console.log(req.query, '----')
   let urlOut = size ? '/vedio/' + size : ''
 
   let url = baseUrl + '/search/' + encodeURI(serchdata) + urlOut
   //  vedio/4
-  console.log(url)
   superagent
     .get(url)
     .then((response) => {
@@ -163,32 +163,29 @@ exports.outheSerch = (req, res) => {
       const resAlt = {
         otutList: [],
         list: [],
-        total: $('.page_ul li')
-          .last()
-          .find('a')
-          .text()
-          .replace(/[\u4e00-\u9fa5]/g, '')
-          .replace(/\s*/g, '')
+        total:
+          $('.page_ul li')
+            .last()
+            .find('a')
+            .text()
+            .replace(/[\u4e00-\u9fa5]/g, '')
+            .replace(/\s*/g, '') * 1
       }
       //  返回检索的列表数据
       $('.channel-list .clearfix dl').each((idx, ele) => {
-        // cherrio中$('selector').each()用来遍历所有匹配到的DOM元素
-        // 参数idx是当前遍历的元素的索引，ele就是当前便利的DOM元素
-        let data = {
-          title: $(ele).find('a').attr('title'), //
-          src: $(ele).find('img').attr('src'), //
-          id: $(ele).find('a').attr('href'),
-          fenshu: $(ele).find('dd').eq(-2).find('h3').text(),
-          time: $(ele).find('dd').last().find('h3').text().trim()
+        if (idx < limt) {
+          let data = {
+            title: $(ele).find('a').attr('title'), //
+            src: $(ele).find('img').attr('src'), //
+            id: $(ele).find('a').attr('href'),
+            fenshu: $(ele).find('dd').eq(-2).find('h3').text(),
+            time: $(ele).find('dd').last().find('h3').text().trim()
+          }
+          resAlt.list.push(data) // 存入最终结果数组.
         }
-
-        resAlt.list.push(data) // 存入最终结果数组.
       })
-      resAlt.list.splice(0, limt ? limt : 10)
-      //  limt
       res.cc('成功', resAlt)
     })
-
     .catch((err) => {
       res.cc(err, '没有检索到对应的数据', err)
     })
@@ -349,30 +346,37 @@ exports.juqing = (req, res) => {
  * @summary 爬取picData
  * @group 获取数据资料
  * @param {string} pictype.query.required - 当前分页类型链接
- * @param {string} size.query - 当前分页  路径拼接方式
+ * @param {number} size.query.required - page  页码
+ * @param {number} limt.query.required - limt  数目
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.picData = (req, res) => {
-  const { pictype, size } = req.query
+  const { pictype, size, limt } = req.query
   let page = size ? size + '.html' : ''
   let url = 'https://caoku.live:8443/' + pictype + '/' + page
+  console.log(url)
   superagent
     .get(url)
     .charset('gbk')
     .then((response) => {
       const $ = cheerio.load(response.text)
       let resAlt = {
+        total: 100,
         title: $('#top2 h4').text(),
         list: []
       }
-
       $('#tuwen tr').each((idx, ele) => {
-        let data = {
-          title: $(ele).find('td').eq(1).find('a').text(), //
-          id: $(ele).find('td').eq(1).find('a').attr('href'),
-          time: $(ele).find('td').eq(0).text().replace(/\[|]/g, '')
+        if (idx < limt) {
+          let data = {
+            title: $(ele).find('td').eq(1).find('a').text(), //
+            id: $(ele).find('td').eq(1).find('a').attr('href'),
+            type: pictype,
+            time: $(ele).find('td').eq(0).text().replace(/\[|]/g, ''),
+            desc: '具体不知道多少页面'
+          }
+          resAlt.list.push(data) // 存入最终结果数组.
         }
-        resAlt.list.push(data) // 存入最终结果数组.
       })
 
       res.cc('成功', resAlt)
@@ -388,6 +392,7 @@ exports.picData = (req, res) => {
  * @group 获取数据资料
  * @param {string} id.query.required - 当前id
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.picDataDetl = (req, res) => {
   const { id } = req.query
