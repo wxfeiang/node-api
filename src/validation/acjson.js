@@ -8,6 +8,7 @@ const limt = Joi.number().required()
 const id = Joi.string().required()
 const typeId = Joi.string().required()
 const pictype = Joi.string().required()
+const seachdata = [Joi.string(), Joi.number()]
 
 //  定义输出的 规则对象
 
@@ -34,6 +35,14 @@ exports.outheDetl = {
 exports.picData = {
   query: {
     pictype,
+    size,
+    limt
+  }
+}
+
+exports.layui = {
+  query: {
+    seachdata,
     size,
     limt
   }

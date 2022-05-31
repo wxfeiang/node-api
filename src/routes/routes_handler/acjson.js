@@ -17,24 +17,31 @@ const logoth = log4js.getLogger('oth')
 const baseUrl = 'https://youh15.xyz'
 
 /**
- * @swagger
- * /api/acjson/layui:
- *   get:
- *     tags:
- *       - acjson
- *     description: 请求layui表格模拟数据
- *     responses:
- *       200:
- *         description: 请求成功
+ * @route GET /api/acjson/layui
+ * @summary layui动态数据测试
+ * @group 获取数据资料
+ * @param {string} seachdata.query - 检索参数
+ * @param {number} size.query.required - page  页码
+ * @param {number} limt.query.required - limt  数目
+ * @security JWT
+ * @returns {Response.model} 200
  */
-
+// * @security JWT
 exports.layui = (req, res) => {
+  const { size, limt, seachdata } = req.query
   var file = path.join(__dirname, 'json/laui.json')
   fs.readFile(file, 'utf-8', function (err, data) {
     if (err) {
       res.send('文件读取失败')
     } else {
-      res.send(data)
+      // --  分页. 分页条件  (pagenumber-1)* pageSize   0.3 2,6
+      let index = (size - 1) * limt
+      console.log(typeof JSON.parse(data))
+      let resAlt = {
+        total: JSON.parse(data).layuiData.count,
+        list: JSON.parse(data).layuiData.data.splice(index, limt)
+      }
+      res.cc('成功', resAlt)
     }
   })
 }
@@ -428,15 +435,16 @@ exports.picDataDetl = (req, res) => {
  * @group 获取数据资料
  * @param {string} serchdata.query.required - 检索关键字
  * @param {string} size.query - 检索关键字
+ * @param {number} limt.query.required  - limt - eg: 2
  * @returns {Response.model} 200
  */
 exports.picDataSerch = (req, res) => {
   const { serchdata, size } = req.query
-  let page = size ? ' &page=' + size : ''
-  let url = 'https://caoku.live:8443/s/?s=s&guanjian=' + encodeURI(serchdata) + page
+  let page = size ? '&page=' + size : ''
+  let url = 'https://caoku.live:8443/s/?s=s&guanjian=' + encodeURIComponent(serchdata) + page
   console.log(url)
   superagent
-    .get(url)
+    .get(encodeURI(url))
     .charset('gbk')
     .then((response) => {
       const $ = cheerio.load(response.text)
