@@ -23,10 +23,10 @@ const authJwt = expressJwt({
     '/api/users/login',
     '/api/mock/sys/login',
     '/api/users/multer',
-    '/api/jkgs/jkgsAdduser',
-    '/api/soket/sokettest',
-    '/api/acjson/outheData',
-    '/api/acjson/outheDetl'
+    '/api/jkgs/jkgsAdduser'
+    // '/api/soket/sokettest',
+    // '/api/acjson/outheData',
+    // '/api/acjson/outheDetl'
     //  { url: /^\/api\/acjson\/.*/ } // 有用
   ] //添加不需要token验证的路由
 })

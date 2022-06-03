@@ -26,7 +26,7 @@ const baseUrl = 'https://youh15.xyz'
  * @security JWT
  * @returns {Response.model} 200
  */
-// * @security JWT
+
 exports.layui = (req, res) => {
   const { size, limt, seachdata } = req.query
   var file = path.join(__dirname, 'json/laui.json')
@@ -38,7 +38,7 @@ exports.layui = (req, res) => {
       let index = (size - 1) * limt
       console.log(typeof JSON.parse(data))
       let resAlt = {
-        total: JSON.parse(data).layuiData.count,
+        total: JSON.parse(data).layuiData.data.length,
         list: JSON.parse(data).layuiData.data.splice(index, limt)
       }
       res.cc('成功', resAlt)
@@ -154,6 +154,7 @@ exports.outheMenu = (req, res) => {
  * @param {number} size.query.required - 页数
  * @param {number} limt.query.required - 条数
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.outheSerch = (req, res) => {
   const { serchdata, size, limt } = req.query
@@ -203,6 +204,7 @@ exports.outheSerch = (req, res) => {
  * @summary 爬取outpcType 图片类型
  * @group 获取数据资料
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.outheType = (req, res) => {
   var type = req.query.type ? req.query.type : ''
@@ -239,6 +241,7 @@ exports.outheType = (req, res) => {
  * @param {string} typeId.query.required - 当前分页类型链接
  * @param {string} size.query - 当前分页  路径拼接方式
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.outheData = (req, res) => {
   const { typeId, size } = req.query
@@ -282,6 +285,7 @@ exports.outheData = (req, res) => {
  * @group 获取数据资料
  * @param {string} id.query.required - 用户id  路径拼接方式
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.outheDetl = (req, res) => {
   let url = baseUrl + req.query.id
@@ -312,6 +316,7 @@ exports.outheDetl = (req, res) => {
  * @summary 爬取友情链接
  * @group 获取数据资料
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.firdesHref = (req, res) => {
   let url = ''
@@ -333,6 +338,7 @@ const juqingUrl = 'CaoKu365.Com'
  * @summary 爬取今日数据
  * @group 获取数据资料
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.juqing = (req, res) => {
   let url = juqingUrl
@@ -437,6 +443,7 @@ exports.picDataDetl = (req, res) => {
  * @param {string} size.query - 检索关键字
  * @param {number} limt.query.required  - limt - eg: 2
  * @returns {Response.model} 200
+ * @security JWT
  */
 exports.picDataSerch = (req, res) => {
   const { serchdata, size } = req.query
