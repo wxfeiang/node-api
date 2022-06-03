@@ -159,7 +159,7 @@ exports.login = (req, res) => {
     (err, token) => {
       if (err) throw err
       const data = { token: 'Bearer ' + token } //  固定格式
-      res.cc('查询成功', data)
+      res.cc(data)
     }
   )
   // const { errors, isValid } = validateLoginInput(req.body) // 解构

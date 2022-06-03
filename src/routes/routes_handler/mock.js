@@ -80,7 +80,7 @@ exports.login = (req, res) => {
       })
 
       //  固定格式
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     }
   )
 }
