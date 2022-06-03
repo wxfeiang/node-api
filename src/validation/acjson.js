@@ -47,3 +47,9 @@ exports.layui = {
     limt
   }
 }
+
+exports.outhparams = {
+  params: {
+    id
+  }
+}

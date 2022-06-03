@@ -20,37 +20,7 @@
  */
 
 /**
- * @group 使用案例注释
- * @route PUT /updateList/{id}
- * @summary 列表更新
- * @param {string} id.path.required - 必须输用户ID
- * @returns {object} 200
- * @returns {Array.<UpdateList>} UpdateList
- * @security JWT
- */
-
-/**
- * @group 使用案例注释
- * @summary 注释
- * @route POST /api/users/exp
- * @param {TestPost.model} point.body.required - the new post
- * @produces application/json application/xml
- * @consumes application/json application/xml
- * @returns {Response.model} 200 - 返回参数
- * @headers {integer} 200.X-Rate-Limit  - 好像没用
- * @headers {string} 200.X-Expires-After   - 好像没用
- */
-/**
- * @group 使用案例注释
- * @route DELETE /deleteList/{id}
- * @summary 列表删除
- * @param {string} id.path.required - 用户id
- * @returns {object} 200
- * @security JWT
- */
-
-/**
- * @route PUT /updateList22/{id}
+ * @route PUT /updateList22/:id
  * @summary 列表更新
  * @param {UpdateList.model} point.body.required - 用户名
  * @param {string} id.path.required - 用户id
@@ -109,6 +79,21 @@
  * @property {string} serchdata.required - 关键字 - eg: 黑丝
  */
 
+/**
+ * @route PUT /api/acjson/put/:id
+ * @summary  put 真确结构写法 详情
+ * @group 使用案例注释
+ * @param {string} id.path.required - 用户id  put
+ * @returns {Response.model} 200
+ */
+
+/**
+ * @route DELETE /api/acjson/delete/:id
+ * @summary delete 详情
+ * @group 使用案例注释
+ * @param {string} id.path.required - 用户id  路径拼接方式
+ * @returns {Response.model} 200
+ */
 /**
  *  get 接收参数的方式------
  *  测试    添加测试文件

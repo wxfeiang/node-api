@@ -288,6 +288,7 @@ exports.outheData = (req, res) => {
  * @security JWT
  */
 exports.outheDetl = (req, res) => {
+  console.log('jinlai----')
   let url = baseUrl + req.query.id
   superagent
     .get(url)
@@ -472,4 +473,28 @@ exports.picDataSerch = (req, res) => {
     .catch((err) => {
       res.cc(err, '当前ID没有对应的数据')
     })
+}
+
+/**
+ * @route PUT /api/acjson/put/:id
+ * @summary  爬取outheDetl 详情
+ * @group  获取数据资料
+ * @param {string} id.path.required - 用户id  put
+ * @returns {Response.model} 200
+ */
+exports.put = (req, res) => {
+  console.log('jinlai----')
+  res.cc('put', req.params)
+}
+
+/**
+ * @route DELETE /api/acjson/delete/:id
+ * @summary delete 详情
+ * @group 获取数据资料
+ * @param {string} id.path.required - 用户id  路径拼接方式
+ * @returns {Response.model} 200
+ */
+exports.delete = (req, res) => {
+  console.log('delete----')
+  res.cc('成功', req.params)
 }

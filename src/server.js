@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 dotenv.config('./env')
 
-// const server = require('http').createServer(app)
 // require('./routes/api/soket')(server)
 
 const log4js = require('./config/logConfig')
