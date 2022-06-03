@@ -35,7 +35,6 @@ exports.layui = (req, res) => {
     } else {
       // --  分页. 分页条件  (pagenumber-1)* pageSize   0.3 2,6
       let index = (size - 1) * limt
-      console.log(typeof JSON.parse(data))
       let resAlt = {
         total: JSON.parse(data).layuiData.data.length,
         list: JSON.parse(data).layuiData.data.splice(index, limt)
@@ -431,7 +430,8 @@ exports.picDataDetl = (req, res) => {
       res.cc(1, resAlt)
     })
     .catch((err) => {
-      res.cc(err, '当前ID没有对应的数据')
+      // res.cc(400, '有问题')
+      res.cc(err, '当前ID无数据')
     })
 }
 

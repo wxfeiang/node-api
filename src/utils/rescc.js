@@ -1,14 +1,19 @@
 const log4js = require('../config/logConfig')
 const errlogger = log4js.getLogger('err')
 exports.resData = (req, res, next) => {
-  // status  1  失败   err  描述
   res.cc = function (err, data = null) {
-    console.log(err.message, '----erross')
     let resAll = null
     if (err instanceof Error) {
+      // 本来就出错了
       resAll = {
-        code: 500,
-        message: err instanceof Error ? err.message : err,
+        code: err.status || 500,
+        message: err && data ? data : err.message
+      }
+    } else if (err <= 500 || err >= 400) {
+      // 自定义出错
+      resAll = {
+        code: err,
+        message: '失败',
         data
       }
     } else {
