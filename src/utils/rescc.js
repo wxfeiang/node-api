@@ -5,20 +5,6 @@ exports.resData = (req, res, next) => {
   res.cc = function (err, data = null) {
     console.log(err.message, '----erross')
     let resAll = null
-    //自己传
-    // if (err && err == 1) {
-    //   resAll = {
-    //     code: 200,
-    //     message: '查询成功',
-    //     data
-    //   }
-    // } else {
-    //   resAll = {
-    //     code: 500,
-    //     message: err instanceof Error ? err.message : err,
-    //     data
-    //   }
-    // }
     if (err instanceof Error) {
       resAll = {
         code: 500,
