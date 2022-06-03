@@ -26,13 +26,12 @@ const baseUrl = 'https://youh15.xyz'
  * @security JWT
  * @returns {Response.model} 200
  */
-
 exports.layui = (req, res) => {
   const { size, limt, seachdata } = req.query
   var file = path.join(__dirname, 'json/laui.json')
   fs.readFile(file, 'utf-8', function (err, data) {
     if (err) {
-      res.send('文件读取失败')
+      res.cc(err)
     } else {
       // --  分页. 分页条件  (pagenumber-1)* pageSize   0.3 2,6
       let index = (size - 1) * limt
@@ -41,10 +40,11 @@ exports.layui = (req, res) => {
         total: JSON.parse(data).layuiData.data.length,
         list: JSON.parse(data).layuiData.data.splice(index, limt)
       }
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     }
   })
 }
+
 /**
  * @swagger
  * /api/acjson/email:
@@ -428,8 +428,7 @@ exports.picDataDetl = (req, res) => {
         }
         resAlt.list.push(data) // 存入最终结果数组.
       })
-
-      res.cc('成功', resAlt)
+      res.cc(1, resAlt)
     })
     .catch((err) => {
       res.cc(err, '当前ID没有对应的数据')
@@ -498,3 +497,11 @@ exports.delete = (req, res) => {
   console.log('delete----')
   res.cc('成功', req.params)
 }
+
+/**
+ * @route GET /api/acjson/404
+ * @summary delete 详情
+ * @group 获取数据资料
+ * @param {string} id.path.required - 用户id  路径拼接方式
+ * @returns {Response.model} 200
+ */
