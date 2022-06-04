@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'node2',
       script: './src/server.js', // 写本来启动的入口路径就好
-      autorestart: true, // 异常自动重启
+      autorestart: true,
       watch: true,
       ignore_watch: [
         // 不⽤监听的⽂件
@@ -37,7 +37,7 @@ module.exports = {
       // Post-setup 在 setup 之后执行
       // 'post-setup': 'ls -la',
       // 每次 update 都会执行
-      'pre-deploy-local': "echo '生产环境部署中===>删除之前的日志'",
+      'pre-deploy-local': "echo '生产环境部署中'",
       'post-deploy': 'npm install &&  pm2 startOrRestart ecosystem.config.js --env production && pm2 flush '
     }
     // 可配置不同env 环境
