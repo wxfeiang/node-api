@@ -29,9 +29,9 @@ router.get('/testtoken', users.testtoken)
 // TODO  方法抽离
 router.post('/multer', mut.muUpload.single('file'), (req, res, next) => {
   if (req.file === undefined) {
-    res.cc('失败', '错误请选择上传文件！')
+    res.cc(500, '错误请选择上传文件！')
   } else {
-    res.cc('index', {
+    res.cc({
       msg: '文件已上传成功！',
       file: `uploads/${req.file.filename}`
     })

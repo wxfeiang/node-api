@@ -4,6 +4,13 @@ const expressJwt = require('express-jwt')
 const { jwtConfig } = require('../config/config')
 
 //TODO  配置本地测试不需要 JWT
+var blackArr = []
+if (process.env.NODE_ENV === 'development') {
+  blackArr = [
+    { url: /^\/api\/acjson\/.*/ } // 有用
+  ]
+}
+
 const authJwt = expressJwt({
   secret: jwtConfig.secretOrKey, //加密密钥，可换
   algorithms: ['HS256'], //
@@ -19,16 +26,7 @@ const authJwt = expressJwt({
     return null
   }
 }).unless({
-  path: [
-    '/api/users/login',
-    '/api/mock/sys/login',
-    '/api/users/multer',
-    '/api/jkgs/jkgsAdduser'
-    // '/api/soket/sokettest',
-    // '/api/acjson/outheData',
-    // '/api/acjson/outheDetl'
-    // { url: /^\/api\/acjson\/.*/ } // 有用
-  ] //添加不需要token验证的路由
+  path: ['/api/users/login', '/api/mock/sys/login', '/api/users/multer', '/api/jkgs/jkgsAdduser', blackArr] //添加不需要token验证的路由
 })
 module.exports = authJwt
 

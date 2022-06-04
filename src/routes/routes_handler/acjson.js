@@ -138,7 +138,7 @@ exports.outheMenu = (req, res) => {
           resAlt.push(data)
         }
       })
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     })
     .catch((err) => {
       res.cc(err, '没有检索到对应的数据')
@@ -191,7 +191,7 @@ exports.outheSerch = (req, res) => {
           resAlt.list.push(data) // 存入最终结果数组.
         }
       })
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     })
     .catch((err) => {
       res.cc(err, '没有检索到对应的数据', err)
@@ -226,7 +226,7 @@ exports.outheType = (req, res) => {
         }
         resAlt.push(data) // 存入最终结果数组.
       })
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     })
     .catch((err) => {
       resesd.cc(err, '当前分页没有对应的数据', err)
@@ -271,10 +271,10 @@ exports.outheData = (req, res) => {
         resAlt.list.push(data) // 存入最终结果数组.
       })
 
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     })
     .catch((err) => {
-      res.cc(err, '当前分页没有对应的数据', err)
+      res.cc(err)
     })
 }
 
@@ -307,7 +307,7 @@ exports.outheDetl = (req, res) => {
       res.cc('成功', resAlt)
     })
     .catch((err) => {
-      res.cc(err, '当前ID没有对应的数据', err)
+      res.cc(err)
     })
 }
 
@@ -427,11 +427,13 @@ exports.picDataDetl = (req, res) => {
         }
         resAlt.list.push(data) // 存入最终结果数组.
       })
-      res.cc(1, resAlt)
+      res.cc(resAlt)
     })
     .catch((err) => {
       // res.cc(400, '有问题')
-      res.cc(err, '当前ID无数据')
+      res.cc(err)
+
+      // res.cc(new Error('这里自定义的错误'))
     })
 }
 
@@ -467,7 +469,7 @@ exports.picDataSerch = (req, res) => {
         resAlt.list.push(data) // 存入最终结果数组.
       })
 
-      res.cc('成功', resAlt)
+      res.cc(resAlt)
     })
     .catch((err) => {
       res.cc(err, '当前ID没有对应的数据')
@@ -482,8 +484,7 @@ exports.picDataSerch = (req, res) => {
  * @returns {Response.model} 200
  */
 exports.put = (req, res) => {
-  console.log('jinlai----')
-  res.cc('put', req.params)
+  res.cc(req.params)
 }
 
 /**
@@ -494,14 +495,12 @@ exports.put = (req, res) => {
  * @returns {Response.model} 200
  */
 exports.delete = (req, res) => {
-  console.log('delete----')
-  res.cc('成功', req.params)
+  res.cc(req.params)
 }
 
 /**
  * @route GET /api/acjson/404
  * @summary delete 详情
  * @group 获取数据资料
- * @param {string} id.path.required - 用户id  路径拼接方式
  * @returns {Response.model} 200
  */
