@@ -3,6 +3,7 @@
 const expressJwt = require('express-jwt')
 const { jwtConfig } = require('../config/config')
 
+console.log(process.env.NODE_ENV, '--jjj--')
 // 配置本地测试不需要 JWT  pm2 会启动环境  默认登录接口不需要
 let blackArr = []
 if (process.env.NODE_ENV === 'development') {
@@ -10,7 +11,6 @@ if (process.env.NODE_ENV === 'development') {
     { url: /^\/api\/acjson\/.*/ } // 有用
   ]
 }
-console.log(blackArr)
 
 const authJwt = expressJwt({
   secret: jwtConfig.secretOrKey, //加密密钥，可换
