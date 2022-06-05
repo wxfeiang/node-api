@@ -79,6 +79,7 @@ exports.login = (req, res) => {
         }
       })
 
+      console.log(resAlt)
       //  固定格式
       res.cc(resAlt)
     }

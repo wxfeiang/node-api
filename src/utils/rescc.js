@@ -2,7 +2,6 @@ const log4js = require('../config/logConfig')
 const errlogger = log4js.getLogger('err')
 exports.resData = (req, res, next) => {
   res.cc = (error, data = null) => {
-    console.log(typeof error)
     let resAll = null
     if (error instanceof Error) {
       // 本来就出错了
@@ -21,7 +20,7 @@ exports.resData = (req, res, next) => {
       resAll = {
         code: 200,
         message: typeof data !== 'object' ? data : '操作成功',
-        data: arguments[0] //  只传入了一个结果
+        data: error //  只传入了一个结果
       }
     }
 
