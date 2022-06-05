@@ -352,5 +352,3 @@ exports.testtoken = (req, res, next) => {
  * @headers {integer} 200.X-Rate-Limit  - 好像没用
  * @headers {string} 200.X-Expires-After   - 好像没用
  */
-
-exports.multer = (req, res, next) => {}

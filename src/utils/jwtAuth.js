@@ -3,14 +3,23 @@
 const expressJwt = require('express-jwt')
 const { jwtConfig } = require('../config/config')
 
-console.log(process.env.NODE_ENV, '--jjj--')
-// 配置本地测试不需要 JWT  pm2 会启动环境  默认登录接口不需要
+//console.log(process.env.NODE_ENV, '--jjj--')
+// 配置本地测试不需要 JWT  pm2 会启动环境  默认登录接口不需要 动态验证
 let blackArr = []
 if (process.env.NODE_ENV === 'development') {
   blackArr = [
     { url: /^\/api\/acjson\/.*/ } // 有用
   ]
 }
+
+// 不需要验证的白名单
+let whiteList = [
+  '/api/users/login',
+  '/api/mock/sys/login',
+  '/api/users/multer',
+  '/api/jkgs/jkgsAdduser',
+  { url: /^\/api\/public\/.*/ }
+]
 
 const authJwt = expressJwt({
   secret: jwtConfig.secretOrKey, //加密密钥，可换
@@ -27,7 +36,7 @@ const authJwt = expressJwt({
     return null
   }
 }).unless({
-  path: ['/api/users/login', '/api/mock/sys/login', '/api/users/multer', '/api/jkgs/jkgsAdduser', ...blackArr] //添加不需要token验证的路由
+  path: [...whiteList, ...blackArr] //添加不需要token验证的路由
 })
 module.exports = authJwt
 

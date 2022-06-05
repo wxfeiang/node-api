@@ -1,7 +1,8 @@
 const log4js = require('../config/logConfig')
 const errlogger = log4js.getLogger('err')
 exports.resData = (req, res, next) => {
-  res.cc = function (error, data = null) {
+  res.cc = (error, data = null) => {
+    console.log(typeof error)
     let resAll = null
     if (error instanceof Error) {
       // 本来就出错了
@@ -9,24 +10,24 @@ exports.resData = (req, res, next) => {
         code: error.status || 500,
         message: error && data ? data : chagneError(error)
       }
-    } else if (error < 500 && error >= 400) {
+    } else if (error < 600 && error >= 400) {
       // 自定义出错
       resAll = {
         code: error,
-        message: '操作失败',
+        message: typeof data === 'object' ? data : '操作失败',
         data
       }
     } else {
       resAll = {
         code: 200,
-        message: '查询成功',
+        message: typeof data !== 'object' ? data : '操作成功',
         data: arguments[0] //  只传入了一个结果
       }
     }
 
-    let quer = req.body || req.query || req.param0
+    let quer = req.body || req.query || req.params
     if (resAll.code !== 200) {
-      errlogger.error(req.url, req.method, '查询参数：==>', quer, '<===||====>', '错误返回信息==>', resAll) //
+      errlogger.error('api:' + req.url, 'types' + req.method, '查询参数：==>', quer, '错误返回信息==>', resAll) //
     }
     res.send(resAll)
   }

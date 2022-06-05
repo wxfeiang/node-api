@@ -33,7 +33,7 @@
 /**
  * 测试 配置文件上传接口2
  * @group 使用案例注释
- * @route POST /api/users/multer_exple
+ * @route POST _exple
  * @summary 配置文件上传接口
  * @param {file}  aaa.formData.required - 请输入用户名
  * @produces application/json application/xml

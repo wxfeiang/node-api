@@ -101,28 +101,23 @@ exports.login = (req, res) => {
 exports.profile = (req, res) => {
   const { username, password } = req.body
   let data = {
-    success: true,
-    code: 200,
-    data: {
-      role: [
-        {
-          id: '12',
-          title: '超级管理员'
-        }
-      ],
-      _id: '61df3340c47fbe23ece44ed6',
-      id: '612710a9ec87aa543c9c3420',
-      username: 'super-admin',
-      title: '超级管理员',
-      avatar: 'http://47.99.93.97/api/public/upload/1642521427253.jpg',
-      permission: {
-        menus: ['userManage', 'roleList', 'permissionList', 'articleRanking', 'articleCreate'],
-        points: ['distributeRole', 'importUser', 'removeUser', 'distributePermission']
+    role: [
+      {
+        id: '12',
+        title: '超级管理员'
       }
-    },
-    message: '获取资料成功'
+    ],
+    _id: '61df3340c47fbe23ece44ed6',
+    id: '612710a9ec87aa543c9c3420',
+    username: 'super-admin',
+    title: '超级管理员',
+    avatar: 'http://47.99.93.97/api/public/upload/1642521427253.jpg',
+    permission: {
+      menus: ['userManage', 'roleList', 'permissionList', 'articleRanking', 'articleCreate'],
+      points: ['distributeRole', 'importUser', 'removeUser', 'distributePermission']
+    }
   }
-  res.json(data)
+  res.cc(data)
 }
 
 /**,

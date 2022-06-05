@@ -6,7 +6,7 @@ const filter = require('../utils/filter')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const newPath = '../../public/upload'
-    fs.mkdirSync(newPath)
+    // fs.mkdirSync(newPath)
     console.log(fs.existsSync(newPath), '----newPath')
     // TODO  解决文件创建的问题
     //  可能不会自动创建目录
@@ -37,3 +37,5 @@ exports.unlimited = multer({
   storage,
   limits: { fileSize: 1000000 }
 })
+
+// 多文件上传

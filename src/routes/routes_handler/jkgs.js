@@ -24,7 +24,7 @@ exports.jkgsAdduser = asyncHander((req, res) => {
   const sql = `INSERT INTO users_jkgs (user_name, user_sex, user_card) VALUES (? ,? ,? )`
   const parm = [user_name, user_sex, user_card]
   mysqldb.query(sql, parm, function (results, fields) {
-    res.cc('添加成功', results)
+    res.cc(results)
   })
 })
 

@@ -11,7 +11,7 @@ exports.checkFileType = function (file, cb) {
   if (mimetype && extname) {
     return cb(null, true)
   } else {
-    cb('上传的格式有误，请检查！')
+    cb(new Error('文件格式错误！'))
   }
 }
 

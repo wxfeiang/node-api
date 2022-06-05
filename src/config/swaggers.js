@@ -9,7 +9,7 @@ let options = {
   swaggerDefinition: {
     info: {
       title: 'node-api',
-      version: '2.0.0',
+      version: '2.0.0', // require("../../package.json").version,
       description: '接口管理,所有的接口加入了Token ,以具体的返回值为准！' //
     },
     host, //端口号，要和自己启动的node服务保持一致 // 或者localhost  '127.0.0.1:' +

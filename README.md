@@ -35,6 +35,7 @@ pm2  自动部署   配置文件优化
 接口的 IP地址配置  -- TODO
 自动更新 package.json    TODO
 
+自动化配置环境变量 
 
 脚本文件 自动部署 TODO  更改服务器的node 变量
 
