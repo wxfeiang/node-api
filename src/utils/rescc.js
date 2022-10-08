@@ -1,7 +1,14 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-06-04 15:11:00
+ * @LastEditTime: 2022-07-03 13:54:21
+ * @FilePath: /node-api/src/utils/rescc.js
+ */
 const log4js = require('../config/logConfig')
 const errlogger = log4js.getLogger('err')
 exports.resData = (req, res, next) => {
-  res.cc = (error, data = null) => {
+  res.cc = function (error, data = null) {
     let resAll = null
     if (error instanceof Error) {
       // 本来就出错了
@@ -26,7 +33,14 @@ exports.resData = (req, res, next) => {
 
     let quer = req.body || req.query || req.params
     if (resAll.code !== 200) {
-      errlogger.error('api:' + req.url, 'types' + req.method, '查询参数：==>', quer, '错误返回信息==>', resAll) //
+      errlogger.error(
+        'api:' + req.url,
+        'types' + req.method,
+        '查询参数：==>',
+        quer,
+        '错误返回信息==>',
+        resAll
+      ) //
     }
     res.send(resAll)
   }

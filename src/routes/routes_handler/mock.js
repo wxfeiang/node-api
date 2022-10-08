@@ -100,7 +100,6 @@ exports.login = (req, res) => {
  *          description: successful operation
  * */
 exports.profile = (req, res) => {
-  const { username, password } = req.body
   let data = {
     role: [
       {
@@ -281,10 +280,7 @@ exports.addStudent = (req, res) => {
   console.log(req.body)
   //TODO  验证传入的参数  注释写法问题
   const { Sname, Sage, Ssex } = req.body
-  if (!Sname || !Sage || !Ssex) {
-    res.json('参数不能为空')
-    return false
-  }
+
   const prms = [Sname, Sage, Ssex]
   const sql = `INSERT INTO student(Sname, Sage, Ssex) VALUES(?,?,?);`
   mysqldb.query(sql, prms, function (results, fields) {

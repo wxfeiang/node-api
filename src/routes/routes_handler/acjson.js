@@ -504,3 +504,23 @@ exports.delete = (req, res) => {
  * @group 获取数据资料
  * @returns {Response.model} 200
  */
+
+/**
+ * @route GET /api/acjson/zhairenwu
+ * @summary zhairenwu首页
+ * @group 获取数据资料
+ * @returns {Response.model} 200
+ */
+exports.zhairenwu = (req, res) => {
+  let url = 'https://w.zhairenwu11.xyz/'
+  superagent
+    .get(url)
+    .then((response) => {
+      const $ = cheerio.load(response.text)
+      logoth.info(response.text)
+      res.cc('成功', response.text)
+    })
+    .catch((err) => {
+      res.cc(err, '当前ID没有对应的数据')
+    })
+}

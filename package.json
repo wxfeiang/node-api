@@ -24,6 +24,7 @@
     "cheerio": "^1.0.0-rc.3",
     "connect-mongo": "^4.4.1",
     "cookie-parser": "^1.4.5",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.0",
     "express-jwt": "^6.1.1",
     "express-session": "^1.16.2",

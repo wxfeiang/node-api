@@ -3,7 +3,14 @@ const router = express.Router()
 const acjocn = require('../routes_handler/acjson')
 // 1. 导入 @escook/express-joi
 const expressJoi = require('@escook/express-joi')
-const { outheSerch, outheDetl, outheData, picData, layui, outhparams } = require('../../validation/acjson') // 验证规则
+const {
+  outheSerch,
+  outheDetl,
+  outheData,
+  picData,
+  layui,
+  outhparams
+} = require('../../validation/acjson') // 验证规则
 // 请求 layui
 router.get('/layui', expressJoi(layui), acjocn.layui)
 // 请求html    文件
@@ -30,5 +37,7 @@ router.get('/picDataSerch', expressJoi(outheSerch), acjocn.picDataSerch)
 
 router.put('/put/:id', expressJoi(outhparams), acjocn.put)
 router.delete('/delete/:id', expressJoi(outhparams), acjocn.delete)
+
+router.get('/zhairenwu', acjocn.zhairenwu)
 
 module.exports = router

@@ -1,7 +1,15 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-05-14 18:20:35
+ * @LastEditTime: 2022-07-03 13:54:09
+ * @FilePath: /node-api/src/server.js
+ */
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
+//const { Decrypt } = require('./utils/encry')
 dotenv.config('./env')
 
 // require('./routes/api/soket')(server)
@@ -56,6 +64,18 @@ app.use(initSession)
 // 封装全局的 返回统一信息处理
 app.use(res.resData)
 app.use(authJwt) // 路由之前初始化 token 认证
+//
+// app.use((req, res, next) => {
+//   if (req.body) {
+//     req.body = Decrypt(req.body.data)
+//   }
+//   if (req.query) {
+//     req.query = Decrypt(req.query.data)
+//   }
+//   //
+
+//   next()
+// })
 
 // 引入自定义接口的所有路由
 for (item in routes) {

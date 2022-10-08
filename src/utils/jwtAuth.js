@@ -30,7 +30,10 @@ const authJwt = expressJwt({
       return req.headers.authorization.split(' ')[1]
     } else if (req.query && req.query.token) {
       return req.query.token
-    } else if (req.headers['access-token'] && req.headers['access-token'].split(' ')[0] === 'Bearer') {
+    } else if (
+      req.headers['access-token'] &&
+      req.headers['access-token'].split(' ')[0] === 'Bearer'
+    ) {
       return req.headers['access-token'].split(' ')[1]
     }
     return null
