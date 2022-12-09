@@ -34,6 +34,6 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
-    "express": "^4.16.4"
+    "express": "^4.17.3"
   }
 }
