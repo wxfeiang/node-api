@@ -1,4 +1,10 @@
-//  所有的工具类
+/*
+ * @Author: wxfeiang
+ * @Description: 所有的工具类
+ * @Date: 2022-10-08 15:19:18
+ * @LastEditTime: 2022-10-08 15:49:41
+ * @FilePath: /node-api/src/utils/tool.js
+ */
 
 const os = require('os')
 //获取本机ip
@@ -40,4 +46,25 @@ exports.getIpAddress = () => {
     })
   })
   return en0
+}
+/**
+ * @description: 获取URL的参数
+ * @return {*}
+ */
+
+exports.getParams = (key) => {
+  var result = {} // 定义一个全局的对象
+  var str = window.location.search
+  if (str.startsWith('?')) {
+    // 判断str以？开头的
+    var strParams = str.split('?')[1]
+    var arrParams = strParams.split('&')
+    //然后进行for循环，这里直接用了forEach
+    arrParams.forEach((item) => {
+      var temKey = item.split('=')[0]
+      var temVal = item.split('=')[1]
+      result[temKey] = temVal
+    })
+  }
+  return result[key]
 }

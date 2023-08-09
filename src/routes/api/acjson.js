@@ -1,3 +1,10 @@
+/*
+ * @Author: wxfeiang
+ * @Description: 资源
+ * @Date: 2022-10-08 15:19:44
+ * @LastEditTime: 2022-10-08 15:25:46
+ * @FilePath: /node-api/src/routes/api/acjson.js
+ */
 const express = require('express')
 const router = express.Router()
 const acjocn = require('../routes_handler/acjson')
@@ -39,5 +46,7 @@ router.put('/put/:id', expressJoi(outhparams), acjocn.put)
 router.delete('/delete/:id', expressJoi(outhparams), acjocn.delete)
 
 router.get('/zhairenwu', acjocn.zhairenwu)
+
+router.get('/resourcePool', acjocn.resourcePool)
 
 module.exports = router

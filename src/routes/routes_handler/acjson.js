@@ -15,6 +15,7 @@ const { response } = require('express')
 const logoth = log4js.getLogger('oth')
 
 const baseUrl = 'https://youh15.xyz'
+const getParams = require('../../utils/tool')
 
 /**
  * @route GET /api/acjson/layui
@@ -519,6 +520,28 @@ exports.zhairenwu = (req, res) => {
       const $ = cheerio.load(response.text)
       logoth.info(response.text)
       res.cc('成功', response.text)
+    })
+    .catch((err) => {
+      res.cc(err, '当前ID没有对应的数据')
+    })
+}
+
+/**
+ * @route GET /api/acjson/resourcePool
+ * @summary resourcePool 首页 获取网页要素 作为资源进入 网址后缀
+ * @group   资源组
+ * @returns {Response.model} 200
+ */
+exports.resourcePool = (req, res) => {
+  let url = 'https://tianbi8.lol'
+  superagent
+    .get(url)
+    .charset('gbk')
+    .then((response) => {
+      const $ = cheerio.load(response.text)
+      console.log($('#top1 .zuo h4').text())
+
+      res.cc('成功', 'keyi ')
     })
     .catch((err) => {
       res.cc(err, '当前ID没有对应的数据')
