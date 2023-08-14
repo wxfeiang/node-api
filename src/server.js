@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description:
  * @Date: 2022-05-14 18:20:35
- * @LastEditTime: 2022-07-03 13:54:09
+ * @LastEditTime: 2023-08-14 10:43:07
  * @FilePath: /node-api/src/server.js
  */
 const express = require('express')
@@ -85,5 +85,6 @@ for (item in routes) {
 app.use(esscook.validata) // 全局验证提交的数据  放在最后
 const port = process.env.PORT || 3088
 app.listen(port, () => {
+  console.log(`Server  running  on prot  ${port}`)
   logoth.info(`Server  running  on prot  ${port}`)
 })
